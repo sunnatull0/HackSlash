@@ -1,0 +1,19 @@
+This package contains 10 enemies monsters + 1 avatar , that are fully animated. 
+
+All characters and animations:
+Enemies:
+Bat: 5 Animations (Attack, Damage Taken, Idle, Dead, Flying)
+Bear: 9 Animations(Attack, Attack Jump, Angry, Damage, Dead, Defence, Idle, Walk, Jump)
+Carnivorous Plant: 6 Animations (Attack, Attack 2, Walk, Idle, Dead, Damage)
+Mud Monster: 9 Animations(Walk, Idle, Attack 1, Attack 2, Attack 3, Damage, Dead, Jump, Block)
+Troll Monster: 8 Animations(Walk, Dead, Damage,Idle, Attack 1, Attack 2, Jump, Block )
+Orc: 8 Animations(Walk, Dead, Block,Idle, Attack, Attack Heavy, Jump, Damage)
+Stone: 8 Animations(Walk, Idle, Attack 1, Attack 2,  Damage, Dead, Jump, Block)
+Skeleton:9 Animations(Walk, Idle, Attack 1, Attack 2, Up, Damage, Dead, Jump, Block)
+Pig: 8 Animations(Walk, Idle, Attack 1, Attack 2,  Damage, Dead, Jump, Block)
+Plant Spikes: 3 Animations(Attack, Dead, Idle)
+
+Avatar:  15 Animations (Attack Melee Weapon_01, Attack Melee Weapon_02,
+ Attack Melee Weapon_03, Attack Melee Weapon_04, Block, Crouch, Damage, 
+Dead, Idle, Jump, Block, Large Gun, Run and gun, Run and Large_Gun, Small Gun)
+

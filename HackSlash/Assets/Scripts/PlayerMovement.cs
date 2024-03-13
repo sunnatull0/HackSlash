@@ -6,65 +6,99 @@ using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Assigning variables!")]
+    [Header("Assigning variables!")] 
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Transform _transform;
     [SerializeField] private Transform _groundPoint;
     [SerializeField] private LayerMask _groundLayer;
 
-    [Header("Player characteristics!")]
-    [SerializeField] private float _movementSpeed = 1f;
+    
+    [Header("Player characteristics!")] [SerializeField]
+    private float _movementSpeed = 1f;
     [SerializeField] private float _jumpForce = 1f;
     [SerializeField] private float _groundCheckRadius = 1f;
-    [SerializeField] private KeyCode _buttonForJumping;
 
-    private float _horizontalInput;
-    private bool _facingRight = true;
+    
+    [Header("Attack!")] [SerializeField] private Transform _attackPoint;
+    [SerializeField] private LayerMask _enemyLayer;
+    [SerializeField] private float _attackRadius = 0.5f;
+    [SerializeField] private bool DrawAttackRange = true;
+
+
+
+    [HideInInspector] public float HorizontalInput;
+    private bool _facingRight;
 
 
     private void Update()
     {
-        _horizontalInput = Input.GetAxisRaw("Horizontal");
+        HorizontalInput = Input.GetAxisRaw("Horizontal");
 
-        
         HandleJumping();
-        HandleFlipping(_horizontalInput);
+        HandleAttack();
+        HandleFlipping();
     }
 
     private void FixedUpdate()
     {
         // Moving.
-        var moveDir = new Vector2(_horizontalInput * _movementSpeed * Time.fixedDeltaTime, _rigidbody.velocity.y);
+        var moveDir = new Vector2(HorizontalInput * _movementSpeed * Time.fixedDeltaTime, _rigidbody.velocity.y);
+
         _rigidbody.velocity = moveDir;
     }
 
 
-
     private void HandleJumping()
     {
-        if (Input.GetKeyDown(_buttonForJumping) && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             Jump();
         }
     }
-    
+
     private void Jump()
     {
         _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
     }
-    
-    
-    
-    private void HandleFlipping(float horizontalInput)
+
+
+    private void HandleAttack()
     {
-        if (horizontalInput == 0f)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Attack();
+            EventManager.InvokeOnAttackActions();
+        }
+    }
+
+    private void Attack()
+    {
+        var hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _enemyLayer);
+        foreach (var enemy in hitEnemies)
+        {
+            Debug.Log("Hit: " + enemy.name);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (_attackPoint == null || !DrawAttackRange)
             return;
-        if ((_facingRight && horizontalInput > 0) || !_facingRight && horizontalInput < 0)
+
+        Gizmos.DrawSphere(_attackPoint.position, _attackRadius);
+    }
+
+
+    private void HandleFlipping()
+    {
+        if (HorizontalInput == 0f)
             return;
-        
+        if ((_facingRight && HorizontalInput > 0) || !_facingRight && HorizontalInput < 0)
+            return;
+
         Flip();
     }
-    
+
     private void Flip()
     {
         var scale = _transform.localScale;
@@ -74,8 +108,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(_groundPoint.position, _groundCheckRadius, _groundLayer);
     }
