@@ -1,79 +1,77 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Animator _animator;
-    private const string _runParameter = "isRunning";
-    private const string _jumpParameter = "isJumping";
-    private const string _attackParameter = "Attack";
+    private const string RunParameter = "isRunning";
+    private const string JumpParameter = "isJumping";
+    private const string AttackParameter = "isAttacking";
 
 
     private void Start()
     {
-        EventManager.OnAttack += HandleAttackingAnimation;
+        EventManager.OnAttack += PlayAttackingAnimation;
+        EventManager.OnJump += PlayJumpingAnimation;
+        EventManager.OnLand += ResetJumpAnimation;
+        EventManager.OnAttackFinish += ResetAttackAnimation;
     }
 
     private void OnDisable()
     {
-        EventManager.OnAttack -= HandleAttackingAnimation;
+        EventManager.OnAttack -= PlayAttackingAnimation;
+        EventManager.OnJump -= PlayJumpingAnimation;
+        EventManager.OnLand -= ResetJumpAnimation;
+        EventManager.OnAttackFinish -= ResetAttackAnimation;
     }
 
 
     private void Update()
     {
-        HandleRunningAnimation();
-        HandleJumpingAnimation();
+        PlayRunningAnimation();
     }
 
-    private void HandleRunningAnimation()
+    private void PlayRunningAnimation()
     {
         if (!_playerMovement.IsGrounded())
         {
-            _animator.SetBool(_runParameter, false);
+            _animator.SetBool(RunParameter, false);
             return;
         }
 
 
         float horizontalInput = _playerMovement.HorizontalInput;
-        bool isRunning = _animator.GetBool(_runParameter);
+        bool isRunning = _animator.GetBool(RunParameter);
 
 
         if (horizontalInput != 0 && !isRunning)
         {
-            _animator.SetBool(_runParameter, true);
+            _animator.SetBool(RunParameter, true);
         }
         else if (horizontalInput == 0 && isRunning)
         {
-            _animator.SetBool(_runParameter, false);
+            _animator.SetBool(RunParameter, false);
         }
     }
 
-    private void HandleJumpingAnimation()
+    private void PlayJumpingAnimation()
     {
-        bool isJumping = _animator.GetBool(_jumpParameter);
-
-        if (!_playerMovement.IsGrounded() && !isJumping)
-        {
-            _animator.SetBool(_jumpParameter, true);
-            Debug.Log("Jumping");
-        }
-        else if (_playerMovement.IsGrounded() && isJumping)
-        {
-            _animator.SetBool(_jumpParameter, false);
-            Debug.Log("Stop");
-        }
+        _animator.SetBool(JumpParameter, true);
     }
 
-    private void HandleAttackingAnimation()
+    private void PlayAttackingAnimation()
     {
-        if (!_playerMovement.IsGrounded())
-            return;
-        
-        _animator.SetTrigger(_attackParameter);
+        //_animator.SetTrigger(AttackParameter);
+        _animator.SetBool(AttackParameter, true);
+    }
+
+
+    private void ResetJumpAnimation()
+    {
+        _animator.SetBool(JumpParameter, false);
+    }
+    private void ResetAttackAnimation()
+    {
+        _animator.SetBool(AttackParameter, false);
     }
 }
