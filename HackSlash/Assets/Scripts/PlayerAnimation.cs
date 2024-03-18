@@ -7,21 +7,24 @@ public class PlayerAnimation : MonoBehaviour
     private const string RunParameter = "isRunning";
     private const string JumpParameter = "isJumping";
     private const string AttackParameter = "isAttacking";
+    private const string JumpAttackParameter = "isJumpAttacking";
 
 
     private void Start()
     {
         EventManager.OnAttack += PlayAttackingAnimation;
+        EventManager.OnJumpAttack += PlayJumpAttackingAnimation;
         EventManager.OnJump += PlayJumpingAnimation;
-        EventManager.OnLand += ResetJumpAnimation;
+        EventManager.OnLand += OnLandActions;
         EventManager.OnAttackFinish += ResetAttackAnimation;
     }
 
     private void OnDisable()
     {
         EventManager.OnAttack -= PlayAttackingAnimation;
+        EventManager.OnJumpAttack -= PlayJumpAttackingAnimation;
         EventManager.OnJump -= PlayJumpingAnimation;
-        EventManager.OnLand -= ResetJumpAnimation;
+        EventManager.OnLand -= OnLandActions;
         EventManager.OnAttackFinish -= ResetAttackAnimation;
     }
 
@@ -31,6 +34,14 @@ public class PlayerAnimation : MonoBehaviour
         PlayRunningAnimation();
     }
 
+    private void OnLandActions()
+    {
+        ResetJumpAnimation();
+        ResetJumpAttackingAnimation();
+    }
+    
+    
+    
     private void PlayRunningAnimation()
     {
         if (!_playerMovement.IsGrounded())
@@ -59,6 +70,12 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool(JumpParameter, true);
     }
 
+    private void PlayJumpAttackingAnimation()
+    {
+        ResetJumpAnimation();
+        _animator.SetBool(JumpAttackParameter, true);
+    }
+
     private void PlayAttackingAnimation()
     {
         //_animator.SetTrigger(AttackParameter);
@@ -70,6 +87,12 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator.SetBool(JumpParameter, false);
     }
+    
+    private void ResetJumpAttackingAnimation()
+    {
+        _animator.SetBool(JumpAttackParameter, false);
+    }
+    
     private void ResetAttackAnimation()
     {
         _animator.SetBool(AttackParameter, false);

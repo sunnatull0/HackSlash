@@ -2,24 +2,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
-    [Header("Assigning variables!")] 
-    [SerializeField] private Rigidbody2D _rigidbody;
+    [Header("Assigning variables!")] [SerializeField]
+    private Rigidbody2D _rigidbody;
 
     [SerializeField] private Transform _transform;
     [SerializeField] private Transform _groundPoint;
     [SerializeField] private LayerMask _groundLayer;
 
 
-    [Header("Player characteristics!")] 
-    [SerializeField] private float _movementSpeed = 1f;
+    [Header("Player characteristics!")] [SerializeField]
+    private float _movementSpeed = 1f;
 
     [SerializeField] private float _jumpForce = 1f;
     [SerializeField] private float _groundCheckRadius = 1f;
 
 
-    [Header("Attack!")] 
-    [SerializeField] private Transform _attackPoint;
+    [Header("Attack!")] [SerializeField] private Transform _attackPoint;
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private float _attackDelay = 1f;
     [SerializeField] private float _attackRadius = 0.5f;
@@ -34,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     private bool _wasGrounded = true;
 
 
-    
     private void Update()
     {
         HandleInput();
@@ -54,30 +51,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleInput()
     {
-        if (_isAttacking)
+        if (IsAttackingInTheGround())
         {
+            // Stop the movement
             HorizontalInput = 0f;
             return;
         }
-        
+
         HorizontalInput = Input.GetAxisRaw("Horizontal");
     }
-    
+
     private void HandleMovement()
     {
         var moveDir = new Vector2(HorizontalInput * _movementSpeed * Time.fixedDeltaTime, _rigidbody.velocity.y);
         _rigidbody.velocity = moveDir;
     }
-    
 
-    
+
     private void HandleJumping()
     {
-        if (!Input.GetButtonDown("Jump") || !IsGrounded() || _isAttacking) 
+        if (!Input.GetButtonDown("Jump") || !IsGrounded() || _isAttacking)
             return;
-        
+
         Jump();
-        EventManager.InvokeOnJumpActions();
+        EventManager.InvokeOnJumpActions(); // Additional effects (animations)
     }
 
     private void Jump()
@@ -86,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    
     private void HandleLanding()
     {
         if (!_wasGrounded && IsGrounded())
@@ -94,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             // Landed.
             Land();
         }
-        
+
         _wasGrounded = IsGrounded();
     }
 
@@ -104,14 +100,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    
     private void HandleAttack()
     {
-        if (!Input.GetKeyDown(KeyCode.Space) || !IsGrounded() || !CanAttack())
-            return;
-        
-        Attack();
-        EventManager.InvokeOnAttackActions();
+        // if (!Input.GetKeyDown(KeyCode.Space) || !IsGrounded() || !CanAttack())
+        //     return;
+
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && CanAttack())
+        {
+            Attack(); // Attack
+            EventManager.InvokeOnAttackActions();
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && CanAttack() && !IsGrounded())
+        {
+            Attack(); // JumpAttack
+            EventManager.InvokeOnJumpAttackActions();
+        }
     }
 
     private void Attack()
@@ -122,10 +125,11 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Hit: " + enemy.name);
         }
 
-        _nextAttackTime = Time.time + _attackDelay;
+        _nextAttackTime = Time.time + _attackDelay; // Delay handling
         _isAttacking = true;
     }
     
+
     private void HandleAttackFinish()
     {
         if (_wasAttacking && CanAttack())
@@ -141,13 +145,13 @@ public class PlayerMovement : MonoBehaviour
         _isAttacking = false;
         EventManager.InvokeOnAttackFinish();
     }
-    
+
 
     private void HandleFlipping()
     {
-        if (HorizontalInput == 0f)
-            return;
-        if ((_facingRight && HorizontalInput > 0) || !_facingRight && HorizontalInput < 0)
+        bool canFlip = (_facingRight && HorizontalInput < 0) || (!_facingRight && HorizontalInput > 0);
+
+        if (HorizontalInput == 0f || !canFlip)
             return;
 
         Flip();
@@ -161,19 +165,25 @@ public class PlayerMovement : MonoBehaviour
         _facingRight = !_facingRight;
     }
 
-    
 
+    
     public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(_groundPoint.position, _groundCheckRadius, _groundLayer);
     }
-    
-    
+
+
     private bool CanAttack()
     {
         return Time.time >= _nextAttackTime;
     }
+
     
+    private bool IsAttackingInTheGround()
+    {
+        return _isAttacking && IsGrounded();
+    }
+
     
     private void OnDrawGizmosSelected()
     {
@@ -182,5 +192,4 @@ public class PlayerMovement : MonoBehaviour
 
         Gizmos.DrawSphere(_attackPoint.position, _attackRadius);
     }
-    
 }
