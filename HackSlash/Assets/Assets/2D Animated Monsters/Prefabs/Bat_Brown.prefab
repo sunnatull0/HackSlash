@@ -208,6 +208,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat_Brown
       objectReference: {fileID: 0}
+    - target: {fileID: -904136405871704060, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -443292702676700217, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: -0.06189072
@@ -342,11 +346,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3508685474996495587, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -12.24
       objectReference: {fileID: 0}
     - target: {fileID: 3508685474996495587, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.72
       objectReference: {fileID: 0}
     - target: {fileID: 3508685474996495587, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -736,5 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fdd3c626684d24eb2ddacbba47d104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyType: 0
   health: 1
   moveSpeed: 100
+  _stopDistance: 0.5

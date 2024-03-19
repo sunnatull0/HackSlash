@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 314689008362858757}
   - component: {fileID: 7729399447286696676}
   - component: {fileID: 3843396585923871610}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Border
   m_TagString: Border
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -115,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
