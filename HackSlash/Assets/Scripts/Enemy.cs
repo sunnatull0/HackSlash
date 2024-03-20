@@ -17,12 +17,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float health = 1f;
     [SerializeField] protected float moveSpeed = 100f;
     [SerializeField] protected float _stopDistance = 0.5f;
-    private Rigidbody2D _rb;
+    protected Rigidbody2D _rb;
+    protected Transform _transform;
+    
     private Collider2D _myCollider;
     private Collider2D _borderCollider;
     private Vector2 _moveDirection;
     private Vector2 _previousMoveDirection;
-    private Transform _transform;
     private Transform _playerTransform;
     private bool _isMovingRight;
     private bool _firstTimeCrossingBorder = true;
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour
         _playerTransform = GameObject.Find("Player").transform;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         SetMoveDirection();
         SetPreviousMoveDirection();
@@ -57,7 +58,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void MoveLeftToRight()
+    protected virtual void MoveLeftToRight()
     {
         _moveDirection = _isMovingRight ? Vector2.right : Vector2.left;
 

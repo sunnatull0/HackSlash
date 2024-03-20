@@ -9,6 +9,12 @@ public class PlayerAnimation : MonoBehaviour
     private const string AttackParameter = "isAttacking";
     private const string JumpAttackParameter = "isJumpAttacking";
 
+    private Rigidbody2D _rb;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
@@ -50,19 +56,8 @@ public class PlayerAnimation : MonoBehaviour
             return;
         }
 
-
-        float horizontalInput = _playerMovement.HorizontalInput;
-        bool isRunning = _animator.GetBool(RunParameter);
-
-
-        if (horizontalInput != 0 && !isRunning)
-        {
-            _animator.SetBool(RunParameter, true);
-        }
-        else if (horizontalInput == 0 && isRunning)
-        {
-            _animator.SetBool(RunParameter, false);
-        }
+        bool isRunning = _rb.velocity.magnitude > 0;
+        _animator.SetBool(RunParameter, isRunning);
     }
 
     private void PlayJumpingAnimation()
