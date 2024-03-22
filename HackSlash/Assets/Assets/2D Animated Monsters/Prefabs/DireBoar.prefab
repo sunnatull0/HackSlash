@@ -1612,8 +1612,9 @@ GameObject:
   - component: {fileID: 2529733042714583005}
   - component: {fileID: 971556671310960908}
   - component: {fileID: 2992528635110390557}
+  - component: {fileID: 5390372530507610145}
   m_Layer: 0
-  m_Name: Pig_Brown
+  m_Name: DireBoar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1628,7 +1629,7 @@ Transform:
   m_GameObject: {fileID: 7481580078974812205}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.07, y: 2.48, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1764,6 +1765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 0
   health: 1
+  damage: 1
   moveSpeed: 300
   _stopDistance: 0.5
   _playerLayer:
@@ -1772,7 +1774,7 @@ MonoBehaviour:
   _detectDistance: 15
   _attackSpeedMultiplier: 2
   _delayBeforeAttack: 0.5
-  _attackTime: 2
+  _attackTime: 1.5
   _delayAfterAttack: 0.5
 --- !u!114 &2992528635110390557
 MonoBehaviour:
@@ -1786,6 +1788,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab8b62147ea2f547923d3da9cc6ac74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5390372530507610145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481580078974812205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef9e7e567cb1314eb83cc60007b1d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startHealth: 2
 --- !u!1 &7617819301168734212
 GameObject:
   m_ObjectHideFlags: 0

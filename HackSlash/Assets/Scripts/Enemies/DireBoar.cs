@@ -17,6 +17,8 @@ namespace Enemies
         private bool _playerDetected;
         private bool _attackStarted;
 
+        public bool IsAttacking { get; private set; }
+
 
         // OVERRIDES.
         protected override void Start()
@@ -25,38 +27,33 @@ namespace Enemies
 
             _defaultSpeed = moveSpeed;
         }
-        
+
         protected override void MoveLeftToRight()
         {
             base.MoveLeftToRight();
 
             if (_playerDetected && !_attackStarted)
-                StartAttack();
+                StartAttackSystem();
         }
-        
+
         protected override void Flip()
         {
             base.Flip();
-            
-            if (!_firstTimeCrossingBorder && _attackStarted) // Stop enemy if it run into border while attacking.
+
+            if (!IsOutsideOfBorders && _attackStarted) // Stop enemy if it run into border while attacking.
             {
                 StopEnemy();
             }
         }
 
-        
-        
-        
+
         private void Update()
         {
             if (!_playerDetected)
                 DetectPlayer();
-
-            Debug.Log(moveSpeed + " " + _defaultSpeed);
         }
 
 
-        
         private void DetectPlayer()
         {
             _raycastDir = _isMovingRight ? _transform.right : -_transform.right;
@@ -66,8 +63,7 @@ namespace Enemies
         }
 
 
-        
-        private void StartAttack()
+        private void StartAttackSystem()
         {
             if (_attackStarted) return;
 
@@ -76,6 +72,7 @@ namespace Enemies
             StartCoroutine(StartAttackingAfterDelay());
             _attackStarted = true;
         }
+
         private IEnumerator StartAttackingAfterDelay()
         {
             yield return new WaitForSeconds(_delayBeforeAttack);
@@ -83,14 +80,15 @@ namespace Enemies
             Attacking();
         }
 
-        
-        
+
         private void Attacking()
         {
+            IsAttacking = true;
             ChangeSpeed(_defaultSpeed * _attackSpeedMultiplier); // Increase speed.
 
             StartCoroutine(StopAttackAfterDelay()); // Stop Attack.
         }
+
         private IEnumerator StopAttackAfterDelay()
         {
             yield return new WaitForSeconds(_attackTime);
@@ -98,14 +96,15 @@ namespace Enemies
             StopAttack();
         }
 
-        
-        
+
         private void StopAttack()
         {
+            IsAttacking = false;
             StopEnemy();
 
             StartCoroutine(ResetAttackAfterDelay()); // ResetAttack.
         }
+
         private IEnumerator ResetAttackAfterDelay()
         {
             yield return new WaitForSeconds(_delayAfterAttack);
@@ -115,18 +114,16 @@ namespace Enemies
             _attackStarted = false;
             ChangeSpeed(_defaultSpeed);
         }
-        
-        
+
 
         private void ChangeSpeed(float value)
         {
             moveSpeed = value;
         }
-        
+
         private void StopEnemy()
         {
             ChangeSpeed(0f);
         }
-
     }
 }
