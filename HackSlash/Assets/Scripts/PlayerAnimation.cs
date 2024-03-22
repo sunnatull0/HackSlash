@@ -1,18 +1,23 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerMovement))]
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement _playerMovement;
-    [SerializeField] private Animator _animator;
+    
+    private PlayerMovement _playerMovement;
+    private Rigidbody2D _rb;
+    private Animator _animator;
     private const string RunParameter = "isRunning";
     private const string JumpParameter = "isJumping";
     private const string AttackParameter = "isAttacking";
     private const string JumpAttackParameter = "isJumpAttacking";
 
-    private Rigidbody2D _rb;
 
     private void Awake()
     {
+        _playerMovement = GetComponent<PlayerMovement>();
+        _animator = GetComponentInChildren<Animator>();
         _rb = GetComponent<Rigidbody2D>();
     }
 

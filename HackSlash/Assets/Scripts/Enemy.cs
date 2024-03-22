@@ -5,28 +5,28 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
+    
     private enum EnemyType
     {
         Stupid,
         Smart
     }
     
-    
     [SerializeField] private EnemyType _enemyType;
 
     [SerializeField] protected float health = 1f;
     [SerializeField] protected float moveSpeed = 100f;
     [SerializeField] protected float _stopDistance = 0.5f;
-    protected Rigidbody2D _rb;
+    private Rigidbody2D _rb;
     protected Transform _transform;
+    protected bool _isMovingRight;
     
     private Collider2D _myCollider;
     private Collider2D _borderCollider;
     private Vector2 _moveDirection;
     private Vector2 _previousMoveDirection;
     private Transform _playerTransform;
-    private bool _isMovingRight;
-    private bool _firstTimeCrossingBorder = true;
+    protected bool _firstTimeCrossingBorder = true;
 
 
     private void Awake()
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
         // So they have to enter first, without detecting borders (flipping).
         if (_firstTimeCrossingBorder)
         {
-            const float resetCollisionSeconds = 3f;
+            const float resetCollisionSeconds = 4f;
 
             _firstTimeCrossingBorder = false;
             _borderCollider = other.collider;
@@ -112,7 +112,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void Flip()
+    protected virtual void Flip()
     {
         var scale = _transform.localScale;
         scale.x *= -1f;

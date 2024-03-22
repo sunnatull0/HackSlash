@@ -13,19 +13,32 @@ namespace Enemies
         private float _lowerPoint;
         private bool _isMovingUp = true;
 
+        
         protected override void Start()
         {
             base.Start();
 
+            SetVerticalPoints();
+        }
+
+
+        private void SetVerticalPoints()
+        {
             Vector3 position = _transform.position;
             _upperPoint = position.y + _verticalDistance;
             _lowerPoint = position.y - _verticalDistance;
         }
 
+        
         protected override void MoveLeftToRight()
         {
             base.MoveLeftToRight();
             
+            MoveVertically();
+        }
+
+        private void MoveVertically()
+        {
             float direction = _isMovingUp ? _upperPoint : _lowerPoint;
 
             Vector3 position = _transform.position;

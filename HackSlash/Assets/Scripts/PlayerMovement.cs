@@ -1,23 +1,22 @@
 using UnityEngine;
 
+
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Assigning variables!")] [SerializeField]
-    private Rigidbody2D _rigidbody;
-
-    [SerializeField] private Transform _transform;
+    [Header("Assigning variables!")] 
     [SerializeField] private Transform _groundPoint;
     [SerializeField] private LayerMask _groundLayer;
 
 
-    [Header("Player characteristics!")] [SerializeField]
-    private float _movementSpeed = 1f;
-
+    [Header("Player characteristics!")] 
+    [SerializeField] private float _movementSpeed = 1f;
     [SerializeField] private float _jumpForce = 1f;
     [SerializeField] private float _groundCheckRadius = 1f;
 
 
-    [Header("Attack!")] [SerializeField] private Transform _attackPoint;
+    [Header("Attack!")] 
+    [SerializeField] private Transform _attackPoint;
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private float _attackDelay = 1f;
     [SerializeField] private float _attackRadius = 0.5f;
@@ -25,11 +24,20 @@ public class PlayerMovement : MonoBehaviour
 
 
     [HideInInspector] public float HorizontalInput;
+    private Rigidbody2D _rigidbody;
+    private Transform _transform;
     private float _nextAttackTime = 0f;
     private bool _wasAttacking;
     private bool _isAttacking;
     private bool _facingRight;
     private bool _wasGrounded = true;
+
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _transform = GetComponent<Transform>();
+    }
 
 
     private void Update()
