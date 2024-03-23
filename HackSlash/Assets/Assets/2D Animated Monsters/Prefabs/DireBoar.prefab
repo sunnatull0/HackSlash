@@ -1611,7 +1611,8 @@ GameObject:
   - component: {fileID: 6676967775614728647}
   - component: {fileID: 2529733042714583005}
   - component: {fileID: 971556671310960908}
-  - component: {fileID: 2992528635110390557}
+  - component: {fileID: 1150597811228721396}
+  - component: {fileID: 3322390323308827399}
   - component: {fileID: 5390372530507610145}
   m_Layer: 0
   m_Name: DireBoar
@@ -1772,11 +1773,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _detectDistance: 15
+  DefaultSpeed: 0
+  PlayerDetected: 0
+--- !u!114 &1150597811228721396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481580078974812205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dcfc3f85defc3b48a9608b040dfc1b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _attackSpeedMultiplier: 2
   _delayBeforeAttack: 0.5
   _attackTime: 1.5
   _delayAfterAttack: 0.5
---- !u!114 &2992528635110390557
+--- !u!114 &3322390323308827399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

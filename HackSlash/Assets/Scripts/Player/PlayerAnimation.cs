@@ -1,11 +1,11 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerBehaviour))]
 public class PlayerAnimation : MonoBehaviour
 {
     
-    private PlayerMovement _playerMovement;
+    private PlayerBehaviour _playerBehaviour;
     private Rigidbody2D _rb;
     private Animator _animator;
     private const string RunParameter = "isRunning";
@@ -16,7 +16,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Awake()
     {
-        _playerMovement = GetComponent<PlayerMovement>();
+        _playerBehaviour = GetComponent<PlayerBehaviour>();
         _animator = GetComponentInChildren<Animator>();
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -55,13 +55,8 @@ public class PlayerAnimation : MonoBehaviour
     
     private void PlayRunningAnimation()
     {
-        if (!_playerMovement.IsGrounded())
-        {
-            _animator.SetBool(RunParameter, false);
-            return;
-        }
-
-        bool isRunning = _rb.velocity.magnitude > 0;
+        bool isRunning = _rb.velocity.magnitude > 0 && _playerBehaviour.IsGrounded();
+        
         _animator.SetBool(RunParameter, isRunning);
     }
 
