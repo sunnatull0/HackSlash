@@ -1465,6 +1465,7 @@ GameObject:
   - component: {fileID: 5610944909751921399}
   - component: {fileID: 1032942417833247060}
   - component: {fileID: 5312706937937338100}
+  - component: {fileID: 510132528211537205}
   - component: {fileID: 4187634016556072196}
   - component: {fileID: 5564680945820877434}
   m_Layer: 7
@@ -1487,6 +1488,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1151328214197691864}
   - {fileID: 5427259428688820933}
   - {fileID: 2758759042363507439}
   - {fileID: 2322191652782521467}
@@ -1624,17 +1626,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyType: 1
-  health: 1
-  damage: 1
   moveSpeed: 300
   _stopDistance: 5
+  _detectDistance: 10
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _raycastPosition: {fileID: 1151328214197691864}
+  PlayerDetected: 0
+--- !u!114 &510132528211537205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4884124145918657938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a02fe0025d270c0499e05e6b113487b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
   _attackPoint: {fileID: 5427259428688820933}
-  _attackRadius: 4.01
-  _delayBeforeAttack: 2
-  Draw: 1
+  _attackRadius: 3.71
+  _delayBeforeAttack: 1
+  Draw: 0
+  AttackStarted: 0
 --- !u!114 &4187634016556072196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2827,6 +2846,37 @@ Transform:
   m_Children:
   - {fileID: 5420686258010133813}
   m_Father: {fileID: 2230076912972969168}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8864595045534763304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151328214197691864}
+  m_Layer: 7
+  m_Name: RaycastPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1151328214197691864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8864595045534763304}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6, y: 5.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3466735419101759200}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8986568171340014990
 GameObject:

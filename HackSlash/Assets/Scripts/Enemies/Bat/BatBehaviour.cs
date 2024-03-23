@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Enemies
 {
-    public class Bat : Enemy
+    public class BatBehaviour : Enemy
     {
         
         [SerializeField] private float _verticalSpeed = 1f;
@@ -24,7 +24,7 @@ namespace Enemies
 
         private void SetVerticalPoints()
         {
-            Vector3 position = _transform.position;
+            Vector3 position = myTransform.position;
             _upperPoint = position.y + _verticalDistance;
             _lowerPoint = position.y - _verticalDistance;
         }
@@ -41,10 +41,10 @@ namespace Enemies
         {
             float direction = _isMovingUp ? _upperPoint : _lowerPoint;
 
-            Vector3 position = _transform.position;
+            Vector3 position = myTransform.position;
             float newY = Mathf.Lerp(position.y, direction, Time.fixedDeltaTime * _verticalSpeed);
             position = new Vector3(position.x, newY, position.z);
-            _transform.position = position;
+            myTransform.position = position;
 
             if (IsNearValue(newY, _upperPoint) || IsNearValue(newY, _lowerPoint))
             {

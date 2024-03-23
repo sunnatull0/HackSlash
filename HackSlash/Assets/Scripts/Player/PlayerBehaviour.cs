@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour
 {
     [Header("Assigning variables!")] 
     [SerializeField] private Transform _groundPoint;
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _wasGrounded = true;
 
 
-    private void Awake()
+    private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _transform = GetComponent<Transform>();

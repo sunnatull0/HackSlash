@@ -16,40 +16,36 @@ namespace Enemies
         [SerializeField] private EnemyType _enemyType;
 
         
-        // Attack.
-        [SerializeField] protected float health = 1f;
-        [SerializeField] protected float damage = 1f;
-        
         // Movement.
         [SerializeField] protected float moveSpeed = 100f;
         [SerializeField] protected float _stopDistance = 0.5f;
         private Vector2 _moveDirection;
         private Vector2 _previousMoveDirection;
-        protected bool _isMovingRight;
+        protected bool isMovingRight;
+        protected bool isNearPlayer;
+
         
         // Enemy components.
-        protected Transform _transform;
+        protected Transform myTransform;
         private Rigidbody2D _rb;
         private Collider2D _myCollider;
 
         // Borders.
         private Collider2D _borderCollider;
-        private readonly float _borderPositionX = 34f; // Border X position.
-        protected bool IsOutsideOfBorders => Mathf.Abs(_transform.position.x) > _borderPositionX;
+        private const float BorderPositionX = 34f; // Border X position.
+        protected bool IsOutsideOfBorders => Mathf.Abs(myTransform.position.x) > BorderPositionX;
 
         // Player transform.
         private Transform _playerTransform;
-    
-        private void Awake()
-        {
-            _transform = GetComponent<Transform>();
-            _playerTransform = GameObject.Find("Player").transform;
-            _rb = GetComponent<Rigidbody2D>();
-            _myCollider = GetComponent<Collider2D>();
-        }
+        
 
         protected virtual void Start()
         {
+            myTransform = GetComponent<Transform>();
+            _playerTransform = GameObject.Find("Player").transform;
+            _rb = GetComponent<Rigidbody2D>();
+            _myCollider = GetComponent<Collider2D>();
+            
             SetMoveDirection();
             SetPreviousMoveDirection();
             SetCorrectFlipping();
@@ -66,23 +62,25 @@ namespace Enemies
             {
                 MoveLeftToRight(); // StupidMovement
             }
+            
         }
 
 
         protected virtual void MoveLeftToRight()
         {
-            _moveDirection = _isMovingRight ? Vector2.right : Vector2.left;
+            _moveDirection = isMovingRight ? Vector2.right : Vector2.left;
 
             _rb.velocity = _moveDirection * moveSpeed * Time.fixedDeltaTime;
         }
 
 
-        private void MoveTowardsPlayer()
+        protected virtual void MoveTowardsPlayer()
         {
             SetMoveDirection();
-            if (Mathf.Abs(_moveDirection.x) < _stopDistance) // If enemy is near player, stop moving.
+            isNearPlayer = Mathf.Abs(_moveDirection.x) < _stopDistance;
+            if (isNearPlayer) // If enemy is near player, stop moving.
             {
-                _rb.velocity = Vector2.zero;
+                StopEnemyMovement();
                 return;
             }
 
@@ -90,7 +88,12 @@ namespace Enemies
             _rb.velocity = _moveDirection * moveSpeed * Time.fixedDeltaTime;
         }
 
-
+        protected void StopEnemyMovement()
+        {
+            _rb.velocity = Vector2.zero;
+        }
+        
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (!other.transform.CompareTag("Border"))
@@ -124,10 +127,10 @@ namespace Enemies
 
         protected virtual void Flip()
         {
-            var scale = _transform.localScale;
+            var scale = myTransform.localScale;
             scale.x *= -1f;
-            _transform.localScale = scale;
-            _isMovingRight = !_isMovingRight;
+            myTransform.localScale = scale;
+            isMovingRight = !isMovingRight;
         }
 
         private void FlipTowardsPlayer()
@@ -143,7 +146,7 @@ namespace Enemies
         private void SetCorrectFlipping()
         {
             // All prefabs flipped to left, so we flip it only when instantiated on the right.
-            if (_transform.position.x > 0f)
+            if (myTransform.position.x > 0f)
                 return;
 
             Flip();
@@ -151,7 +154,7 @@ namespace Enemies
 
         private void SetMoveDirection()
         {
-            _moveDirection = (_playerTransform.position - _transform.position);
+            _moveDirection = (_playerTransform.position - myTransform.position);
             _moveDirection.y = 0f;
         }
 
