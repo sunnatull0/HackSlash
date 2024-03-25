@@ -15,7 +15,7 @@ namespace Enemies.Bear
             _bearBehaviour = GetComponent<BearBehaviour>();
         }
 
-        public override void FinishAttack()
+        public override void FinishAttack() // Used in AnimationEvent.
         {
             base.FinishAttack();
 

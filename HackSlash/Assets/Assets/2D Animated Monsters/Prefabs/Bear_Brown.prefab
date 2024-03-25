@@ -1201,7 +1201,7 @@ Transform:
   m_GameObject: {fileID: 3968001249114610384}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.77, y: 5.22, z: 0}
+  m_LocalPosition: {x: -4.8, y: 5.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1628,12 +1628,11 @@ MonoBehaviour:
   _enemyType: 1
   moveSpeed: 300
   _stopDistance: 5
-  _detectDistance: 10
+  PlayerDetected: 0
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
   _raycastPosition: {fileID: 1151328214197691864}
-  PlayerDetected: 0
 --- !u!114 &510132528211537205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1650,9 +1649,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _attackPoint: {fileID: 5427259428688820933}
-  _attackRadius: 3.71
+  _attackRadius: 4.95
   _delayBeforeAttack: 1
-  Draw: 0
+  Draw: 1
   AttackStarted: 0
 --- !u!114 &4187634016556072196
 MonoBehaviour:

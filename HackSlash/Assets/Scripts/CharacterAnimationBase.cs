@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -23,7 +20,7 @@ public class CharacterAnimationBase : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    protected virtual void HandleRunAnimation(bool isAttacking)
+    protected void HandleRunAnimation(bool isAttacking)
     {
         var running = _rb.velocity.magnitude > 0f && !isAttacking;
         

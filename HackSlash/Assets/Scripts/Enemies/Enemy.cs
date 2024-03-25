@@ -15,16 +15,15 @@ namespace Enemies
 
         [SerializeField] private EnemyType _enemyType;
 
-        
+
         // Movement.
         [SerializeField] protected float moveSpeed = 100f;
         [SerializeField] protected float _stopDistance = 0.5f;
         private Vector2 _moveDirection;
-        private Vector2 _previousMoveDirection;
         protected bool isMovingRight;
         protected bool isNearPlayer;
 
-        
+
         // Enemy components.
         protected Transform myTransform;
         private Rigidbody2D _rb;
@@ -35,19 +34,22 @@ namespace Enemies
         private const float BorderPositionX = 34f; // Border X position.
         protected bool IsOutsideOfBorders => Mathf.Abs(myTransform.position.x) > BorderPositionX;
 
-        // Player transform.
+        // Player.
+        protected LayerMask playerLayer;
         private Transform _playerTransform;
-        
+        private const string PlayerName = "Player";
+
 
         protected virtual void Start()
         {
+            _playerTransform = GameObject.Find(PlayerName).transform;
+            playerLayer = LayerMask.GetMask(PlayerName);
+            
             myTransform = GetComponent<Transform>();
-            _playerTransform = GameObject.Find("Player").transform;
             _rb = GetComponent<Rigidbody2D>();
             _myCollider = GetComponent<Collider2D>();
-            
+
             SetMoveDirection();
-            SetPreviousMoveDirection();
             SetCorrectFlipping();
         }
 
@@ -62,7 +64,6 @@ namespace Enemies
             {
                 MoveLeftToRight(); // StupidMovement
             }
-            
         }
 
 
@@ -92,8 +93,8 @@ namespace Enemies
         {
             _rb.velocity = Vector2.zero;
         }
-        
-        
+
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (!other.transform.CompareTag("Border"))
@@ -133,14 +134,17 @@ namespace Enemies
             isMovingRight = !isMovingRight;
         }
 
-        private void FlipTowardsPlayer()
+        protected virtual void FlipTowardsPlayer()
         {
-            if (Mathf.Sign(_previousMoveDirection.x) != Mathf.Sign(_moveDirection.x))
+            if(isNearPlayer) // Do not flip, if player is near.
+                return;
+            
+            float sign = isMovingRight ? 1f : -1f;
+
+            if (Mathf.Sign(_moveDirection.x) != sign)
             {
                 Flip();
             }
-
-            SetPreviousMoveDirection();
         }
 
         private void SetCorrectFlipping()
@@ -157,10 +161,6 @@ namespace Enemies
             _moveDirection = (_playerTransform.position - myTransform.position);
             _moveDirection.y = 0f;
         }
-
-        private void SetPreviousMoveDirection()
-        {
-            _previousMoveDirection = _moveDirection;
-        }
+        
     }
 }

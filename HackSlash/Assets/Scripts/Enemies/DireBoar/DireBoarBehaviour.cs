@@ -7,7 +7,6 @@ namespace Enemies.DireBoar
     {
         private DireBoarAttack _direBoarAttack;
 
-        [SerializeField] private LayerMask _playerLayer;
         [SerializeField] private float _detectDistance = 2f;
         private Vector2 _raycastDir;
         private RaycastHit2D _hit;
@@ -21,7 +20,6 @@ namespace Enemies.DireBoar
         {
             _direBoarAttack = GetComponent<DireBoarAttack>();
             DefaultSpeed = moveSpeed;
-
 
             base.Start();
         }
@@ -57,7 +55,7 @@ namespace Enemies.DireBoar
         private void DetectPlayer()
         {
             _raycastDir = isMovingRight ? myTransform.right : -myTransform.right;
-            _hit = Physics2D.Raycast(myTransform.position, _raycastDir, _detectDistance, _playerLayer);
+            _hit = Physics2D.Raycast(myTransform.position, _raycastDir, _detectDistance, playerLayer);
 
             PlayerDetected = _hit.collider != null;
         }

@@ -1,66 +1,68 @@
 using UnityEngine;
 
-namespace Enemies.Bear
+namespace Enemies.Orc
 {
-    [RequireComponent(typeof(BearAttack))]
-    public class BearBehaviour : Enemy
+    [RequireComponent(typeof(OrcAttack))]
+    public class OrcBehaviour : Enemy
     {
-        private BearAttack _bearAttack;
-
+        private OrcAttack _orcAttack;
+    
         [HideInInspector] public bool PlayerDetected;
         [SerializeField] private Transform _raycastPosition;
         private const float RaycastOffset = 2f;
-
-
+    
+    
         // OVERRIDES.
         protected override void Start()
         {
-            _bearAttack = GetComponent<BearAttack>();
-
+            _orcAttack = GetComponent<OrcAttack>();
+    
             base.Start();
         }
-
+    
         protected override void MoveTowardsPlayer()
         {
             base.MoveTowardsPlayer();
-
-            if (_bearAttack.AttackStarted)
+    
+            if (_orcAttack.AttackStarted)
             {
                 StopEnemyMovement();
             }
         }
-
+    
         protected override void FlipTowardsPlayer()
         {
-            if (_bearAttack.AttackStarted)
+            if (_orcAttack.AttackStarted)
                 return;
-
+                
             base.FlipTowardsPlayer();
         }
-
-
+    
+    
+            
         private void Update()
         {
-            if (!_bearAttack.AttackStarted && isNearPlayer && PlayerDetected)
+            if (!_orcAttack.AttackStarted && isNearPlayer && PlayerDetected)
             {
-                _bearAttack.StartAttackSystem();
+                _orcAttack.StartAttackSystem();
             }
-
-
+    
+    
             if (!PlayerDetected)
             {
                 DetectPlayer();
             }
         }
-
-
+    
+    
         private void DetectPlayer()
         {
             var raycastDir = isMovingRight ? myTransform.right : -myTransform.right;
             var hit = Physics2D.Raycast(_raycastPosition.position, raycastDir, _stopDistance + RaycastOffset,
                 playerLayer);
-
+    
             PlayerDetected = hit.collider != null;
         }
+    
     }
 }
