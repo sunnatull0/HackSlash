@@ -4,8 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterAnimationBase : MonoBehaviour
 {
+    protected Animator animator;
     private Rigidbody2D _rb;
-    private Animator _animator;
     
     protected readonly int RunningParam = Animator.StringToHash("isRunning");
     protected readonly int AttackingParam = Animator.StringToHash("isAttacking");
@@ -17,7 +17,7 @@ public class CharacterAnimationBase : MonoBehaviour
     protected virtual void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     protected void HandleRunAnimation(bool isAttacking)
@@ -26,7 +26,7 @@ public class CharacterAnimationBase : MonoBehaviour
         
         if (running != _previousRunningState)
         {
-            _animator.SetBool(RunningParam, running);
+            animator.SetBool(RunningParam, running);
             _previousRunningState = running;
         }
     }
@@ -35,7 +35,7 @@ public class CharacterAnimationBase : MonoBehaviour
     {
         if (isAttacking != _previousAttackingState)
         {
-            _animator.SetBool(AttackingParam, isAttacking);
+            animator.SetBool(AttackingParam, isAttacking);
             _previousAttackingState = isAttacking;
         }
     }

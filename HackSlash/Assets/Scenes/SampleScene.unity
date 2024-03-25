@@ -396,7 +396,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _movementSpeed: 1200
-  _jumpForce: 70
+  _jumpForce: 60
   _groundCheckRadius: 0.2
   _attackPoint: {fileID: 1226223373}
   _enemyLayer:
@@ -406,6 +406,7 @@ MonoBehaviour:
   _attackRadius: 4.18
   DrawAttackRange: 0
   HorizontalInput: 0
+  BeingPushed: 0
 --- !u!114 &626953131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,12 +441,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 2133501284}
     m_Modifications:
     - target: {fileID: 314689008362858757, guid: f681d9887c8e83747af23ec9c23a8e23, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 34.34106
+      objectReference: {fileID: 0}
+    - target: {fileID: 314689008362858757, guid: f681d9887c8e83747af23ec9c23a8e23, type: 3}
       propertyPath: m_LocalPosition.x
       value: 33.92
       objectReference: {fileID: 0}
     - target: {fileID: 314689008362858757, guid: f681d9887c8e83747af23ec9c23a8e23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.0913
+      value: 11.8954
       objectReference: {fileID: 0}
     - target: {fileID: 314689008362858757, guid: f681d9887c8e83747af23ec9c23a8e23, type: 3}
       propertyPath: m_LocalPosition.z
@@ -796,7 +801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2060754010
 Transform:
   m_ObjectHideFlags: 0
@@ -806,8 +811,8 @@ Transform:
   m_GameObject: {fileID: 2060754009}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.32, y: 9.77, z: 0}
-  m_LocalScale: {x: 21.18112, y: 2.5862, z: 1}
+  m_LocalPosition: {x: -31.7926, y: 9.77, z: 0}
+  m_LocalScale: {x: 35.255974, y: 2.5862, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1093598356}
@@ -952,12 +957,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 2133501284}
     m_Modifications:
     - target: {fileID: 314689008362858757, guid: f681d9887c8e83747af23ec9c23a8e23, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 34.599216
+      objectReference: {fileID: 0}
+    - target: {fileID: 314689008362858757, guid: f681d9887c8e83747af23ec9c23a8e23, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.63
       objectReference: {fileID: 0}
     - target: {fileID: 314689008362858757, guid: f681d9887c8e83747af23ec9c23a8e23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.8664
+      value: 11.8001
       objectReference: {fileID: 0}
     - target: {fileID: 314689008362858757, guid: f681d9887c8e83747af23ec9c23a8e23, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1010,11 +1019,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2551112235700885372, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.3
+      value: -46.18
       objectReference: {fileID: 0}
     - target: {fileID: 2551112235700885372, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8
+      value: 9.49
       objectReference: {fileID: 0}
     - target: {fileID: 2551112235700885372, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1051,26 +1060,6 @@ PrefabInstance:
     - target: {fileID: 7192056143704295429, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
       propertyPath: m_Name
       value: Orc_Green
-      objectReference: {fileID: 0}
-    - target: {fileID: 7192056143704295429, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178845828668177169, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
-      propertyPath: offsett
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178845828668177169, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
-      propertyPath: offsett.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178845828668177169, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
-      propertyPath: playercol
-      value: 
-      objectReference: {fileID: 626953128}
-    - target: {fileID: 9178845828668177169, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
-      propertyPath: _pushForce
-      value: 50000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

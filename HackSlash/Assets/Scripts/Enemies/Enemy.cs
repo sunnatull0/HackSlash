@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace Enemies
         // Movement.
         [SerializeField] protected float moveSpeed = 100f;
         [SerializeField] protected float _stopDistance = 0.5f;
-        private Vector2 _moveDirection;
+        // private Vector2 _moveDirection;
         protected bool isMovingRight;
         protected bool isNearPlayer;
 
@@ -44,12 +45,11 @@ namespace Enemies
         {
             _playerTransform = GameObject.Find(PlayerName).transform;
             playerLayer = LayerMask.GetMask(PlayerName);
-            
+
             myTransform = GetComponent<Transform>();
             _rb = GetComponent<Rigidbody2D>();
             _myCollider = GetComponent<Collider2D>();
 
-            SetMoveDirection();
             SetCorrectFlipping();
         }
 
@@ -69,29 +69,31 @@ namespace Enemies
 
         protected virtual void MoveLeftToRight()
         {
-            _moveDirection = isMovingRight ? Vector2.right : Vector2.left;
+            float direction = isMovingRight ? 1f : -1f;
 
-            _rb.velocity = _moveDirection * moveSpeed * Time.fixedDeltaTime;
+            Vector2 moveDir = new Vector2(direction * moveSpeed * Time.fixedDeltaTime, _rb.velocity.y);
+            _rb.velocity = moveDir;
         }
 
 
         protected virtual void MoveTowardsPlayer()
         {
-            SetMoveDirection();
-            isNearPlayer = Mathf.Abs(_moveDirection.x) < _stopDistance;
+            isNearPlayer = Mathf.Abs(GetDirectionToPlayer().x) < _stopDistance; // Check is player is near the enemy.
             if (isNearPlayer) // If enemy is near player, stop moving.
             {
                 StopEnemyMovement();
                 return;
             }
-
-            _moveDirection.Normalize();
-            _rb.velocity = _moveDirection * moveSpeed * Time.fixedDeltaTime;
+            
+            float direction = MathF.Sign(GetDirectionToPlayer().x); // Gets 1 or -1, depending on move direction.
+            Vector2 moveDir = new Vector2(direction * moveSpeed * Time.fixedDeltaTime, _rb.velocity.y);
+            _rb.velocity = moveDir;
         }
+        
 
         protected void StopEnemyMovement()
         {
-            _rb.velocity = Vector2.zero;
+            _rb.velocity = new Vector2(0f, _rb.velocity.y); // Restrict horizontal movement.
         }
 
 
@@ -136,12 +138,12 @@ namespace Enemies
 
         protected virtual void FlipTowardsPlayer()
         {
-            if(isNearPlayer) // Do not flip, if player is near.
+            if (isNearPlayer) // Do not flip, if player is near.
                 return;
-            
+
             float sign = isMovingRight ? 1f : -1f;
 
-            if (Mathf.Sign(_moveDirection.x) != sign)
+            if (Mathf.Sign(GetDirectionToPlayer().x) != sign)
             {
                 Flip();
             }
@@ -149,17 +151,18 @@ namespace Enemies
 
         private void SetCorrectFlipping()
         {
-            // All prefabs flipped to left, so we flip it only when instantiated on the right.
+            // All prefabs flipped to left, so we flip it only when instantiated on the left.
+            // While instantiated on the right, flipping will be correct.
             if (myTransform.position.x > 0f)
                 return;
 
             Flip();
         }
 
-        private void SetMoveDirection()
+
+        private Vector2 GetDirectionToPlayer()
         {
-            _moveDirection = (_playerTransform.position - myTransform.position);
-            _moveDirection.y = 0f;
+            return _playerTransform.position - myTransform.position;
         }
         
     }

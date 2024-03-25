@@ -1,96 +1,118 @@
-using Player;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(PlayerBehaviour))]
-public class PlayerAnimation : MonoBehaviour
+namespace Player
 {
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(PlayerBehaviour))]
+    public class PlayerAnimation : MonoBehaviour
+    {
     
-    private PlayerBehaviour _playerBehaviour;
-    private Rigidbody2D _rb;
-    private Animator _animator;
-    private const string RunParameter = "isRunning";
-    private const string JumpParameter = "isJumping";
-    private const string AttackParameter = "isAttacking";
-    private const string JumpAttackParameter = "isJumpAttacking";
+        private PlayerBehaviour _playerBehaviour;
+        private Rigidbody2D _rb;
+        private Animator _animator;
+        private const string RunParameter = "isRunning";
+        private const string JumpParameter = "isJumping";
+        private const string AttackParameter = "isAttacking";
+        private const string JumpAttackParameter = "isJumpAttacking";
+        private const string BeingPushedParameter = "beingPushed";
+
+        private bool _wasRunning;
+        private bool _wasBeingPushed;
 
 
-    private void Awake()
-    {
-        _playerBehaviour = GetComponent<PlayerBehaviour>();
-        _animator = GetComponentInChildren<Animator>();
-        _rb = GetComponent<Rigidbody2D>();
-    }
 
-    private void Start()
-    {
-        EventManager.OnAttack += PlayAttackingAnimation;
-        EventManager.OnJumpAttack += PlayJumpAttackingAnimation;
-        EventManager.OnJump += PlayJumpingAnimation;
-        EventManager.OnLand += OnLandActions;
-        EventManager.OnAttackFinish += ResetAttackAnimation;
-    }
+        private void Awake()
+        {
+            _playerBehaviour = GetComponent<PlayerBehaviour>();
+            _animator = GetComponentInChildren<Animator>();
+            _rb = GetComponent<Rigidbody2D>();
+        }
 
-    private void OnDisable()
-    {
-        EventManager.OnAttack -= PlayAttackingAnimation;
-        EventManager.OnJumpAttack -= PlayJumpAttackingAnimation;
-        EventManager.OnJump -= PlayJumpingAnimation;
-        EventManager.OnLand -= OnLandActions;
-        EventManager.OnAttackFinish -= ResetAttackAnimation;
-    }
+        private void Start()
+        {
+            EventManager.OnAttack += PlayAttackingAnimation;
+            EventManager.OnJumpAttack += PlayJumpAttackingAnimation;
+            EventManager.OnJump += PlayJumpingAnimation;
+            EventManager.OnLand += OnLandActions;
+            EventManager.OnAttackFinish += ResetAttackAnimation;
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnAttack -= PlayAttackingAnimation;
+            EventManager.OnJumpAttack -= PlayJumpAttackingAnimation;
+            EventManager.OnJump -= PlayJumpingAnimation;
+            EventManager.OnLand -= OnLandActions;
+            EventManager.OnAttackFinish -= ResetAttackAnimation;
+        }
 
 
-    private void Update()
-    {
-        PlayRunningAnimation();
-    }
+        private void Update()
+        {
+            PlayRunningAnimation();
+            PlayPushingAnimation();
+        }
 
-    private void OnLandActions()
-    {
-        ResetJumpAnimation();
-        ResetJumpAttackingAnimation();
-    }
-    
-    
-    
-    private void PlayRunningAnimation()
-    {
-        bool isRunning = _rb.velocity.magnitude > 0 && _playerBehaviour.IsGrounded();
+        private void OnLandActions()
+        {
+            ResetJumpAnimation();
+            ResetJumpAttackingAnimation();
+        }
+
         
-        _animator.SetBool(RunParameter, isRunning);
-    }
 
-    private void PlayJumpingAnimation()
-    {
-        _animator.SetBool(JumpParameter, true);
-    }
+        private void PlayRunningAnimation()
+        {
+            bool isRunning = _rb.velocity.magnitude > 0f && _playerBehaviour.IsGrounded();
+            
+            if (isRunning == _wasRunning) return;
+            
+            
+            _animator.SetBool(RunParameter, isRunning);
+            _wasRunning = isRunning;
+        }
 
-    private void PlayJumpAttackingAnimation()
-    {
-        ResetJumpAnimation();
-        _animator.SetBool(JumpAttackParameter, true);
-    }
+        private void PlayJumpingAnimation()
+        {
+            _animator.SetBool(JumpParameter, true);
+        }
 
-    private void PlayAttackingAnimation()
-    {
-        //_animator.SetTrigger(AttackParameter);
-        _animator.SetBool(AttackParameter, true);
-    }
+        private void PlayJumpAttackingAnimation()
+        {
+            ResetJumpAnimation();
+            _animator.SetBool(JumpAttackParameter, true);
+        }
 
+        private void PlayAttackingAnimation()
+        {
+            _animator.SetBool(AttackParameter, true);
+        }
 
-    private void ResetJumpAnimation()
-    {
-        _animator.SetBool(JumpParameter, false);
-    }
+        private void PlayPushingAnimation()
+        {
+            bool isBeingPushed = _playerBehaviour.BeingPushed;
+
+            if (isBeingPushed == _wasBeingPushed) return;
+            
+            _animator.SetBool(BeingPushedParameter, isBeingPushed);
+            _wasBeingPushed = isBeingPushed;
+        }
+
+        
+
+        private void ResetJumpAnimation()
+        {
+            _animator.SetBool(JumpParameter, false);
+        }
     
-    private void ResetJumpAttackingAnimation()
-    {
-        _animator.SetBool(JumpAttackParameter, false);
-    }
+        private void ResetJumpAttackingAnimation()
+        {
+            _animator.SetBool(JumpAttackParameter, false);
+        }
     
-    private void ResetAttackAnimation()
-    {
-        _animator.SetBool(AttackParameter, false);
+        private void ResetAttackAnimation()
+        {
+            _animator.SetBool(AttackParameter, false);
+        }
     }
 }

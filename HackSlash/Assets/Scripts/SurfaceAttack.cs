@@ -54,7 +54,7 @@ public class SurfaceAttack : MonoBehaviour
     {
         //var playerHealth = playerCollider.GetComponent<PlayerHealth>();
         //playerHealth.TakeDamage(_damage);
-        Debug.Log("playerCollider: " + damage);
+        //Debug.Log("playerCollider: " + damage);
     }
 
     private void OnDrawGizmosSelected()

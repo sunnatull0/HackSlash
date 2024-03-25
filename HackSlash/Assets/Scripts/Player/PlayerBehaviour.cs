@@ -49,15 +49,22 @@ namespace Player
         private void Update()
         {
             HandleInput();
-            HandleJumping();
             HandleLanding();
-            HandleAttack();
             HandleAttackFinish();
+
+            if (BeingPushed)
+                return;
+
+            HandleJumping();
+            HandleAttack();
             HandleFlipping();
         }
 
         private void FixedUpdate()
         {
+            if (BeingPushed)
+                return;
+
             // Moving.
             HandleMovement();
         }
@@ -77,9 +84,6 @@ namespace Player
 
         private void HandleMovement()
         {
-            if (BeingPushed)
-                return;
-
             var moveDir = new Vector2(HorizontalInput * _movementSpeed * Time.fixedDeltaTime, _rigidbody.velocity.y);
             _rigidbody.velocity = moveDir;
         }
@@ -138,6 +142,7 @@ namespace Player
 
         private void Attack()
         {
+            Debug.Log("ATTACK!");
             var hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _enemyLayer);
             foreach (var enemy in hitEnemies)
             {
@@ -159,7 +164,7 @@ namespace Player
             _wasAttacking = !CanAttack();
         }
 
-        private void FinishAttack()
+        public void FinishAttack()
         {
             _isAttacking = false;
             EventManager.InvokeOnAttackFinish();
