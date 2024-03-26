@@ -6,9 +6,12 @@ namespace Enemies.Orc
     [RequireComponent(typeof(OrcBehaviour))]
     public class OrcAnimation : CharacterAnimationBase
     {
-        
         private OrcAttack _orcAttack;
         private OrcBehaviour _orcBehaviour;
+
+        private readonly int FallingParam = Animator.StringToHash("isFalling");
+
+        private bool _previousFallingState;
 
 
         protected override void Start()
@@ -28,14 +31,13 @@ namespace Enemies.Orc
 
         private void HandleFallingAnimation()
         {
-            if (!_orcBehaviour.IsGrounded())
-            {
-                animator.SetBool("isFalling", true);   
-            }
-            else
-            {
-                animator.SetBool("isFalling", false);   
-            }
+            bool isFalling = !_orcBehaviour.IsGrounded();
+
+            if (isFalling == _previousFallingState)
+                return;
+
+            animator.SetBool(FallingParam, isFalling);
+            _previousFallingState = isFalling;
         }
     }
 }

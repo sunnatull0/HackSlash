@@ -2863,14 +2863,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 1
   moveSpeed: 350
-  _stopDistance: 5
+  stopDistance: 5
   PlayerDetected: 0
   _raycastPosition: {fileID: 4068065193464563864}
   _groundPoint: {fileID: 1056461139453890435}
-  _groundCheckRadius: 0.2
+  _groundCheckRadius: 0.5
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
 --- !u!114 &9178845828668177169
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,12 +26,10 @@ namespace Enemies.Orc
 
         protected override void MoveTowardsPlayer()
         {
-            base.MoveTowardsPlayer();
-
             if (_orcAttack.AttackStarted)
-            {
-                StopEnemyMovement();
-            }
+                return;
+            
+            base.MoveTowardsPlayer();
         }
 
         protected override void FlipTowardsPlayer()
@@ -45,12 +43,8 @@ namespace Enemies.Orc
 
         private void Update()
         {
-            if (!IsGrounded())
-                Debug.Log("not");
-
-            if (!_orcAttack.AttackStarted && isNearPlayer && PlayerDetected)
+            if (!_orcAttack.AttackStarted && IsNearPlayer() && PlayerDetected)
             {
-                // Debug.Log("Start Attack!");
                 _orcAttack.StartAttackSystem();
             }
 
@@ -65,7 +59,7 @@ namespace Enemies.Orc
         private void DetectPlayer()
         {
             var raycastDir = isMovingRight ? myTransform.right : -myTransform.right;
-            var hit = Physics2D.Raycast(_raycastPosition.position, raycastDir, _stopDistance + RaycastOffset,
+            var hit = Physics2D.Raycast(_raycastPosition.position, raycastDir, stopDistance + RaycastOffset,
                 playerLayer);
 
             PlayerDetected = hit.collider != null;

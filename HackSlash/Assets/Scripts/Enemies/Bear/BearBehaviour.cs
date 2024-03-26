@@ -22,12 +22,10 @@ namespace Enemies.Bear
 
         protected override void MoveTowardsPlayer()
         {
-            base.MoveTowardsPlayer();
-
             if (_bearAttack.AttackStarted)
-            {
-                StopEnemyMovement();
-            }
+                return;
+            
+            base.MoveTowardsPlayer();
         }
 
         protected override void FlipTowardsPlayer()
@@ -41,7 +39,7 @@ namespace Enemies.Bear
 
         private void Update()
         {
-            if (!_bearAttack.AttackStarted && isNearPlayer && PlayerDetected)
+            if (!_bearAttack.AttackStarted && IsNearPlayer() && PlayerDetected)
             {
                 _bearAttack.StartAttackSystem();
             }
@@ -57,7 +55,7 @@ namespace Enemies.Bear
         private void DetectPlayer()
         {
             var raycastDir = isMovingRight ? myTransform.right : -myTransform.right;
-            var hit = Physics2D.Raycast(_raycastPosition.position, raycastDir, _stopDistance + RaycastOffset,
+            var hit = Physics2D.Raycast(_raycastPosition.position, raycastDir, stopDistance + RaycastOffset,
                 playerLayer);
 
             PlayerDetected = hit.collider != null;

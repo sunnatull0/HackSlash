@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemies
 {
@@ -19,15 +20,12 @@ namespace Enemies
 
         // Movement.
         [SerializeField] protected float moveSpeed = 100f;
-        [SerializeField] protected float _stopDistance = 0.5f;
-        // private Vector2 _moveDirection;
+        [SerializeField] protected float stopDistance = 0.5f;
         protected bool isMovingRight;
-        protected bool isNearPlayer;
-
 
         // Enemy components.
         protected Transform myTransform;
-        private Rigidbody2D _rb;
+        protected Rigidbody2D _rb;
         private Collider2D _myCollider;
 
         // Borders.
@@ -78,8 +76,7 @@ namespace Enemies
 
         protected virtual void MoveTowardsPlayer()
         {
-            isNearPlayer = Mathf.Abs(GetDirectionToPlayer().x) < _stopDistance; // Check is player is near the enemy.
-            if (isNearPlayer) // If enemy is near player, stop moving.
+            if (IsNearPlayer()) // If enemy is near player, stop moving.
             {
                 StopEnemyMovement();
                 return;
@@ -89,9 +86,14 @@ namespace Enemies
             Vector2 moveDir = new Vector2(direction * moveSpeed * Time.fixedDeltaTime, _rb.velocity.y);
             _rb.velocity = moveDir;
         }
+
+        protected bool IsNearPlayer()
+        {
+            return Mathf.Abs(GetDirectionToPlayer().x) < stopDistance;
+        }
         
 
-        protected void StopEnemyMovement()
+        private void StopEnemyMovement()
         {
             _rb.velocity = new Vector2(0f, _rb.velocity.y); // Restrict horizontal movement.
         }
@@ -133,12 +135,13 @@ namespace Enemies
             var scale = myTransform.localScale;
             scale.x *= -1f;
             myTransform.localScale = scale;
+            
             isMovingRight = !isMovingRight;
         }
 
         protected virtual void FlipTowardsPlayer()
         {
-            if (isNearPlayer) // Do not flip, if player is near.
+            if (IsNearPlayer()) // Do not flip, if player is near.
                 return;
 
             float sign = isMovingRight ? 1f : -1f;

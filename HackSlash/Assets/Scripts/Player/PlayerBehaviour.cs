@@ -55,6 +55,7 @@ namespace Player
             if (BeingPushed)
                 return;
 
+            // Function are stopped when player is being pushed away by enemies.
             HandleJumping();
             HandleAttack();
             HandleFlipping();
@@ -146,7 +147,7 @@ namespace Player
             var hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _enemyLayer);
             foreach (var enemy in hitEnemies)
             {
-                //Debug.Log("Hit: " + enemy.name);
+                Debug.Log("Hit: " + enemy.name);
             }
 
             _nextAttackTime = Time.time + _attackDelay; // Delay handling
