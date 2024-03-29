@@ -2702,7 +2702,7 @@ GameObject:
   - component: {fileID: 9178845828668177169}
   - component: {fileID: 1857236090796767308}
   - component: {fileID: 3007812328992736073}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: Orc_Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2870,7 +2870,7 @@ MonoBehaviour:
   _groundCheckRadius: 0.5
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 1216
 --- !u!114 &9178845828668177169
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -151,6 +151,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 626953129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &198795558
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1129320493142728392, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129320493142728392, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129320493142728392, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129320493142728392, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129320493142728392, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129320493142728392, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129320493142728392, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129320493142728392, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129320493142728392, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129320493142728392, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832991302718863136, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+      propertyPath: m_Name
+      value: Troll_Monster
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
 --- !u!1 &469865222
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,14 +451,14 @@ MonoBehaviour:
   _groundPoint: {fileID: 155534896}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 192
   _movementSpeed: 1200
   _jumpForce: 60
   _groundCheckRadius: 0.5
   _attackPoint: {fileID: 1226223373}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 65024
   _attackDelay: 0.3
   _attackRadius: 5.67
   DrawAttackRange: 1
@@ -795,7 +852,7 @@ GameObject:
   - component: {fileID: 2060754010}
   - component: {fileID: 2060754012}
   - component: {fileID: 2060754011}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Floor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,7 +868,7 @@ Transform:
   m_GameObject: {fileID: 2060754009}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -31.7926, y: 9.77, z: 0}
+  m_LocalPosition: {x: -31.7926, y: 5.33, z: 0}
   m_LocalScale: {x: 35.255974, y: 2.5862, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1016,3 +1073,4 @@ SceneRoots:
   - {fileID: 469865223}
   - {fileID: 519420032}
   - {fileID: 626953129}
+  - {fileID: 198795558}

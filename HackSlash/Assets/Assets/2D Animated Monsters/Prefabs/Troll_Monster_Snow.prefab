@@ -1255,7 +1255,7 @@ GameObject:
   - component: {fileID: 9164091191176937133}
   - component: {fileID: 6196532618625845430}
   - component: {fileID: 1174016917272146136}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Troll_Monster_Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1421,7 +1421,7 @@ MonoBehaviour:
   _groundCheckRadius: 0.5
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 192
 --- !u!114 &6196532618625845430
 MonoBehaviour:
   m_ObjectHideFlags: 0
