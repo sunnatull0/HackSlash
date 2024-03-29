@@ -2347,12 +2347,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 1
   moveSpeed: 300
-  stopDistance: 0.5
-  _groundPoint: {fileID: 0}
+  stopDistance: 10
+  _jumpForce: 30
+  _groundPoint: {fileID: 1880175186057796036}
   _groundCheckRadius: 0.5
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1088
 --- !u!114 &1830377283700405457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2371,6 +2372,10 @@ MonoBehaviour:
   _attackRadius: 5.11
   _delayBeforeAttack: 0.5
   Draw: 1
+  JumpAttackStarted: 0
+  isWaiting: 0
+  _jumpAttackDelay: 5
+  _delayAfterJumpAttack: 1
 --- !u!114 &8767827324383395404
 MonoBehaviour:
   m_ObjectHideFlags: 0

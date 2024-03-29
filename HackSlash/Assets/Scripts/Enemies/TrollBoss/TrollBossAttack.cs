@@ -2,25 +2,25 @@ using System.Collections;
 using Player;
 using UnityEngine;
 
-namespace Enemies.Troll
+namespace Enemies.TrollBoss
 {
-    public class TrollAttack : SurfaceAttack
+    [RequireComponent(typeof(TrollBossBehaviour))]
+    public class TrollBossAttack : SurfaceAttack
     {
-        
-        private TrollBehaviour _trollBehaviour;
+        private TrollBossBehaviour _trollBossBehaviour;
 
         [HideInInspector] public bool JumpAttackStarted;
         [HideInInspector] public bool isWaiting;
-        
+
         [SerializeField] private float _jumpAttackDelay = 5f;
         [SerializeField] private float _delayAfterJumpAttack;
-        
+
         private float _nextJumpAttackTime;
-        
+
 
         private void Start()
         {
-            _trollBehaviour = GetComponent<TrollBehaviour>();
+            _trollBossBehaviour = GetComponent<TrollBossBehaviour>();
             isWaiting = false;
             ExtendAttackDelay();
         }
@@ -50,7 +50,7 @@ namespace Enemies.Troll
         {
             _nextJumpAttackTime = Time.time + _jumpAttackDelay;
         }
-        
+
         public bool CanJumpAttack()
         {
             return Time.time >= _nextJumpAttackTime;

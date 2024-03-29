@@ -36,7 +36,6 @@ public class SurfaceAttack : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("Attack!");
         var hit = Physics2D.OverlapCircle(_attackPoint.position, _attackRadius, _playerLayer);
         playerhit = hit != null;
         if (playerhit)
@@ -52,6 +51,7 @@ public class SurfaceAttack : MonoBehaviour
 
     protected virtual void Damage(Collider2D playerCollider, float damage)
     {
+        Debug.Log("Damage!");
         //var playerHealth = playerCollider.GetComponent<PlayerHealth>();
         //playerHealth.TakeDamage(_damage);
         //Debug.Log("playerCollider: " + damage);

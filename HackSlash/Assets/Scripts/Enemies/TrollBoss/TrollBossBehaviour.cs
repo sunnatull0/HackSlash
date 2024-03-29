@@ -1,13 +1,13 @@
-using System;
+using Enemies.Troll;
 using Player;
 using UnityEngine;
 
-namespace Enemies.Troll
+namespace Enemies.TrollBoss
 {
-    [RequireComponent(typeof(TrollAttack))]
-    public class TrollBehaviour : Enemy
+    [RequireComponent(typeof(TrollBossAttack))]
+    public class TrollBossBehaviour : Enemy
     {
-        private TrollAttack _trollAttack;
+        private TrollBossAttack _trollBossAttack;
 
         [SerializeField] private float _jumpForce;
 
@@ -19,7 +19,7 @@ namespace Enemies.Troll
 
         protected override void Start()
         {
-            _trollAttack = GetComponent<TrollAttack>();
+            _trollBossAttack = GetComponent<TrollBossAttack>();
             _wasGrounded = true;
             Invoke(nameof(ActivateLanding),
                 1f); // Activating landing after 1 second because enemy is landing when its created.
@@ -29,8 +29,8 @@ namespace Enemies.Troll
 
         protected override void MoveTowardsPlayer()
         {
-            if (_trollAttack.AttackStarted || _trollAttack.JumpAttackStarted ||
-                _trollAttack.isWaiting) // Do not move if enemy is attacking.
+            if (_trollBossAttack.AttackStarted || _trollBossAttack.JumpAttackStarted ||
+                _trollBossAttack.isWaiting) // Do not move if enemy is attacking.
             {
                 StopMovement();
                 return;
@@ -41,8 +41,8 @@ namespace Enemies.Troll
 
         protected override void FlipTowardsPlayer()
         {
-            if (_trollAttack.AttackStarted || _trollAttack.JumpAttackStarted ||
-                _trollAttack.isWaiting) // Do not flip if enemy is attacking.
+            if (_trollBossAttack.AttackStarted || _trollBossAttack.JumpAttackStarted ||
+                _trollBossAttack.isWaiting) // Do not flip if enemy is attacking.
                 return;
 
             base.FlipTowardsPlayer();
@@ -64,15 +64,16 @@ namespace Enemies.Troll
 
         private void HandleSimpleAttack()
         {
-            if (!_trollAttack.AttackStarted && !_trollAttack.JumpAttackStarted && IsNearPlayer() && !_trollAttack.isWaiting)
+            if (!_trollBossAttack.AttackStarted && !_trollBossAttack.JumpAttackStarted && IsNearPlayer() &&
+                !_trollBossAttack.isWaiting)
             {
-                _trollAttack.StartAttackSystem();
+                _trollBossAttack.StartAttackSystem();
             }
         }
 
         private void HandleJumpAttack()
         {
-            if (_trollAttack.CanJumpAttack() && !_trollAttack.AttackStarted && !_trollAttack.JumpAttackStarted)
+            if (_trollBossAttack.CanJumpAttack() && !_trollBossAttack.AttackStarted && !_trollBossAttack.JumpAttackStarted)
             {
                 Jump(); // Starting JumpAttack system.
             }
@@ -99,15 +100,15 @@ namespace Enemies.Troll
             if (playerBehaviour.IsGrounded())
             {
                 // Damage.
-                _trollAttack.JumpAttackDamage(playerBehaviour);
+                _trollBossAttack.JumpAttackDamage(playerBehaviour);
             }
 
-            _trollAttack.FinishJumpAttack();
+            _trollBossAttack.FinishJumpAttack();
         }
 
         private void Jump()
         {
-            _trollAttack.JumpAttackStarted = true;
+            _trollBossAttack.JumpAttackStarted = true;
             _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }
 

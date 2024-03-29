@@ -35,7 +35,7 @@ namespace Enemies
 
         // Player.
         protected LayerMask playerLayer;
-        private Transform _playerTransform;
+        protected Transform _playerTransform;
         private const string PlayerName = "Player";
 
 
@@ -78,7 +78,7 @@ namespace Enemies
         {
             if (IsNearPlayer()) // If enemy is near player, stop moving.
             {
-                StopEnemyMovement();
+                StopMovement();
                 return;
             }
             
@@ -91,9 +91,9 @@ namespace Enemies
         {
             return Mathf.Abs(GetDirectionToPlayer().x) < stopDistance;
         }
-        
 
-        private void StopEnemyMovement()
+
+        public void StopMovement()
         {
             _rb.velocity = new Vector2(0f, _rb.velocity.y); // Restrict horizontal movement.
         }
@@ -135,7 +135,7 @@ namespace Enemies
             var scale = myTransform.localScale;
             scale.x *= -1f;
             myTransform.localScale = scale;
-            
+
             isMovingRight = !isMovingRight;
         }
 
@@ -167,6 +167,5 @@ namespace Enemies
         {
             return _playerTransform.position - myTransform.position;
         }
-        
     }
 }

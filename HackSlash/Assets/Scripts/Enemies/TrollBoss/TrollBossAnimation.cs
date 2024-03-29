@@ -1,17 +1,16 @@
 using UnityEngine;
 
-namespace Enemies.Troll
+namespace Enemies.TrollBoss
 {
-    [RequireComponent(typeof(TrollAttack))]
-    public class TrollAnimation : CharacterAnimationBase
+    public class TrollBossAnimation : CharacterAnimationBase
     {
-        private TrollAttack _trollAttack;
+        private TrollBossAttack _trollAttack;
         private readonly int JumpingParam = Animator.StringToHash("isJumping");
 
 
         protected override void Start()
         {
-            _trollAttack = GetComponent<TrollAttack>();
+            _trollAttack = GetComponent<TrollBossAttack>();
 
             base.Start();
         }
