@@ -1614,7 +1614,7 @@ GameObject:
   - component: {fileID: 1150597811228721396}
   - component: {fileID: 3322390323308827399}
   - component: {fileID: 5390372530507610145}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DireBoar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1765,13 +1765,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyType: 0
-  health: 1
-  damage: 1
   moveSpeed: 300
-  _stopDistance: 0.5
-  _playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  stopDistance: 5
   _detectDistance: 15
   DefaultSpeed: 0
   PlayerDetected: 0
@@ -1789,7 +1784,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackSpeedMultiplier: 2
   _delayBeforeAttack: 0.5
-  _attackTime: 1.5
   _delayAfterAttack: 0.5
 --- !u!114 &3322390323308827399
 MonoBehaviour:

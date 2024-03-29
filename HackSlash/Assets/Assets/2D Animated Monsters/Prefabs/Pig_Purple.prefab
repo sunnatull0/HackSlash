@@ -1279,7 +1279,7 @@ GameObject:
   - component: {fileID: 2051249084265085947}
   - component: {fileID: -4408226247681047175}
   - component: {fileID: 8370376391732369257}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Pig_Purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}

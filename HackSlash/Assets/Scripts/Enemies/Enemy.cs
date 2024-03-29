@@ -20,7 +20,7 @@ namespace Enemies
 
         // Movement.
         [SerializeField] protected float moveSpeed = 100f;
-        [SerializeField] protected float stopDistance = 0.5f;
+        [SerializeField] protected float stopDistance = 5f;
         protected bool isMovingRight;
 
         // Enemy components.
