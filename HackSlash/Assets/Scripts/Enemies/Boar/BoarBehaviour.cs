@@ -1,11 +1,12 @@
+using Interfaces;
 using UnityEngine;
 
-namespace Enemies.DireBoar
+namespace Enemies.Boar
 {
-    [RequireComponent(typeof(DireBoarAttack))]
-    public class DireBoarBehaviour : Enemy
+    [RequireComponent(typeof(BoarAttack))]
+    public class BoarBehaviour : Enemy
     {
-        private DireBoarAttack _direBoarAttack;
+        private BoarAttack _boarAttack;
 
         [SerializeField] private float _detectDistance = 2f;
         private Vector2 _raycastDir;
@@ -18,7 +19,7 @@ namespace Enemies.DireBoar
         // OVERRIDES.
         protected override void Start()
         {
-            _direBoarAttack = GetComponent<DireBoarAttack>();
+            _boarAttack = GetComponent<BoarAttack>();
             DefaultSpeed = moveSpeed;
 
             base.Start();
@@ -28,8 +29,8 @@ namespace Enemies.DireBoar
         {
             base.MoveLeftToRight();
 
-            if (PlayerDetected && !_direBoarAttack.AttackStarted)
-                _direBoarAttack.StartAttackSystem();
+            if (PlayerDetected && !_boarAttack.AttackStarted)
+                _boarAttack.StartAttackSystem();
         }
 
         protected override void Flip()
@@ -37,7 +38,7 @@ namespace Enemies.DireBoar
             base.Flip();
 
             if (!IsOutsideOfBorders &&
-                _direBoarAttack.AttackStarted) // Stop enemy if it run into border while attacking.
+                _boarAttack.AttackStarted) // Stop enemy if it run into border while attacking.
             {
                 StopEnemy();
             }
@@ -70,5 +71,7 @@ namespace Enemies.DireBoar
         {
             ChangeSpeed(0f);
         }
+
+        
     }
 }

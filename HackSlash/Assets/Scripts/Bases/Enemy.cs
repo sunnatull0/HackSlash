@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,7 +8,7 @@ namespace Enemies
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, ICharacter
     {
         private enum EnemyType
         {
@@ -81,7 +82,7 @@ namespace Enemies
                 StopMovement();
                 return;
             }
-            
+
             float direction = MathF.Sign(GetDirectionToPlayer().x); // Gets 1 or -1, depending on move direction.
             Vector2 moveDir = new Vector2(direction * moveSpeed * Time.fixedDeltaTime, _rb.velocity.y);
             _rb.velocity = moveDir;
@@ -93,7 +94,7 @@ namespace Enemies
         }
 
 
-        public void StopMovement()
+        protected void StopMovement()
         {
             _rb.velocity = new Vector2(0f, _rb.velocity.y); // Restrict horizontal movement.
         }
@@ -166,6 +167,11 @@ namespace Enemies
         private Vector2 GetDirectionToPlayer()
         {
             return _playerTransform.position - myTransform.position;
+        }
+
+        public Collider2D GetCollider()
+        {
+            return _myCollider;
         }
     }
 }

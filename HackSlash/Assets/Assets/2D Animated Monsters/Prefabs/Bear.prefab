@@ -1467,9 +1467,11 @@ GameObject:
   - component: {fileID: 5312706937937338100}
   - component: {fileID: 510132528211537205}
   - component: {fileID: 4187634016556072196}
+  - component: {fileID: 566031443354301355}
   - component: {fileID: 5564680945820877434}
+  - component: {fileID: 2847172772051293855}
   m_Layer: 12
-  m_Name: Bear_Brown
+  m_Name: Bear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1646,7 +1648,7 @@ MonoBehaviour:
   _damage: 1
   _attackPoint: {fileID: 5427259428688820933}
   _attackRadius: 4.95
-  _delayBeforeAttack: 1
+  _delayBeforeAttack: 0.65
   Draw: 1
 --- !u!114 &4187634016556072196
 MonoBehaviour:
@@ -1660,6 +1662,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace67e6451475a144a497492426f0405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &566031443354301355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4884124145918657938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d5d4a4d9b9b82488065addcf875657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _childEnemyPrefab: {fileID: 8419849762969627918, guid: 98bac6772246fb14d9e5d431f2caec74, type: 3}
+  _firstSpawnTime: 5
+  _spawnDelay: 3
+  _enemyLimit: 5
+  _spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &5564680945820877434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1672,7 +1695,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef9e7e567cb1314eb83cc60007b1d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 3
+  _startHealth: 1
+  Healthh: 0
+--- !u!114 &2847172772051293855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4884124145918657938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a0b9aff406f214494cd8343d31da66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1371318818793505597}
 --- !u!1 &4931260695096819411
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Enemies
+namespace Enemies.Bat
 {
     public class BatBehaviour : Enemy
     {

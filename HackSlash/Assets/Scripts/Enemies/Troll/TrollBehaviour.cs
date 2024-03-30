@@ -98,8 +98,8 @@ namespace Enemies.Troll
             var playerBehaviour = _playerTransform.GetComponent<PlayerBehaviour>();
             if (playerBehaviour.IsGrounded())
             {
-                // Damage.
-                _trollAttack.JumpAttackDamage(playerBehaviour);
+                var playerHealth = _playerTransform.GetComponent<Health>();
+                _trollAttack.JumpAttackDamage(playerHealth);
             }
 
             _trollAttack.FinishJumpAttack();

@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class SurfaceAttack : MonoBehaviour
+public class SurfaceAttack : MonoBehaviour, IDamageable
 {
     [HideInInspector] public bool AttackStarted;
 
@@ -40,7 +39,8 @@ public class SurfaceAttack : MonoBehaviour
         playerhit = hit != null;
         if (playerhit)
         {
-            Damage(hit, _damage);
+            var playerHealth = hit.GetComponent<Health>();
+            Damage(playerHealth);
         }
     }
 
@@ -49,12 +49,9 @@ public class SurfaceAttack : MonoBehaviour
         AttackStarted = false;
     }
 
-    protected virtual void Damage(Collider2D playerCollider, float damage)
+    public virtual void Damage(Health targetHealth)
     {
-        Debug.Log("Damage!");
-        //var playerHealth = playerCollider.GetComponent<PlayerHealth>();
-        //playerHealth.TakeDamage(_damage);
-        //Debug.Log("playerCollider: " + damage);
+        targetHealth.TakeDamage(_damage);
     }
 
     private void OnDrawGizmosSelected()

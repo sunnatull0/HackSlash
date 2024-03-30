@@ -13,14 +13,11 @@ namespace Enemies.Orc
         [Range(0f, 1f)] [SerializeField] private float _horizontalForce = 0.5f;
 
         // OVERRIDES.
-        protected override void Damage(Collider2D playerCollider, float damage)
+        public override void Damage(Health targetHealth)
         {
-            base.Damage(playerCollider, damage);
+            base.Damage(targetHealth);
 
-            if (playerhit)
-            {
-                PushPlayer(playerCollider);
-            }
+            PushPlayer(targetHealth);
         }
 
 
@@ -37,17 +34,17 @@ namespace Enemies.Orc
             _orcBehaviour = GetComponent<OrcBehaviour>();
         }
 
-        private void PushPlayer(Component playerCollider)
+        private void PushPlayer(Health playerHealth)
         {
-            PlayerBehaviour playerBehaviour = playerCollider.GetComponent<PlayerBehaviour>();
+            PlayerBehaviour playerBehaviour = playerHealth.GetComponent<PlayerBehaviour>();
             playerBehaviour.BeingPushed = true;
-            
-            Rigidbody2D playerRb = playerCollider.GetComponent<Rigidbody2D>();
 
-            float direction = playerCollider.transform.position.x - transform.position.x;
+            Rigidbody2D playerRb = playerHealth.GetComponent<Rigidbody2D>();
+
+            float direction = playerHealth.transform.position.x - transform.position.x;
             Vector2 pushDirection = new Vector2(_horizontalForce * direction, _verticalForce);
             playerRb.velocity = Vector2.zero;
-            
+
             playerRb.AddForce(pushDirection * _pushForce, ForceMode2D.Impulse);
         }
     }

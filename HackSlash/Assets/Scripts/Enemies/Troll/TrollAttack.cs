@@ -1,6 +1,7 @@
 using System.Collections;
 using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemies.Troll
 {
@@ -13,7 +14,7 @@ namespace Enemies.Troll
         [HideInInspector] public bool isWaiting;
         
         [SerializeField] private float _jumpAttackDelay = 5f;
-        [SerializeField] private float _delayAfterJumpAttack;
+        [SerializeField] private float _waitingAfterJumpAttack;
         
         private float _nextJumpAttackTime;
         
@@ -26,12 +27,11 @@ namespace Enemies.Troll
         }
 
 
-        public void JumpAttackDamage(PlayerBehaviour playerBehaviour)
+        public void JumpAttackDamage(Health targetHealth)
         {
-            //var playerHealth = playerBehaviour.GetComponent<Health>();
-            Debug.Log("DamagePlayer!");
-            isWaiting = true;
-            StartCoroutine(ResetAfterDelay());
+            Damage(targetHealth);
+            
+            StartWaiting();
         }
 
         public void FinishJumpAttack()
@@ -40,9 +40,15 @@ namespace Enemies.Troll
             ExtendAttackDelay();
         }
 
-        private IEnumerator ResetAfterDelay()
+        private void StartWaiting()
         {
-            yield return new WaitForSeconds(_delayAfterJumpAttack);
+            isWaiting = true;
+            StartCoroutine(ResetWaitingAfterDelay());
+        }
+
+        private IEnumerator ResetWaitingAfterDelay()
+        {
+            yield return new WaitForSeconds(_waitingAfterJumpAttack);
             isWaiting = false;
         }
 

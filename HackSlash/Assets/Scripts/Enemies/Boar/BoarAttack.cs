@@ -1,16 +1,20 @@
+using System;
 using System.Collections;
+using Interfaces;
 using UnityEngine;
 
-namespace Enemies.DireBoar
+namespace Enemies.Boar
 {
-    [RequireComponent(typeof(DireBoarBehaviour))]
-    public class DireBoarAttack : MonoBehaviour
+    [RequireComponent(typeof(BoarBehaviour))]
+    public class BoarAttack : MonoBehaviour, IDamageable
     {
-        private DireBoarBehaviour _direBoarBehaviour;
+        private BoarBehaviour _boarBehaviour;
 
+        [SerializeField] private float _damage;
         [SerializeField] private float _attackSpeedMultiplier = 0.5f;
         [SerializeField] private float _delayBeforeAttack = 0.5f;
         [SerializeField] private float _delayAfterAttack = 0.5f;
+        private const string PlayerLayerName = "Player";
 
         public bool AttackStarted { get; private set; }
         public bool IsAttacking { get; private set; }
@@ -18,7 +22,7 @@ namespace Enemies.DireBoar
 
         private void Start()
         {
-            _direBoarBehaviour = GetComponent<DireBoarBehaviour>();
+            _boarBehaviour = GetComponent<BoarBehaviour>();
         }
 
 
@@ -27,7 +31,7 @@ namespace Enemies.DireBoar
             if (AttackStarted) return;
 
 
-            _direBoarBehaviour.StopEnemy();
+            _boarBehaviour.StopEnemy();
             StartCoroutine(StartAttackingAfterDelay());
             AttackStarted = true;
         }
@@ -43,9 +47,7 @@ namespace Enemies.DireBoar
         private void Attacking()
         {
             IsAttacking = true;
-            _direBoarBehaviour.ChangeSpeed(_direBoarBehaviour.DefaultSpeed * _attackSpeedMultiplier); // Increase speed.
-
-            //StartCoroutine(StopAttackAfterDelay()); // Stop Attack.
+            _boarBehaviour.ChangeSpeed(_boarBehaviour.DefaultSpeed * _attackSpeedMultiplier); // Increase speed.
         }
 
         
@@ -61,9 +63,25 @@ namespace Enemies.DireBoar
             yield return new WaitForSeconds(_delayAfterAttack);
 
             // Resetting.
-            _direBoarBehaviour.PlayerDetected = false;
+            _boarBehaviour.PlayerDetected = false;
             AttackStarted = false;
-            _direBoarBehaviour.ChangeSpeed(_direBoarBehaviour.DefaultSpeed);
+            _boarBehaviour.ChangeSpeed(_boarBehaviour.DefaultSpeed);
         }
+
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer(PlayerLayerName))
+            {
+                var playerHealth = other.transform.GetComponent<Health>();
+                Damage(playerHealth);
+            }
+        }
+
+        public void Damage(Health targetHealth)
+        {
+            targetHealth.TakeDamage(_damage);
+        }
+        
     }
 }

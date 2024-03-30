@@ -1614,8 +1614,9 @@ GameObject:
   - component: {fileID: 1150597811228721396}
   - component: {fileID: 3322390323308827399}
   - component: {fileID: 5390372530507610145}
+  - component: {fileID: 2493686913262447010}
   m_Layer: 10
-  m_Name: DireBoar
+  m_Name: Boar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1713,7 +1714,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.008905053}
+  m_Offset: {x: -0.047581434, y: -0.008904934}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1723,7 +1724,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 9.323227, y: 6.8596725}
+  m_Size: {x: 9.228064, y: 6.8596725}
   m_EdgeRadius: 0
 --- !u!50 &2529733042714583005
 Rigidbody2D:
@@ -1782,6 +1783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dcfc3f85defc3b48a9608b040dfc1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 1
   _attackSpeedMultiplier: 2
   _delayBeforeAttack: 0.5
   _delayAfterAttack: 0.5
@@ -1809,7 +1811,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef9e7e567cb1314eb83cc60007b1d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 2
+  _startHealth: 1
+  Healthh: 0
+--- !u!114 &2493686913262447010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481580078974812205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a0b9aff406f214494cd8343d31da66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 2124735956063932466}
 --- !u!1 &7617819301168734212
 GameObject:
   m_ObjectHideFlags: 0

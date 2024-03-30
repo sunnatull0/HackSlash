@@ -1,48 +1,40 @@
-using Unity.VisualScripting;
+using Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlayerBehaviour : MonoBehaviour
+    [RequireComponent(typeof(PlayerAttack))]
+    public class PlayerBehaviour : MonoBehaviour, ICharacter
     {
-        [Header("Assigning variables!")] [SerializeField]
-        private Transform _groundPoint;
-
+        
+        private PlayerAttack _playerAttack;
+        
+        [Header("Ground variables!")] 
         [SerializeField] private LayerMask _groundLayer;
-
-
-        [Header("Player characteristics!")] [SerializeField]
-        private float _movementSpeed = 1f;
-
-        [SerializeField] private float _jumpForce = 1f;
+        [SerializeField] private Transform _groundPoint;
         [SerializeField] private float _groundCheckRadius = 1f;
-
-
-        [Header("Attack!")] [SerializeField] private Transform _attackPoint;
-        [SerializeField] private LayerMask _enemyLayer;
-        [SerializeField] private float _attackDelay = 1f;
-        [SerializeField] private float _attackRadius = 0.5f;
-        [SerializeField] private bool DrawAttackRange = true;
-
+        
+        [Header("Player characteristics!")] 
+        [SerializeField] private float _movementSpeed = 1f;
+        [SerializeField] private float _jumpForce = 1f;
 
         [HideInInspector] public float HorizontalInput;
+        [HideInInspector] public bool BeingPushed;
         private Rigidbody2D _rigidbody;
         private Transform _transform;
-        private float _nextAttackTime = 0f;
-        private bool _wasAttacking;
-        private bool _isAttacking;
+        private Collider2D _myCollider;
         private bool _facingRight;
         private bool _wasGrounded = true;
-
-        [HideInInspector] public bool BeingPushed;
+        
 
 
         private void Start()
         {
+            _playerAttack = GetComponent<PlayerAttack>();
             _rigidbody = GetComponent<Rigidbody2D>();
             _transform = GetComponent<Transform>();
+            _myCollider = GetComponent<Collider2D>();
         }
 
 
@@ -50,14 +42,13 @@ namespace Player
         {
             HandleInput();
             HandleLanding();
-            HandleAttackFinish();
 
             if (BeingPushed)
                 return;
 
             // Function are stopped when player is being pushed away by enemies.
             HandleJumping();
-            HandleAttack();
+            //HandleAttack();
             HandleFlipping();
         }
 
@@ -92,7 +83,7 @@ namespace Player
 
         private void HandleJumping()
         {
-            if (!Input.GetButtonDown("Jump") || !IsGrounded() || _isAttacking)
+            if (!Input.GetButtonDown("Jump") || !IsGrounded() || _playerAttack._isAttacking)
                 return;
 
             Jump();
@@ -126,52 +117,7 @@ namespace Player
             }
         }
 
-
-        private void HandleAttack()
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && CanAttack())
-            {
-                Attack(); // Attack
-                EventManager.InvokeOnAttackActions();
-            }
-            else if (Input.GetKeyDown(KeyCode.Space) && CanAttack() && !IsGrounded())
-            {
-                Attack(); // JumpAttack
-                EventManager.InvokeOnJumpAttackActions();
-            }
-        }
-
-        private void Attack()
-        {
-            Debug.Log("ATTACK!");
-            var hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _enemyLayer);
-            foreach (var enemy in hitEnemies)
-            {
-                Debug.Log("Hit: " + enemy.name);
-            }
-
-            _nextAttackTime = Time.time + _attackDelay; // Delay handling
-            _isAttacking = true;
-        }
-
-
-        private void HandleAttackFinish()
-        {
-            if (_wasAttacking && CanAttack())
-            {
-                FinishAttack();
-            }
-
-            _wasAttacking = !CanAttack();
-        }
-
-        public void FinishAttack()
-        {
-            _isAttacking = false;
-            EventManager.InvokeOnAttackFinish();
-        }
-
-
+        
         private void HandleFlipping()
         {
             bool canFlip = (_facingRight && HorizontalInput < 0) || (!_facingRight && HorizontalInput > 0);
@@ -197,24 +143,15 @@ namespace Player
         }
 
 
-        private bool CanAttack()
-        {
-            return Time.time >= _nextAttackTime;
-        }
-
-
         private bool IsAttackingInTheGround()
         {
-            return _isAttacking && IsGrounded();
+            return _playerAttack._isAttacking && IsGrounded();
         }
 
 
-        private void OnDrawGizmosSelected()
+        public Collider2D GetCollider()
         {
-            if (_attackPoint == null || !DrawAttackRange)
-                return;
-
-            Gizmos.DrawSphere(_attackPoint.position, _attackRadius);
+            return _myCollider;
         }
     }
 }
