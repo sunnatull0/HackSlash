@@ -5,17 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(DeathAnimation))]
 public class Death : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
+
+    private DeathAnimation _deathAnimation;
     private Collider2D _collider;
     private Rigidbody2D _rb;
 
-    private readonly int _aliveParam = Animator.StringToHash("isAlive");
     private MonoBehaviour[] _scripts;
 
     private void Start()
     {
+        _deathAnimation = GetComponent<DeathAnimation>();
         _collider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _scripts = GetComponents<MonoBehaviour>();
@@ -24,18 +26,21 @@ public class Death : MonoBehaviour
 
     public void Die()
     {
+        ResetLayer();
         DeactivateBehaviour();
         DeactivateCollisions();
-        PlayDeathAnimation();
+        _deathAnimation.PlayDeathAnimation();
     }
 
     private void DeactivateCollisions()
     {
-        // var characters = FindObjectsOfType<MonoBehaviour>().OfType<ICharacter>();
         var characters = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<ICharacter>();
-        
+
         foreach (var character in characters)
         {
+            if (character.GetCollider() == _collider)
+                continue;
+
             Physics2D.IgnoreCollision(_collider, character.GetCollider(), true);
         }
     }
@@ -43,6 +48,8 @@ public class Death : MonoBehaviour
     private void DeactivateBehaviour()
     {
         _rb.velocity = Vector2.zero;
+        _rb.gravityScale = 8f;
+        _rb.drag = 3f;
         foreach (var script in _scripts)
         {
             if (script != this)
@@ -52,8 +59,13 @@ public class Death : MonoBehaviour
         }
     }
 
-    private void PlayDeathAnimation()
+    private void ResetLayer()
     {
-        _animator.SetBool(_aliveParam, false);
+        gameObject.layer = 0;
+    }
+    
+    private void Destroy() // Used in AnimationEvent.
+    {
+        Destroy(gameObject);
     }
 }

@@ -1258,6 +1258,7 @@ GameObject:
   - component: {fileID: 4417374871018572987}
   - component: {fileID: 2630138763051039384}
   - component: {fileID: 3912750034938148393}
+  - component: {fileID: 3796961191727762118}
   m_Layer: 15
   m_Name: Troll_Boss
   m_TagString: Untagged
@@ -1389,10 +1390,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
-  m_AngularDrag: 5
-  m_GravityScale: 8
+  m_AngularDrag: 0
+  m_GravityScale: 12
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1421,7 +1422,7 @@ MonoBehaviour:
   _attackPoint: {fileID: 8014841693677706022}
   _attackRadius: 6.93
   _delayBeforeAttack: 0.5
-  Draw: 1
+  Draw: 0
   JumpAttackStarted: 0
   isWaiting: 0
   _jumpAttackDelay: 5
@@ -1492,7 +1493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef9e7e567cb1314eb83cc60007b1d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 3
+  _startHealth: 1
   Healthh: 0
 --- !u!114 &3912750034938148393
 MonoBehaviour:
@@ -1504,6 +1505,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38a0b9aff406f214494cd8343d31da66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3796961191727762118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589623625668872217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05feb1ca33470974684c4f23d7ac9952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 987496029554972793}

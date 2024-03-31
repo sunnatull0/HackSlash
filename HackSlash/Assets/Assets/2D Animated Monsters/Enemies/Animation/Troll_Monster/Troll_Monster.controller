@@ -36,6 +36,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isAlive
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isFadingOut
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6826483270010403562}
   m_Solo: 0
@@ -91,7 +94,8 @@ AnimatorState:
   m_Name: Troll_Monster_Dead
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions: []
+  m_Transitions:
+  - {fileID: 3794358063252586201}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -249,6 +253,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 1
     m_Controller: {fileID: 0}
+  - m_Name: isFadingOut
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -348,7 +358,10 @@ AnimatorStateMachine:
     m_Position: {x: 190, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6826483270010403562}
-    m_Position: {x: 310, y: -60, z: 0}
+    m_Position: {x: 450, y: -120, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 7687318925641071612}
+    m_Position: {x: 610, y: -200, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -2221189079338729770}
@@ -357,7 +370,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 440, y: 20, z: 0}
+  m_AnyStatePosition: {x: 660, y: -40, z: 0}
   m_EntryPosition: {x: -110, y: 220, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -416,6 +429,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &3794358063252586201
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: isFadingOut
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 7687318925641071612}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.78571427
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &4452441715719755309
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -523,6 +561,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 83543ae2598b8e649b56d755af4fe345, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &7687318925641071612
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TrollFadeOut
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 1b4809bbfda0cf148ac9574374f9aa78, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -2703,6 +2703,7 @@ GameObject:
   - component: {fileID: 1857236090796767308}
   - component: {fileID: 3007812328992736073}
   - component: {fileID: 5847217225298663684}
+  - component: {fileID: 2480054139882124496}
   m_Layer: 13
   m_Name: Orc
   m_TagString: Untagged
@@ -2835,10 +2836,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
-  m_AngularDrag: 5
-  m_GravityScale: 8
+  m_AngularDrag: 0
+  m_GravityScale: 12
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2864,7 +2865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 1
   moveSpeed: 350
-  stopDistance: 5
+  stopDistance: 8
   PlayerDetected: 0
   _raycastPosition: {fileID: 4068065193464563864}
   _groundPoint: {fileID: 1056461139453890435}
@@ -2889,8 +2890,8 @@ MonoBehaviour:
   _attackPoint: {fileID: 5785654188127610174}
   _attackRadius: 3.63
   _delayBeforeAttack: 0.6
-  Draw: 0
-  _pushForce: 40
+  Draw: 1
+  _pushForce: 200
   _verticalForce: 0.9
   _horizontalForce: 0.15
 --- !u!114 &1857236090796767308
@@ -2929,6 +2930,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38a0b9aff406f214494cd8343d31da66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2480054139882124496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192056143704295429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05feb1ca33470974684c4f23d7ac9952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 7909111636750795195}
@@ -3078,7 +3091,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7909111638042579114}
   - component: {fileID: 7909111638042579108}
-  - component: {fileID: 7909111638042579115}
   m_Layer: 0
   m_Name: spiked bat
   m_TagString: Untagged
@@ -3153,28 +3165,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7909111638042579115
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7909111638042579113}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 311c84e41be82cf4ab38f80aab4cdd71, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8388175193981056940
 GameObject:
   m_ObjectHideFlags: 0

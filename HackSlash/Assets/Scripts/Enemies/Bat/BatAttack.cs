@@ -13,10 +13,7 @@ namespace Enemies.Bat
             if (other.gameObject.layer == LayerMask.NameToLayer(PlayerLayerName))
             {
                 var playerHealth = other.transform.GetComponent<Health>();
-                if (playerHealth != null)
-                {
-                    Damage(playerHealth);
-                }
+                Damage(playerHealth);
             }
         }
 

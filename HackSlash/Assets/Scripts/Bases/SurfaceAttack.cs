@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Interfaces;
 using UnityEngine;
@@ -52,6 +53,15 @@ public class SurfaceAttack : MonoBehaviour, IDamageable
     public virtual void Damage(Health targetHealth)
     {
         targetHealth.TakeDamage(_damage);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer(PlayerLayerName))
+        {
+            var playerHealth = other.transform.GetComponent<Health>();
+            Damage(playerHealth);
+        }
     }
 
     private void OnDrawGizmosSelected()
