@@ -1,48 +1,34 @@
+using System.Collections;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Enemies
 {
     public class BossLogic : MonoBehaviour
     {
-        [SerializeField] private GameObject _childEnemyPrefab;
-        [SerializeField] private float _firstSpawnTime;
-        [SerializeField] private float _spawnDelay;
-        [SerializeField] private int _enemyLimit;
 
-        [SerializeField] private Transform[] _spawnPoints;
-        private int _spawnedEnemies;
+        [SerializeField] private EnemySpawnInfo _enemySpawnInfo;
+        [SerializeField] private float _spawnDelay;
 
         private void Start()
         {
-            _spawnedEnemies = 0;
-            InvokeRepeating(nameof(SpawnEnemy), _firstSpawnTime, _spawnDelay);
+            StartCoroutine(SpawnEnemies());
         }
 
 
         private void SpawnEnemy()
         {
-            Instantiate(_childEnemyPrefab, GetRandomSpawnPoint().position, _childEnemyPrefab.transform.rotation);
-            _spawnedEnemies++;
-
-            CheckForLimit();
+            Instantiate(_enemySpawnInfo.EnemyPrefab,
+                SpawnPointsManager.Instance.GetRandomSpawnPoint(_enemySpawnInfo).position,
+                Quaternion.identity);
         }
 
-        
-        private void CheckForLimit()
+        private IEnumerator SpawnEnemies()
         {
-            if (_spawnedEnemies >= _enemyLimit)
+            for (int i = 0; i < _enemySpawnInfo.Count; i++)
             {
-                CancelInvoke(nameof(SpawnEnemy));
-                Debug.Log("Stopped!");
+                yield return new WaitForSeconds(_spawnDelay);
+                SpawnEnemy();
             }
-        }
-        
-        
-        private Transform GetRandomSpawnPoint()
-        {
-            int index = Random.Range(0, _spawnPoints.Length);
-            return _spawnPoints[index];
         }
     }
 }

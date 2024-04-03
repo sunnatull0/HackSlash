@@ -216,6 +216,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: -904136405871704060, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -443292702676700217, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: -0.06189072
@@ -350,11 +354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3508685474996495587, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3508685474996495587, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3508685474996495587, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -733,7 +737,7 @@ MonoBehaviour:
   moveSpeed: 300
   stopDistance: 5
   _verticalSpeed: 2
-  _verticalDistance: 6
+  _verticalDistance: 1
   _verticalDirectionChange: 0.005
 --- !u!114 &6050435812506484495
 MonoBehaviour:

@@ -1,0 +1,9 @@
+2D Platformer Assets contains 4 unique and distinct enviroments
+that are fitted for many types of games.
+It features:
+4 Environments(Jungle, Mountains, Snow Mountains, Lava)
+Over 190 assets
+Tiled platforms and backgrounds
+5 Layerd Scenes 
+Animated Trees, grass, bushes
+Weather effects particles: Rain, Snow, Wind, Dust, Sunray

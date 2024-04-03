@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Enemies
 {
@@ -17,8 +16,7 @@ namespace Enemies
         }
 
         [SerializeField] private EnemyType _enemyType;
-
-
+        
         // Movement.
         [SerializeField] protected float moveSpeed = 100f;
         [SerializeField] protected float stopDistance = 5f;
@@ -31,7 +29,7 @@ namespace Enemies
 
         // Borders.
         private Collider2D _borderCollider;
-        private const float BorderPositionX = 34f; // Border X position.
+        private const float BorderPositionX = 70f; // Border X position.
         protected bool IsOutsideOfBorders => Mathf.Abs(myTransform.position.x) > BorderPositionX;
 
         // Player.
