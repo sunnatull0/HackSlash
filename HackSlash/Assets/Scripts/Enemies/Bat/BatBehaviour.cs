@@ -1,26 +1,25 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemies.Bat
 {
     public class BatBehaviour : Enemy
     {
-        
-        [SerializeField] private float _verticalSpeed = 1f;
         [SerializeField] private float _verticalDistance = 1f;
-        [SerializeField] private float _verticalDirectionChange = 0.2f;
-        
+        [SerializeField] private float _changeDirectionTime = 2f; // Time between movements in seconds
+        [SerializeField] private float t = 0f;
+
         private float _upperPoint;
         private float _lowerPoint;
         private bool _isMovingUp = true;
+        private float _movementTimer;
 
-        
         protected override void Start()
         {
             base.Start();
 
             SetVerticalPoints();
         }
-
 
         private void SetVerticalPoints()
         {
@@ -29,38 +28,35 @@ namespace Enemies.Bat
             _lowerPoint = position.y - _verticalDistance;
         }
 
-        
         protected override void MoveLeftToRight()
         {
             base.MoveLeftToRight();
-            
+
             MoveVertically();
         }
 
         private void MoveVertically()
         {
-            float direction = _isMovingUp ? _upperPoint : _lowerPoint;
+            _movementTimer += Time.deltaTime;
 
-            Vector3 position = myTransform.position;
-            float newY = Mathf.Lerp(position.y, direction, Time.fixedDeltaTime * _verticalSpeed);
-            position = new Vector3(position.x, newY, position.z);
-            myTransform.position = position;
-
-            if (IsNearValue(newY, _upperPoint) || IsNearValue(newY, _lowerPoint))
+            if (_movementTimer >= _changeDirectionTime)
             {
+                _movementTimer = 0f;
+
                 ChangeVerticalDirection();
             }
+
+            float targetY = _isMovingUp ? _upperPoint : _lowerPoint;
+
+            var position = myTransform.position;
+            Vector2 targetPos = new Vector2(position.x, targetY);
+            position = Vector2.Lerp(position, targetPos, t);
+            myTransform.position = position;
         }
 
         private void ChangeVerticalDirection()
         {
             _isMovingUp = !_isMovingUp;
         }
-        
-        private bool IsNearValue(float value, float targetValue)
-        {
-            return Mathf.Abs(value - targetValue) < _verticalDirectionChange;
-        }
-        
     }
 }

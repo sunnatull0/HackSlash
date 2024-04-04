@@ -9,7 +9,6 @@ namespace Player
         
         private void PlayFadeOutAnimation() // used in AnimationEvent.
         {
-            Debug.Log("s");
             _playerDeathAnimation.PlayFadeOutAnimation();
         }
 

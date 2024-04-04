@@ -1014,7 +1014,7 @@ Transform:
   m_GameObject: {fileID: 6072813553276577273}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.33, y: -3.35, z: 0}
+  m_LocalPosition: {x: 0.8, y: -6.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1138,7 +1138,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -1214,9 +1214,9 @@ MonoBehaviour:
   _enemyType: 0
   moveSpeed: 300
   stopDistance: 5
-  _verticalSpeed: 2
   _verticalDistance: 4
-  _verticalDirectionChange: 0.005
+  _changeDirectionTime: 2
+  t: 0.1
 --- !u!114 &4765615437646763312
 MonoBehaviour:
   m_ObjectHideFlags: 0
