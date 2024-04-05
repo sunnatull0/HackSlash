@@ -1472,15 +1472,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d5d4a4d9b9b82488065addcf875657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _childEnemyPrefab: {fileID: 6832991302718863136, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
-  _firstSpawnTime: 5
+  _enemySpawnInfo:
+    PositionType: 0
+    EnemyPrefab: {fileID: 6832991302718863136, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+    Count: 2
   _spawnDelay: 3
-  _enemyLimit: 5
-  _spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &2630138763051039384
 MonoBehaviour:
   m_ObjectHideFlags: 0

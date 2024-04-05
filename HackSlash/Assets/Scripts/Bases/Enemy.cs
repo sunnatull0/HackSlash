@@ -29,7 +29,7 @@ namespace Enemies
 
         // Borders.
         private Collider2D _borderCollider;
-        private const float BorderPositionX = 70f; // Border X position.
+        private const float BorderPositionX = 55f; // Border X position.
         protected bool IsOutsideOfBorders => Mathf.Abs(myTransform.position.x) > BorderPositionX;
 
         // Player.

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Enemies.Bat
 {
@@ -7,7 +6,7 @@ namespace Enemies.Bat
     {
         [SerializeField] private float _verticalDistance = 1f;
         [SerializeField] private float _changeDirectionTime = 2f; // Time between movements in seconds
-        [SerializeField] private float t = 0f;
+        [SerializeField] private float t;
 
         private float _upperPoint;
         private float _lowerPoint;
