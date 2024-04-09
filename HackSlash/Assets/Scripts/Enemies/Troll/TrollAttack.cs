@@ -6,7 +6,6 @@ namespace Enemies.Troll
     public class TrollAttack : SurfaceAttack
     {
         
-        private TrollBehaviour _trollBehaviour;
 
         [HideInInspector] public bool JumpAttackStarted;
         [HideInInspector] public bool isWaiting;
@@ -15,11 +14,11 @@ namespace Enemies.Troll
         [SerializeField] private float _waitingAfterJumpAttack;
         
         private float _nextJumpAttackTime;
-        
 
-        private void Start()
+
+        protected override void Start()
         {
-            _trollBehaviour = GetComponent<TrollBehaviour>();
+            base.Start();
             isWaiting = false;
             ExtendAttackDelay();
         }
@@ -28,8 +27,6 @@ namespace Enemies.Troll
         public void JumpAttackDamage(Health targetHealth)
         {
             Damage(targetHealth);
-            
-            StartWaiting();
         }
 
         public void FinishJumpAttack()
@@ -38,7 +35,7 @@ namespace Enemies.Troll
             ExtendAttackDelay();
         }
 
-        private void StartWaiting()
+        public void StartWaiting()
         {
             isWaiting = true;
             StartCoroutine(ResetWaitingAfterDelay());

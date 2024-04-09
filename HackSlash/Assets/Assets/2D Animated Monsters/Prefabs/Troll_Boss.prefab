@@ -130,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 529435413429320229}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.93, y: 4.74, z: 0}
+  m_LocalPosition: {x: -6.42, y: 4.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1252,8 +1252,8 @@ GameObject:
   - component: {fileID: 987496029554972793}
   - component: {fileID: 4805960241441561143}
   - component: {fileID: -1947069788395128568}
-  - component: {fileID: 3791668394611236852}
   - component: {fileID: 9189122959046597185}
+  - component: {fileID: 3791668394611236852}
   - component: {fileID: 8622095311455359846}
   - component: {fileID: 4417374871018572987}
   - component: {fileID: 2630138763051039384}
@@ -1276,8 +1276,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8014841693677706022}
   - {fileID: 8285346879930286422}
@@ -1405,6 +1405,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &9189122959046597185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589623625668872217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63a8104b7f807f43b01d76517e551a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyType: 1
+  moveSpeed: 300
+  stopDistance: 20
+  _jumpForce: 150
+  _groundPoint: {fileID: 8285346879930286422}
+  _groundCheckRadius: 0.5
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!114 &3791668394611236852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,34 +1441,14 @@ MonoBehaviour:
   AttackStarted: 0
   _damage: 1
   _attackPoint: {fileID: 8014841693677706022}
-  _attackRadius: 6.93
+  _attackRadius: 13.6
   _delayBeforeAttack: 0.5
   Draw: 0
+  PlayerDetected: 0
   JumpAttackStarted: 0
   isWaiting: 0
-  _jumpAttackDelay: 5
+  _jumpAttackDelay: 4
   _waitingAfterJumpAttack: 1
---- !u!114 &9189122959046597185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3589623625668872217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a63a8104b7f807f43b01d76517e551a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyType: 1
-  moveSpeed: 300
-  stopDistance: 10
-  _jumpForce: 30
-  _groundPoint: {fileID: 8285346879930286422}
-  _groundCheckRadius: 0.5
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 192
 --- !u!114 &8622095311455359846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1467,7 +1468,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3589623625668872217}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d5d4a4d9b9b82488065addcf875657, type: 3}
   m_Name: 

@@ -1201,7 +1201,7 @@ Transform:
   m_GameObject: {fileID: 3968001249114610384}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.8, y: 5.22, z: 0}
+  m_LocalPosition: {x: -3.74, y: 5.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1488,8 +1488,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.3, y: 2.3, z: 2.3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1151328214197691864}
   - {fileID: 5427259428688820933}
@@ -1601,7 +1601,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 12
@@ -1630,8 +1630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 1
   moveSpeed: 300
-  stopDistance: 5
-  PlayerDetected: 0
+  stopDistance: 13
   _raycastPosition: {fileID: 1151328214197691864}
 --- !u!114 &510132528211537205
 MonoBehaviour:
@@ -1648,9 +1647,10 @@ MonoBehaviour:
   AttackStarted: 0
   _damage: 1
   _attackPoint: {fileID: 5427259428688820933}
-  _attackRadius: 4.95
+  _attackRadius: 10.67
   _delayBeforeAttack: 0.65
-  Draw: 1
+  Draw: 0
+  PlayerDetected: 0
 --- !u!114 &4187634016556072196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2912,7 +2912,7 @@ Transform:
   m_GameObject: {fileID: 8864595045534763304}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6, y: 5.29, z: 0}
+  m_LocalPosition: {x: 1.6, y: 3.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

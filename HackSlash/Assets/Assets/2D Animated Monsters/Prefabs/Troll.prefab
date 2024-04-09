@@ -2207,7 +2207,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.9, y: 1.9, z: 1.9}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2255081377174037445}
@@ -2350,8 +2350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 1
   moveSpeed: 300
-  stopDistance: 10
-  _jumpForce: 30
+  stopDistance: 17
+  _jumpForce: 150
   _groundPoint: {fileID: 1880175186057796036}
   _groundCheckRadius: 0.5
   _groundLayer:
@@ -2372,12 +2372,13 @@ MonoBehaviour:
   AttackStarted: 0
   _damage: 1
   _attackPoint: {fileID: 2255081377174037445}
-  _attackRadius: 5.11
+  _attackRadius: 10.92
   _delayBeforeAttack: 0.5
   Draw: 0
+  PlayerDetected: 0
   JumpAttackStarted: 0
   isWaiting: 0
-  _jumpAttackDelay: 5
+  _jumpAttackDelay: 2
   _waitingAfterJumpAttack: 1
 --- !u!114 &8767827324383395404
 MonoBehaviour:

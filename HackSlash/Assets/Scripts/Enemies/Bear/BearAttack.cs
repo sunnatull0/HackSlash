@@ -10,8 +10,9 @@ namespace Enemies.Bear
         private BearBehaviour _bearBehaviour;
 
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _bearBehaviour = GetComponent<BearBehaviour>();
         }
 
@@ -19,7 +20,7 @@ namespace Enemies.Bear
         {
             base.FinishAttack();
 
-            _bearBehaviour.PlayerDetected = false;
+            PlayerDetected = false;
         }
     }
 }

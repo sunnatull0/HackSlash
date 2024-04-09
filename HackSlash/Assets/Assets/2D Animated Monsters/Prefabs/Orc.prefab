@@ -1547,37 +1547,6 @@ MonoBehaviour:
     m_Extent: {x: 1.1968299, y: 0.8795398, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
---- !u!1 &3953946640336203214
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4068065193464563864}
-  m_Layer: 7
-  m_Name: RaycastPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4068065193464563864
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3953946640336203214}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.46, y: 4.16, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2551112235700885372}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4407129621811256939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,10 +2690,9 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 4068065193464563864}
   - {fileID: 5785654188127610174}
   - {fileID: 1056461139453890435}
   - {fileID: 5830416024881459196}
@@ -2836,7 +2804,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 30
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 12
@@ -2865,14 +2833,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 1
   moveSpeed: 350
-  stopDistance: 8
-  PlayerDetected: 0
-  _raycastPosition: {fileID: 4068065193464563864}
+  stopDistance: 15
   _groundPoint: {fileID: 1056461139453890435}
   _groundCheckRadius: 0.5
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 1216
+    m_Bits: 192
 --- !u!114 &9178845828668177169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2888,9 +2854,10 @@ MonoBehaviour:
   AttackStarted: 0
   _damage: 1
   _attackPoint: {fileID: 5785654188127610174}
-  _attackRadius: 3.63
+  _attackRadius: 7.91
   _delayBeforeAttack: 0.6
-  Draw: 1
+  Draw: 0
+  PlayerDetected: 0
   _pushForce: 200
   _verticalForce: 0.9
   _horizontalForce: 0.15

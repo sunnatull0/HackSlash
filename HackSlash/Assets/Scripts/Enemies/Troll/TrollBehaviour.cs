@@ -64,7 +64,7 @@ namespace Enemies.Troll
 
         private void HandleSimpleAttack()
         {
-            if (!_trollAttack.AttackStarted && !_trollAttack.JumpAttackStarted && IsNearPlayer() && !_trollAttack.isWaiting)
+            if (!_trollAttack.AttackStarted && !_trollAttack.JumpAttackStarted && IsNearPlayer() && !_trollAttack.isWaiting && _trollAttack.PlayerDetected)
             {
                 _trollAttack.StartAttackSystem();
             }
@@ -102,6 +102,7 @@ namespace Enemies.Troll
                 _trollAttack.JumpAttackDamage(playerHealth);
             }
 
+            _trollAttack.StartWaiting();
             _trollAttack.FinishJumpAttack();
         }
 

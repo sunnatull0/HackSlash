@@ -1,9 +1,8 @@
-using Interfaces;
 using UnityEngine;
 
 namespace Enemies.Bat
 {
-    public class BatAttack : MonoBehaviour, IDamageable
+    public class BatAttack : MonoBehaviour
     {
         [SerializeField] private float _damage;
         private const string PlayerLayerName = "Player";
@@ -13,13 +12,8 @@ namespace Enemies.Bat
             if (other.gameObject.layer == LayerMask.NameToLayer(PlayerLayerName))
             {
                 var playerHealth = other.transform.GetComponent<Health>();
-                Damage(playerHealth);
+                DamageManager.Damage(playerHealth, _damage);
             }
-        }
-
-        public void Damage(Health targetHealth)
-        {
-            targetHealth.TakeDamage(_damage);
         }
     }
 }

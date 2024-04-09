@@ -13,26 +13,25 @@ namespace Enemies.Orc
         [Range(0f, 1f)] [SerializeField] private float _horizontalForce = 0.5f;
 
         // OVERRIDES.
-        public override void Damage(Health targetHealth)
+        protected override void Start()
+        {
+            base.Start();
+            _orcBehaviour = GetComponent<OrcBehaviour>();
+        }
+        protected override void Damage(Health targetHealth)
         {
             base.Damage(targetHealth);
-
             PushPlayer(targetHealth);
         }
-
 
         public override void FinishAttack() // Used in AnimationEvent.
         {
             base.FinishAttack();
 
-            _orcBehaviour.PlayerDetected = false;
+            PlayerDetected = false;
         }
 
 
-        private void Start()
-        {
-            _orcBehaviour = GetComponent<OrcBehaviour>();
-        }
 
         private void PushPlayer(Health playerHealth)
         {

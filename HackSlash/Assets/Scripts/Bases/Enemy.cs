@@ -16,7 +16,7 @@ namespace Enemies
         }
 
         [SerializeField] private EnemyType _enemyType;
-        
+
         // Movement.
         [SerializeField] protected float moveSpeed = 100f;
         [SerializeField] protected float stopDistance = 5f;
@@ -29,7 +29,7 @@ namespace Enemies
 
         // Borders.
         private Collider2D _borderCollider;
-        private const float BorderPositionX = 55f; // Border X position.
+        private const float BorderPositionX = 80f; // Border X position.
         protected bool IsOutsideOfBorders => Mathf.Abs(myTransform.position.x) > BorderPositionX;
 
         // Player.

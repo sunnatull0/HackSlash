@@ -1,12 +1,10 @@
-using System;
 using System.Collections;
-using Interfaces;
 using UnityEngine;
 
 namespace Enemies.Boar
 {
     [RequireComponent(typeof(BoarBehaviour))]
-    public class BoarAttack : MonoBehaviour, IDamageable
+    public class BoarAttack : MonoBehaviour
     {
         private BoarBehaviour _boarBehaviour;
 
@@ -50,7 +48,7 @@ namespace Enemies.Boar
             _boarBehaviour.ChangeSpeed(_boarBehaviour.DefaultSpeed * _attackSpeedMultiplier); // Increase speed.
         }
 
-        
+
         public void StopAttack() // Used in AnimationEvent.
         {
             IsAttacking = false;
@@ -74,14 +72,8 @@ namespace Enemies.Boar
             if (other.gameObject.layer == LayerMask.NameToLayer(PlayerLayerName))
             {
                 var playerHealth = other.transform.GetComponent<Health>();
-                Damage(playerHealth);
+                DamageManager.Damage(playerHealth, _damage);
             }
         }
-
-        public void Damage(Health targetHealth)
-        {
-            targetHealth.TakeDamage(_damage);
-        }
-        
     }
 }

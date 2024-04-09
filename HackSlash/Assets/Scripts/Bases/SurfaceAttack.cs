@@ -1,26 +1,42 @@
 using System;
 using System.Collections;
-using Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class SurfaceAttack : MonoBehaviour, IDamageable
+public class SurfaceAttack : MonoBehaviour
 {
     [HideInInspector] public bool AttackStarted;
 
-    [SerializeField] private float _damage = 1f;
+    [SerializeField] protected float _damage = 1f;
     [SerializeField] private Transform _attackPoint;
     [SerializeField] private float _attackRadius = 2f;
     [SerializeField] private float _delayBeforeAttack = 0.5f;
     [SerializeField] private bool Draw;
 
     private LayerMask _playerLayer;
-    private const string PlayerLayerName = "Player";
+    protected const string PlayerLayerName = "Player";
 
     protected bool playerhit;
 
-    public void StartAttackSystem()
+    protected virtual void Start()
     {
         _playerLayer = LayerMask.GetMask(PlayerLayerName);
+    }
+
+    [HideInInspector] public bool PlayerDetected;
+    private void Update()
+    {
+        DetectPlayer();
+    }
+
+    private void DetectPlayer()
+    {
+        var hit = Physics2D.OverlapCircle(_attackPoint.position, _attackRadius, _playerLayer);
+        PlayerDetected = hit != null;
+    }
+
+    public void StartAttackSystem()
+    {
         AttackStarted = true;
 
         StartCoroutine(IEStartAttack());
@@ -50,18 +66,18 @@ public class SurfaceAttack : MonoBehaviour, IDamageable
         AttackStarted = false;
     }
 
-    public virtual void Damage(Health targetHealth)
+    protected virtual void Damage(Health targetHealth)
     {
-        targetHealth.TakeDamage(_damage);
+        DamageManager.Damage(targetHealth, _damage);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer(PlayerLayerName))
-        {
-            var playerHealth = other.transform.GetComponent<Health>();
-            Damage(playerHealth);
-        }
+        if (other.gameObject.layer != LayerMask.NameToLayer(PlayerLayerName))
+            return;
+
+        var playerHealth = other.transform.GetComponent<Health>();
+        DamageManager.Damage(playerHealth, _damage);
     }
 
     private void OnDrawGizmosSelected()
