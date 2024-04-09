@@ -52,10 +52,10 @@ public class Death : MonoBehaviour
         _rb.drag = 3f;
         foreach (var script in _scripts)
         {
-            if (script != this)
-            {
+            // if (script != this)
+            // {
                 script.enabled = false;
-            }
+            // }
         }
     }
 

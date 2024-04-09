@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class SurfaceAttack : MonoBehaviour
 {
     [HideInInspector] public bool AttackStarted;
 
+    [HideInInspector] public bool PlayerDetected;
     [SerializeField] protected float _damage = 1f;
     [SerializeField] private Transform _attackPoint;
     [SerializeField] private float _attackRadius = 2f;
@@ -17,13 +16,16 @@ public class SurfaceAttack : MonoBehaviour
     protected const string PlayerLayerName = "Player";
 
     protected bool playerhit;
+    private Death _death;
 
     protected virtual void Start()
     {
+        _death = GetComponent<Death>();
         _playerLayer = LayerMask.GetMask(PlayerLayerName);
     }
 
-    [HideInInspector] public bool PlayerDetected;
+    private bool IsAlive() => _death.enabled;
+    
     private void Update()
     {
         DetectPlayer();
@@ -52,6 +54,10 @@ public class SurfaceAttack : MonoBehaviour
 
     private void Attack()
     {
+        if (!IsAlive())
+            return;
+
+        Debug.Log(_death.enabled);
         var hit = Physics2D.OverlapCircle(_attackPoint.position, _attackRadius, _playerLayer);
         playerhit = hit != null;
         if (playerhit)

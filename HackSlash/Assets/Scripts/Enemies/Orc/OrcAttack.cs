@@ -18,6 +18,7 @@ namespace Enemies.Orc
             base.Start();
             _orcBehaviour = GetComponent<OrcBehaviour>();
         }
+        
         protected override void Damage(Health targetHealth)
         {
             base.Damage(targetHealth);
