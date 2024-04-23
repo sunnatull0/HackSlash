@@ -7,16 +7,17 @@ namespace Player
     [RequireComponent(typeof(PlayerAttack))]
     public class PlayerBehaviour : MonoBehaviour, ICharacter
     {
-        
         private PlayerAttack _playerAttack;
-        
-        [Header("Ground variables!")] 
-        [SerializeField] private LayerMask _groundLayer;
+
+        [Header("Ground variables!")] [SerializeField]
+        private LayerMask _groundLayer;
+
         [SerializeField] private Transform _groundPoint;
         [SerializeField] private float _groundCheckRadius = 1f;
-        
-        [Header("Player characteristics!")] 
-        [SerializeField] private float _movementSpeed = 1f;
+
+        [Header("Player characteristics!")] [SerializeField]
+        private float _movementSpeed = 1f;
+
         [SerializeField] private float _jumpForce = 1f;
 
         [HideInInspector] public float HorizontalInput;
@@ -26,7 +27,6 @@ namespace Player
         private Collider2D _myCollider;
         private bool _facingRight;
         private bool _wasGrounded = true;
-        
 
 
         private void Start()
@@ -40,6 +40,9 @@ namespace Player
 
         private void Update()
         {
+            if (PauseControl.IsPaused) // If game is paused, stop all handling.
+                return;
+
             HandleInput();
             HandleLanding();
 
@@ -48,7 +51,6 @@ namespace Player
 
             // Function are stopped when player is being pushed away by enemies.
             HandleJumping();
-            //HandleAttack();
             HandleFlipping();
         }
 
@@ -117,7 +119,7 @@ namespace Player
             }
         }
 
-        
+
         private void HandleFlipping()
         {
             bool canFlip = (_facingRight && HorizontalInput < 0) || (!_facingRight && HorizontalInput > 0);

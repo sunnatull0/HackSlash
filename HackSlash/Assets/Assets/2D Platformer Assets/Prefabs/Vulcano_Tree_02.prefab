@@ -23,12 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8993260995727789025}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.26146024, w: 0.96521425}
   m_LocalPosition: {x: 2.704204, y: 0.00000077888296, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8993260997031534745}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8993260996127442153
 GameObject:
@@ -53,12 +54,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8993260996127442153}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.3552989, w: 0.93475276}
   m_LocalPosition: {x: 2.214905, y: -0.65901625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8993260997031534745}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8993260996454000390
 GameObject:
@@ -83,13 +85,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8993260996454000390}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7545766, w: 0.656212}
   m_LocalPosition: {x: 0.105472416, y: -4.7174973, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8993260997031534745}
   m_Father: {fileID: 8993260997047140897}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8993260997031534750
 GameObject:
@@ -114,14 +117,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8993260997031534750}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.0766275, w: 0.9970598}
   m_LocalPosition: {x: 3.040175, y: -0.00000008196597, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8993260995727789024}
   - {fileID: 8993260996127442152}
   m_Father: {fileID: 8993260996454000385}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8993260997047140901
 GameObject:
@@ -149,13 +153,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8993260997047140901}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 146.91895, y: -31.201906, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8993260996454000385}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8993260997047140902
 SpriteRenderer:
@@ -168,10 +173,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -209,7 +216,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &8993260997047140903
 Animator:
-  serializedVersion: 3
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -219,13 +226,16 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1f64cae10928a5749a57010b60ec4f89, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8993260997047140900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,5 +257,5 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: -0.00000023841858, y: 0.0000014305115, z: 0}
     m_Extent: {x: 2.76, y: 5.195, z: 0}
-  m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0

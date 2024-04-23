@@ -738,7 +738,7 @@ MonoBehaviour:
   stopDistance: 5
   _verticalDistance: 4
   _changeDirectionTime: 2
-  t: 0.1
+  _verticalSpeed: 5
 --- !u!114 &6050435812506484495
 MonoBehaviour:
   m_ObjectHideFlags: 0

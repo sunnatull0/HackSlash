@@ -5,14 +5,12 @@ namespace Enemies.Troll
 {
     public class TrollAttack : SurfaceAttack
     {
-        
-
         [HideInInspector] public bool JumpAttackStarted;
         [HideInInspector] public bool isWaiting;
-        
+
         [SerializeField] private float _jumpAttackDelay = 5f;
         [SerializeField] private float _waitingAfterJumpAttack;
-        
+
         private float _nextJumpAttackTime;
 
 
@@ -51,7 +49,7 @@ namespace Enemies.Troll
         {
             _nextJumpAttackTime = Time.time + _jumpAttackDelay;
         }
-        
+
         public bool CanJumpAttack()
         {
             return Time.time >= _nextJumpAttackTime;

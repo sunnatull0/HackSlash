@@ -26,6 +26,9 @@ namespace Player
 
         private void Update()
         {
+            if (PauseControl.IsPaused) // If game is paused, stop all handling.
+                return;
+
             if (!_playerBehaviour.BeingPushed)
             {
                 HandleAttack();

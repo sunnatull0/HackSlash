@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemies.Bat
 {
@@ -6,7 +7,7 @@ namespace Enemies.Bat
     {
         [SerializeField] private float _verticalDistance = 1f;
         [SerializeField] private float _changeDirectionTime = 2f; // Time between movements in seconds
-        [SerializeField] private float t;
+        [SerializeField] private float _verticalSpeed;
 
         private float _upperPoint;
         private float _lowerPoint;
@@ -49,7 +50,7 @@ namespace Enemies.Bat
 
             var position = myTransform.position;
             Vector2 targetPos = new Vector2(position.x, targetY);
-            position = Vector2.Lerp(position, targetPos, t);
+            position = Vector2.Lerp(position, targetPos, _verticalSpeed * Time.fixedDeltaTime);
             myTransform.position = position;
         }
 

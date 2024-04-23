@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-
+[RequireComponent(typeof(Death))]
 public class Health : MonoBehaviour
 {
     [SerializeField] private float _startHealth = 3f;
@@ -20,6 +19,11 @@ public class Health : MonoBehaviour
     {
         Healthh -= damage;
         CheckHealth();
+
+        if (transform.CompareTag("Player")) // Update UI, if it is a Player.
+        {
+            HealthUI.Instance.UpdateHealthUI(Healthh);
+        }
     }
 
     private void CheckHealth()
@@ -28,14 +32,5 @@ public class Health : MonoBehaviour
         {
             _death.Die();
         }
-    }
-
-    private void Die()
-    {
-        Debug.Log("Died!");
-        Collider2D targetCollider = GetComponent<Collider2D>();
-        var targetPhysics = GetComponent<Rigidbody2D>();
-        targetCollider.enabled = false;
-        targetPhysics.gravityScale = 0f;
     }
 }

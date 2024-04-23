@@ -2351,7 +2351,7 @@ MonoBehaviour:
   _enemyType: 1
   moveSpeed: 300
   stopDistance: 17
-  _jumpForce: 150
+  _jumpForce: 175
   _groundPoint: {fileID: 1880175186057796036}
   _groundCheckRadius: 0.5
   _groundLayer:
@@ -2370,16 +2370,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackStarted: 0
+  PlayerDetected: 0
   _damage: 1
   _attackPoint: {fileID: 2255081377174037445}
   _attackRadius: 10.92
   _delayBeforeAttack: 0.5
   Draw: 0
-  PlayerDetected: 0
   JumpAttackStarted: 0
   isWaiting: 0
-  _jumpAttackDelay: 2
-  _waitingAfterJumpAttack: 1
+  _jumpAttackDelay: 4
+  _waitingAfterJumpAttack: 2
 --- !u!114 &8767827324383395404
 MonoBehaviour:
   m_ObjectHideFlags: 0
