@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Interfaces;
 using UnityEngine;
@@ -9,6 +10,7 @@ using UnityEngine;
 public class Death : MonoBehaviour
 {
 
+    public static event Action OnPlayerDeath;
     private DeathAnimation _deathAnimation;
     private Collider2D _collider;
     private Rigidbody2D _rb;
@@ -26,6 +28,10 @@ public class Death : MonoBehaviour
 
     public void Die()
     {
+        if (gameObject.CompareTag("Player"))
+        {
+            OnPlayerDeath?.Invoke();
+        }
         ResetLayer();
         DeactivateBehaviour();
         DeactivateCollisions();

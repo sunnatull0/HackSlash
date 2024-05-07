@@ -3975,6 +3975,7 @@ GameObject:
   - component: {fileID: 345604537}
   - component: {fileID: 345604536}
   - component: {fileID: 345604538}
+  - component: {fileID: 345604539}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -4005,6 +4006,7 @@ MonoBehaviour:
   _adPanel: {fileID: 465754265}
   _player: {fileID: 626953126}
   _waves: {fileID: 1642755082}
+  _gameOverPanelActivateTime: 1.5
 --- !u!4 &345604537
 Transform:
   m_ObjectHideFlags: 0
@@ -4038,6 +4040,27 @@ MonoBehaviour:
   - {fileID: 478307181}
   _activeHeartUI: {fileID: -2832435689924252933, guid: 20c2f76fe9bb5494899a70676a37ddd5, type: 3}
   _lostHeartUI: {fileID: 5977599671399686341, guid: 6a71e4e88191f19408df0358df7c826f, type: 3}
+--- !u!114 &345604539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345604535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd326b4611098bf4698ac6187178cb54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuCanvas: {fileID: 427169387}
+  _inGameCanvas: {fileID: 1191971247}
+  _mainPanel: {fileID: 1296511418}
+  _settingsPanel: {fileID: 725423432}
+  _aboutPanel: {fileID: 1012396898}
+  _gameHUDPanel: {fileID: 657022371}
+  _gameOverPanel: {fileID: 1595419212}
+  _pausePanel: {fileID: 437314697}
+  _adPanel: {fileID: 465754265}
 --- !u!1 &347386245
 GameObject:
   m_ObjectHideFlags: 0
@@ -5063,7 +5086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &437314698
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7994,7 +8017,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 627034386}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 725423432}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 437314697}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &627034386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12573,7 +12620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1012396899
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14908,7 +14955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1191971248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15971,7 +16018,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1253982562}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 345604536}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1253982562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17596,7 +17655,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1352632271}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 345604536}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1352632271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19945,22 +20016,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1296511418}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 725423432}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 345604539}
+        m_TargetAssemblyTypeName: ButtonClickEvents, Assembly-CSharp
+        m_MethodName: OnSettingsBackButtonClicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -20396,11 +20455,11 @@ MonoBehaviour:
   - EnemyInfos:
     - PositionType: 0
       EnemyPrefab: {fileID: 8419849762969627918, guid: 98bac6772246fb14d9e5d431f2caec74, type: 3}
-      Count: 3
-  - EnemyInfos:
+      Count: 1
     - PositionType: 0
-      EnemyPrefab: {fileID: 7192056143704295429, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
-      Count: 2
+      EnemyPrefab: {fileID: 8419849762969627918, guid: 98bac6772246fb14d9e5d431f2caec74, type: 3}
+      Count: 1
+  - EnemyInfos:
     - PositionType: 0
       EnemyPrefab: {fileID: 8419849762969627918, guid: 98bac6772246fb14d9e5d431f2caec74, type: 3}
       Count: 1

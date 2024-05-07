@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,10 +17,19 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject _waves;
 
+    [SerializeField] private float _gameOverPanelActivateTime = 1.5f;
+
 
     private void Start()
     {
         Init();
+
+        Death.OnPlayerDeath += ActivateGameOverPanel;
+    }
+
+    private void OnDisable()
+    {
+        Death.OnPlayerDeath -= ActivateGameOverPanel;
     }
 
     private void Init()
@@ -43,10 +54,12 @@ public class UIManager : MonoBehaviour
 
     public void OnPlayButtonClicked()
     {
-        SetActive(_menuCanvas, false);
+        ButtonClickEvents.State = GameState.InGame;
         SetActive(_inGameCanvas, true);
         
         SetActive(_mainPanel, false);
+        SetActive(_settingsPanel, false);
+        SetActive(_aboutPanel, false);
         SetActive(_gameHUDPanel, true);
         SetActive(_player, true);
         SetActive(_waves, true);
@@ -64,4 +77,28 @@ public class UIManager : MonoBehaviour
 
     private void SetActive(GameObject obj, bool value) => obj.SetActive(value);
 
+    public void RestartGame()
+    {
+        PauseControl.UnPause();
+        SceneManager.LoadScene(0);
+        Debug.Log("Restarted!");
+    }
+
+    public void ActivateSettingsPanel()
+    {
+        SetActive(_settingsPanel, true);
+    }
+
+    private void ActivateGameOverPanel()
+    {
+        StartCoroutine(ActivateAfterTime());
+    }
+
+    private IEnumerator ActivateAfterTime()
+    {
+        yield return new WaitForSeconds(_gameOverPanelActivateTime);
+        
+        SetActive(_gameOverPanel, true);
+    }
+    
 }
