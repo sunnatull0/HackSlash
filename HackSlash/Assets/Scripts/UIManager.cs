@@ -7,10 +7,9 @@ public class UIManager : MonoBehaviour
     [Header("Canvases")] [SerializeField] private GameObject _menuCanvas;
     [SerializeField] private GameObject _inGameCanvas;
 
-    [Header("UI gameobjects")] [SerializeField]
-    private GameObject _mainPanel, _settingsPanel, _aboutPanel;
-
-    [SerializeField] private GameObject _gameHUDPanel, _gameOverPanel, _pausePanel, _adPanel;
+    [Header("UI gameobjects")] 
+    [SerializeField] private GameObject _mainPanel, _settingsPanel, _aboutPanel;
+    [SerializeField] private GameObject _gameHUDPanel, _gameOverPanel, _pausePanel, _adPanel, _waveUIPanel;
 
     [Header("Gameobjects")] [SerializeField]
     private GameObject _player;
@@ -50,6 +49,7 @@ public class UIManager : MonoBehaviour
         SetActive(_gameOverPanel, false);
         SetActive(_pausePanel, false);
         SetActive(_adPanel, false);
+        SetActive(_waveUIPanel, true);
     }
 
     public void OnPlayButtonClicked()

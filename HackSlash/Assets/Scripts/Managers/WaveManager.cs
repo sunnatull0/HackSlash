@@ -13,6 +13,8 @@ public class WaveManager : MonoBehaviour
         public List<EnemySpawnInfo> EnemyInfos;
     }
 
+    public static event Action<int> OnWaveStarted;
+
     [SerializeField] private List<Wave> _waves;
     [SerializeField] private int _endlessWavesCount = 3; // Number of waves to play endlessly after finishing all waves
     [SerializeField] private float _timeBetweenEnemies = 3f;
@@ -24,7 +26,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         _totalWaveCount = _waves.Count;
-        _currentWaveIndex = 0;
+        _currentWaveIndex = 1;
 
         StartCoroutine(SpawnWaves());
     }
@@ -33,22 +35,23 @@ public class WaveManager : MonoBehaviour
     {
         while (true)
         {
+            OnWaveStarted?.Invoke(_currentWaveIndex);
+            
             // If all waves are played, play random waves from the last N waves
-            if (_currentWaveIndex >= _totalWaveCount)
+            if (_currentWaveIndex > _totalWaveCount)
             {
-                int randomIndex = Random.Range(_totalWaveCount - _endlessWavesCount, _totalWaveCount);
-                yield return SpawnWave(_waves[randomIndex]);
+                int randomIndex = Random.Range(_totalWaveCount - _endlessWavesCount + 1, _totalWaveCount + 1);
+                yield return SpawnWave(_waves[randomIndex - 1]);
 
                 yield return new WaitForSeconds(_timeBetweenWaves);
             }
-            else
+            else // Otherwise, play the next wave
             {
-                // Otherwise, play the next wave
-                yield return SpawnWave(_waves[_currentWaveIndex]);
-                _currentWaveIndex++;
+                yield return SpawnWave(_waves[_currentWaveIndex - 1]);
 
                 yield return new WaitForSeconds(_timeBetweenWaves);
             }
+            _currentWaveIndex++;
         }
     }
 
