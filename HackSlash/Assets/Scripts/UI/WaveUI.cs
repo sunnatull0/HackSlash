@@ -26,6 +26,6 @@ public class WaveUI : MonoBehaviour
 
     private void UpdateWaveUIText(int index)
     {
-        _waveUItxt.text = $"{index} WAVE";
+        _waveUItxt.text = index.ToString();
     }
 }

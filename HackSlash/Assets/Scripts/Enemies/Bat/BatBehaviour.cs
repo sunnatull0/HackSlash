@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Enemies.Bat
 {
@@ -50,6 +49,7 @@ namespace Enemies.Bat
 
             var position = myTransform.position;
             Vector2 targetPos = new Vector2(position.x, targetY);
+            position.y = Mathf.Clamp(position.y, _lowerPoint, _upperPoint);
             position = Vector2.Lerp(position, targetPos, _verticalSpeed * Time.fixedDeltaTime);
             myTransform.position = position;
         }
