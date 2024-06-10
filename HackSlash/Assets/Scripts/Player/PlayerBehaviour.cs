@@ -40,6 +40,8 @@ namespace Player
 
         private void Update()
         {
+            HandleMoveSound();
+            
             if (PauseControl.IsPaused) // If game is paused, stop all handling.
                 return;
 
@@ -82,12 +84,40 @@ namespace Player
             _rigidbody.velocity = moveDir;
         }
 
+        private float _currentMagnitude;
+        private float _previousMagnitude;
+
+        private void HandleMoveSound()
+        {
+            if (!IsGrounded() || PauseControl.IsPaused)
+            {
+                SFXManager.Instance.StopLoopingSFX();
+                _previousMagnitude = 0;
+                return;
+            }
+
+            _currentMagnitude = _rigidbody.velocity.x;
+
+            if (_currentMagnitude != 0 && _previousMagnitude == 0)
+            {
+                SFXManager.Instance.PlayLoopingSFX(SFXType.PlayerRun);
+            }
+            else if (_currentMagnitude == 0 && _previousMagnitude != 0)
+            {
+                SFXManager.Instance.StopLoopingSFX();
+            }
+
+            _previousMagnitude = _rigidbody.velocity.x;
+        }
+
 
         private void HandleJumping()
         {
             if (!Input.GetButtonDown("Jump") || !IsGrounded() || _playerAttack._isAttacking)
                 return;
 
+            ////////////////////
+            SFXManager.Instance.PlaySFX(SFXType.PlayerJump);
             Jump();
             EventManager.InvokeOnJumpActions(); // Additional effects (animations)
         }
@@ -103,6 +133,7 @@ namespace Player
             if (!_wasGrounded && IsGrounded())
             {
                 // Landed.
+                SFXManager.Instance.PlaySFX(SFXType.PlayerLand);
                 Land();
             }
 

@@ -42,11 +42,13 @@ namespace Player
         {
             if (Input.GetKeyDown(KeyCode.Space) && _playerBehaviour.IsGrounded() && CanAttack())
             {
+                SFXManager.Instance.PlaySFX(SFXType.PlayerAttack);
                 Attack(); // Attack
                 EventManager.InvokeOnAttackActions();
             }
             else if (Input.GetKeyDown(KeyCode.Space) && CanAttack() && !_playerBehaviour.IsGrounded())
             {
+                SFXManager.Instance.PlaySFX(SFXType.PlayerAttack);
                 Attack(); // JumpAttack
                 EventManager.InvokeOnJumpAttackActions();
             }

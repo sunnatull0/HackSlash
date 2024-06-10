@@ -57,7 +57,6 @@ public class SurfaceAttack : MonoBehaviour
         if (!IsAlive())
             return;
 
-        Debug.Log(_death.enabled);
         var hit = Physics2D.OverlapCircle(_attackPoint.position, _attackRadius, _playerLayer);
         playerhit = hit != null;
         if (playerhit)

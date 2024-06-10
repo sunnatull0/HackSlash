@@ -24,9 +24,16 @@ public class Health : MonoBehaviour
         Healthh -= damage;
         CheckHealth();
 
-        if (transform.CompareTag("Player")) // Update UI, if it is a Player.
+        if (transform.CompareTag("Player")) // Update, if it is a Player.
         {
+            SFXManager.Instance.PlaySFX(SFXType.PlayerHurt);
+            
             HealthUI.Instance.UpdateHealthUI(Healthh);
+
+            // CameraShake.
+            var cameraShakeIntensity = 10f;
+            var time = 0.2f;
+            CameraShake.Instance.Shake(cameraShakeIntensity, time);
         }
         else
         {

@@ -1374,10 +1374,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySpawnInfo:
-    PositionType: 0
+    PositionType: 1
     EnemyPrefab: {fileID: 7481580078974812205, guid: 521de22e52eb7e948bb33b0291164b88, type: 3}
     Count: 2
-  _spawnDelay: 3
+  _spawnDelay: 6
 --- !u!114 &8383301876616599023
 MonoBehaviour:
   m_ObjectHideFlags: 0

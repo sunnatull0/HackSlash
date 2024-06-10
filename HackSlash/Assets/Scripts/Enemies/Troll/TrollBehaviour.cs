@@ -104,6 +104,11 @@ namespace Enemies.Troll
 
             _trollAttack.StartWaiting();
             _trollAttack.FinishJumpAttack();
+            
+            // CameraShake.
+            var cameraShakeIntensity = 30f;
+            var time = 0.2f;
+            CameraShake.Instance.Shake(cameraShakeIntensity, time);
         }
 
         private void Jump()

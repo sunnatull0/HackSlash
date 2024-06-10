@@ -30,6 +30,7 @@ public class Death : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
+            SFXManager.Instance.PlaySFX(SFXType.PlayerDeath);
             OnPlayerDeath?.Invoke();
         }
         ResetLayer();
