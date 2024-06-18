@@ -23,6 +23,8 @@ namespace Enemies.Troll
             HandleJumpAttackAnimation();
         }
 
+        
+
         private bool _previousJumpingState;
 
         private void HandleJumpAttackAnimation()

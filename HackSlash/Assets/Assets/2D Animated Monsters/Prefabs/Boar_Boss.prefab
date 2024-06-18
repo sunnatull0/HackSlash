@@ -1359,6 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef9e7e567cb1314eb83cc60007b1d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitSoundType: 19
   _startHealth: 3
   Healthh: 0
 --- !u!114 &2861870866008793478
@@ -1390,6 +1391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a0b9aff406f214494cd8343d31da66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 18
 --- !u!114 &3916468937016532328
 MonoBehaviour:
   m_ObjectHideFlags: 0

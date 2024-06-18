@@ -15,7 +15,7 @@ public class SFXManager : MonoBehaviour
     [SerializeField] private float _minPitch = 0.9f;
     [SerializeField] private float _maxPitch = 1.1f;
 
-    private Dictionary<SFXType, List<AudioClip>> _sfxDictionary;
+    private Dictionary<SFXType, List<SFXClip>> _sfxDictionary;
 
 
     private void Awake()
@@ -45,16 +45,16 @@ public class SFXManager : MonoBehaviour
 
     private void Init()
     {
-        _sfxDictionary = new Dictionary<SFXType, List<AudioClip>>();
+        _sfxDictionary = new Dictionary<SFXType, List<SFXClip>>();
 
         foreach (var sfxClip in _sfxClips)
         {
             if (!_sfxDictionary.ContainsKey(sfxClip.Type))
             {
-                _sfxDictionary[sfxClip.Type] = new List<AudioClip>();
+                _sfxDictionary[sfxClip.Type] = new List<SFXClip>();
             }
 
-            _sfxDictionary[sfxClip.Type].Add(sfxClip.Clip);
+            _sfxDictionary[sfxClip.Type].Add(sfxClip);
         }
     }
 
@@ -64,9 +64,14 @@ public class SFXManager : MonoBehaviour
         if (_sfxDictionary.ContainsKey(type))
         {
             var clips = _sfxDictionary[type];
-            var clip = clips[Random.Range(0, clips.Count)];
-            _sfxAudioSource.pitch = Random.Range(_minPitch, _maxPitch);
-            _sfxAudioSource.PlayOneShot(clip);
+            var sfxClip = clips[Random.Range(0, clips.Count)];
+
+            if (!_sfxAudioSource.isPlaying)
+            {
+                _sfxAudioSource.pitch = Random.Range(_minPitch, _maxPitch);
+            }
+
+            _sfxAudioSource.PlayOneShot(sfxClip.Clip, sfxClip.Volume);
         }
         else
         {
@@ -79,8 +84,8 @@ public class SFXManager : MonoBehaviour
         if (_sfxDictionary.ContainsKey(sfxType))
         {
             var clips = _sfxDictionary[sfxType];
-            var clip = clips[UnityEngine.Random.Range(0, clips.Count)];
-            _loopingAudioSource.clip = clip;
+            var sfxClip = clips[UnityEngine.Random.Range(0, clips.Count)];
+            _loopingAudioSource.clip = sfxClip.Clip;
             _loopingAudioSource.loop = true;
             _loopingAudioSource.Play();
         }
@@ -99,6 +104,16 @@ public class SFXManager : MonoBehaviour
     {
         PlaySFX(SFXType.ButtonClick);
     }
+
+    public void PlayPopUpSound()
+    {
+        PlaySFX(SFXType.PopUp);
+    }
+
+    public void PlayWhooshSound()
+    {
+        PlaySFX(SFXType.Whoosh);
+    }
 }
 
 [Serializable]
@@ -106,10 +121,12 @@ public class SFXClip
 {
     public SFXType Type;
     public AudioClip Clip;
+    public float Volume = 1.0f;
 }
 
 public enum SFXType
 {
+    // PlayerFolder
     PlayerAttack,
     PlayerJump,
     PlayerLand,
@@ -117,5 +134,50 @@ public enum SFXType
     PlayerDeath,
     PlayerRun,
 
+    // UI and WORLD
     ButtonClick,
+    PopUp,
+    Whoosh,
+    SliderChange,
+    BossFinished,
+
+    // Bat
+    BatDeath,
+    BatHurt,
+    BatScreech,
+
+    // Bear
+    BearDeath,
+    BearHurt,
+    BearAttack,
+    BearGrunt,
+
+    // Boar
+    BoarDeath,
+    BoarHurt,
+    BoarAttack,
+    BoarHitPlayer,
+
+    // Orc
+    OrcDeath,
+    OrcHurt,
+    OrcAttack,
+    OrcJump,
+    OrcLand,
+    OrcSpawn,
+    OrcGrunt,
+
+    // Troll
+    TrollDeath,
+    TrollWalk,
+    TrollHurt,
+    TrollHurtNot,
+    TrollAttack,
+    TrollAttackBoss,
+    TrollAttackClub,
+    TrollSpawn,
+    TrollSpawnBoss,
+    TrollGrunt,
+    
+    WaveSound
 }

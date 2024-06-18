@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Player
@@ -17,7 +16,9 @@ namespace Player
 
         private float _nextAttackTime;
         private bool _wasAttacking;
+        private bool _isAttackButtonPressed;
         [HideInInspector] public bool _isAttacking;
+
 
         private void Start()
         {
@@ -40,19 +41,17 @@ namespace Player
 
         private void HandleAttack()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && _playerBehaviour.IsGrounded() && CanAttack())
+            if ((Input.GetKeyDown(KeyCode.Space) || _isAttackButtonPressed) && _playerBehaviour.IsGrounded() &&
+                CanAttack())
             {
                 SFXManager.Instance.PlaySFX(SFXType.PlayerAttack);
                 Attack(); // Attack
                 EventManager.InvokeOnAttackActions();
             }
-            else if (Input.GetKeyDown(KeyCode.Space) && CanAttack() && !_playerBehaviour.IsGrounded())
-            {
-                SFXManager.Instance.PlaySFX(SFXType.PlayerAttack);
-                Attack(); // JumpAttack
-                EventManager.InvokeOnJumpAttackActions();
-            }
+
+            _isAttackButtonPressed = false;
         }
+
 
         private void Attack()
         {
@@ -67,15 +66,18 @@ namespace Player
             }
         }
 
+
         private void ExtendNextAttackTime()
         {
             _nextAttackTime = Time.time + _attackDelay; // Delay handling
         }
 
+
         private void Damage(Health targetHealth)
         {
             targetHealth.TakeDamage(_damage);
         }
+
 
         private void HandleAttackFinish()
         {
@@ -87,11 +89,13 @@ namespace Player
             _wasAttacking = !CanAttack();
         }
 
+
         public void FinishAttack()
         {
             _isAttacking = false;
             EventManager.InvokeOnAttackFinish();
         }
+
 
         private bool CanAttack()
         {
@@ -105,6 +109,12 @@ namespace Player
                 return;
 
             Gizmos.DrawSphere(_attackPoint.position, _attackRadius);
+        }
+
+
+        public void OnAttackButtonPressed()
+        {
+            _isAttackButtonPressed = true;
         }
     }
 }

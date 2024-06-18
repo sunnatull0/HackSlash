@@ -36,6 +36,8 @@ namespace Enemies.Orc
             if (isFalling == _previousFallingState)
                 return;
 
+            SFXManager.Instance.PlaySFX(isFalling ? SFXType.OrcJump : SFXType.OrcLand);
+
             animator.SetBool(FallingParam, isFalling);
             _previousFallingState = isFalling;
         }

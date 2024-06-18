@@ -9,9 +9,9 @@ public class BackgroundAudio : MonoBehaviour
     [SerializeField] private AudioSource _regularSource;
     [SerializeField] private AudioSource _bossSource;
 
-    private Coroutine _currentAmbienceCoroutine;
-    private Coroutine _currentRegularCoroutine;
-    private Coroutine _currentBossCoroutine;
+    public Coroutine _currentAmbienceCoroutine;
+    public Coroutine _currentRegularCoroutine;
+    public Coroutine _currentBossCoroutine;
 
     private void Awake()
     {
@@ -88,13 +88,16 @@ public class BackgroundAudio : MonoBehaviour
     {
         if (audioSource != null)
         {
+            var previousVolume = audioSource.volume;
             audioSource.volume = 0f;
             audioSource.Play();
-            while (audioSource.volume < 0.5f)
+            while (audioSource.volume < previousVolume)
             {
                 audioSource.volume += Time.deltaTime / fadeTime;
                 yield return null;
             }
+
+            audioSource.volume = previousVolume;
         }
     }
 

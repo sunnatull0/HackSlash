@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class UIManager : MonoBehaviour
 
         Death.OnPlayerDeath += ActivateGameOverPanel;
     }
+    
 
     private void OnDisable()
     {
@@ -79,9 +81,9 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
+        VolumeControl.Instance.SaveVolumeSettings();
         PauseControl.UnPause();
         SceneManager.LoadScene(0);
-        Debug.Log("Restarted!");
     }
 
     public void ActivateSettingsPanel()
@@ -98,7 +100,7 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_gameOverPanelActivateTime);
         
+        SFXManager.Instance.PlaySFX(SFXType.PopUp);
         SetActive(_gameOverPanel, true);
     }
-    
 }

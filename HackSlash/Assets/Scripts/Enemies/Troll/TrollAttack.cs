@@ -21,7 +21,6 @@ namespace Enemies.Troll
             ExtendAttackDelay();
         }
 
-
         public void JumpAttackDamage(Health targetHealth)
         {
             Damage(targetHealth);

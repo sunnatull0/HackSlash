@@ -25,7 +25,7 @@ public class SurfaceAttack : MonoBehaviour
     }
 
     private bool IsAlive() => _death.enabled;
-    
+
     private void Update()
     {
         DetectPlayer();
@@ -47,15 +47,27 @@ public class SurfaceAttack : MonoBehaviour
 
     private IEnumerator IEStartAttack()
     {
+        if (_attackSoundType == SFXType.TrollAttack || _attackSoundType == SFXType.TrollAttackBoss)
+        {
+            SFXManager.Instance.PlaySFX(_attackSoundType);
+        }
+
         yield return new WaitForSeconds(_delayBeforeAttack);
 
         Attack();
     }
 
+    [SerializeField] private SFXType _attackSoundType;
+
     private void Attack()
     {
         if (!IsAlive())
             return;
+
+        if (_attackSoundType != SFXType.TrollAttack && _attackSoundType != SFXType.TrollAttackBoss)
+        {
+            SFXManager.Instance.PlaySFX(_attackSoundType);
+        }
 
         var hit = Physics2D.OverlapCircle(_attackPoint.position, _attackRadius, _playerLayer);
         playerhit = hit != null;
@@ -68,6 +80,7 @@ public class SurfaceAttack : MonoBehaviour
 
     public virtual void FinishAttack() // Used in AnimationEvents.
     {
+        Debug.Log("Attack Finished!");
         AttackStarted = false;
     }
 

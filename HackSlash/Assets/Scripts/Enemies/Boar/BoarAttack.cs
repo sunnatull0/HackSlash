@@ -37,6 +37,7 @@ namespace Enemies.Boar
         private IEnumerator StartAttackingAfterDelay()
         {
             yield return new WaitForSeconds(_delayBeforeAttack);
+            SFXManager.Instance.PlaySFX(SFXType.BoarAttack);
 
             Attacking();
         }

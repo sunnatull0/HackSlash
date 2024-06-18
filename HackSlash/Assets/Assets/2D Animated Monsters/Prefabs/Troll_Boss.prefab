@@ -1411,6 +1411,7 @@ GameObject:
   - component: {fileID: 3912750034938148393}
   - component: {fileID: 3796961191727762118}
   - component: {fileID: 31768086349910432}
+  - component: {fileID: 347900322679461358}
   m_Layer: 15
   m_Name: Troll_Boss
   m_TagString: Enemy
@@ -1579,6 +1580,9 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 192
+  _spawnSound: 37
+  _intervalBetweenSimpleAttacks: 1.5
+  _jumpAttackSound: 34
 --- !u!114 &3791668394611236852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,10 +1602,11 @@ MonoBehaviour:
   _attackRadius: 13.6
   _delayBeforeAttack: 0.5
   Draw: 0
+  _attackSoundType: 34
   JumpAttackStarted: 0
   isWaiting: 0
-  _jumpAttackDelay: 4
-  _waitingAfterJumpAttack: 1
+  _jumpAttackDelay: 10
+  _waitingAfterJumpAttack: 2
 --- !u!114 &8622095311455359846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1621,7 +1626,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3589623625668872217}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d5d4a4d9b9b82488065addcf875657, type: 3}
   m_Name: 
@@ -1643,6 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef9e7e567cb1314eb83cc60007b1d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitSoundType: 31
   _startHealth: 1
   Healthh: 0
 --- !u!114 &3912750034938148393
@@ -1657,6 +1663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a0b9aff406f214494cd8343d31da66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 29
 --- !u!114 &3796961191727762118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,6 +1691,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 5547491760822191825}
   _healthBar: {fileID: 5011097320954227333}
+--- !u!114 &347900322679461358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589623625668872217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4339ae87308e1c749a85309c49dfeaed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 38
+  _minInterval: 3
+  _maxInterval: 5
 --- !u!1 &3882451404187246558
 GameObject:
   m_ObjectHideFlags: 0

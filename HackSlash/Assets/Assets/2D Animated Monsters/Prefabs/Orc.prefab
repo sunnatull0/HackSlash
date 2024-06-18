@@ -2927,6 +2927,7 @@ GameObject:
   - component: {fileID: 5847217225298663684}
   - component: {fileID: 2480054139882124496}
   - component: {fileID: -7207198902597056533}
+  - component: {fileID: 5553921148662968608}
   m_Layer: 13
   m_Name: Orc
   m_TagString: Enemy
@@ -3113,6 +3114,7 @@ MonoBehaviour:
   _attackRadius: 7.91
   _delayBeforeAttack: 0.6
   Draw: 0
+  _attackSoundType: 24
   _pushForce: 200
   _verticalForce: 0.9
   _horizontalForce: 0.15
@@ -3140,6 +3142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef9e7e567cb1314eb83cc60007b1d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitSoundType: 23
   _startHealth: 2
   Healthh: 0
 --- !u!114 &5847217225298663684
@@ -3154,6 +3157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a0b9aff406f214494cd8343d31da66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 22
 --- !u!114 &2480054139882124496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3181,6 +3185,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 6047158301770232247}
   _healthBar: {fileID: 2160732583810713311}
+--- !u!114 &5553921148662968608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192056143704295429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4339ae87308e1c749a85309c49dfeaed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 28
+  _minInterval: 3
+  _maxInterval: 5
 --- !u!1 &7699712858814167386
 GameObject:
   m_ObjectHideFlags: 0

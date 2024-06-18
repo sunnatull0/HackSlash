@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using Player;
 using UnityEngine;
 
@@ -17,8 +17,11 @@ namespace Enemies.Troll
         private bool _wasGrounded;
 
 
+        [SerializeField] private SFXType _spawnSound;
         protected override void Start()
         {
+            SFXManager.Instance.PlaySFX(_spawnSound);
+            
             _trollAttack = GetComponent<TrollAttack>();
             _wasGrounded = true;
             Invoke(nameof(ActivateLanding),
@@ -62,17 +65,27 @@ namespace Enemies.Troll
         }
 
 
+        private bool waiting;
         private void HandleSimpleAttack()
         {
-            if (!_trollAttack.AttackStarted && !_trollAttack.JumpAttackStarted && IsNearPlayer() && !_trollAttack.isWaiting && _trollAttack.PlayerDetected)
+            if (!waiting && !_trollAttack.AttackStarted && !_trollAttack.JumpAttackStarted && IsNearPlayer() && !_trollAttack.isWaiting && _trollAttack.PlayerDetected)
             {
                 _trollAttack.StartAttackSystem();
+                waiting = true;
+                StartCoroutine(Testings());
             }
+        }
+
+        [SerializeField] private float _intervalBetweenSimpleAttacks = 2f;
+        private IEnumerator Testings()
+        {
+            yield return new WaitForSeconds(_intervalBetweenSimpleAttacks);
+            waiting = false;
         }
 
         private void HandleJumpAttack()
         {
-            if (_trollAttack.CanJumpAttack() && !_trollAttack.AttackStarted && !_trollAttack.JumpAttackStarted)
+            if (_trollAttack.CanJumpAttack() && !_trollAttack.AttackStarted && !_trollAttack.JumpAttackStarted && !_trollAttack.isWaiting)
             {
                 Jump(); // Starting JumpAttack system.
             }
@@ -111,8 +124,10 @@ namespace Enemies.Troll
             CameraShake.Instance.Shake(cameraShakeIntensity, time);
         }
 
+        [SerializeField] private SFXType _jumpAttackSound;
         private void Jump()
         {
+            SFXManager.Instance.PlaySFX(_jumpAttackSound);
             _trollAttack.JumpAttackStarted = true;
             _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }

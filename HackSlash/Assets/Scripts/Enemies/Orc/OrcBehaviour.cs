@@ -17,6 +17,7 @@ namespace Enemies.Orc
         protected override void Start()
         {
             _orcAttack = GetComponent<OrcAttack>();
+            SFXManager.Instance.PlaySFX(SFXType.OrcSpawn);
 
             base.Start();
         }

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Collider2D))]
@@ -9,7 +10,7 @@ using UnityEngine;
 [RequireComponent(typeof(DeathAnimation))]
 public class Death : MonoBehaviour
 {
-
+    [SerializeField] private SFXType _type;
     public static event Action OnPlayerDeath;
     private DeathAnimation _deathAnimation;
     private Collider2D _collider;
@@ -30,9 +31,10 @@ public class Death : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            SFXManager.Instance.PlaySFX(SFXType.PlayerDeath);
             OnPlayerDeath?.Invoke();
         }
+
+        SFXManager.Instance.PlaySFX(_type);
         ResetLayer();
         DeactivateBehaviour();
         DeactivateCollisions();
@@ -61,7 +63,7 @@ public class Death : MonoBehaviour
         {
             // if (script != this)
             // {
-                script.enabled = false;
+            script.enabled = false;
             // }
         }
     }
@@ -70,7 +72,7 @@ public class Death : MonoBehaviour
     {
         gameObject.layer = 0;
     }
-    
+
     private void Destroy() // Used in AnimationEvent.
     {
         Destroy(gameObject);

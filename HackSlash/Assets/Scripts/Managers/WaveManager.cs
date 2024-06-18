@@ -18,6 +18,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private List<Wave> _waves;
     [SerializeField] private int _endlessWavesCount = 3;
     [SerializeField] private int _bossWaveInterval = 10;
+    [SerializeField] private float _firstWaveTimer = 3f;
     [SerializeField] private float _timeBetweenEnemies = 3f;
     [SerializeField] private float _timeBetweenWaves = 5f;
 
@@ -34,6 +35,8 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator SpawnWaves()
     {
+        yield return new WaitForSeconds(_firstWaveTimer);
+        
         while (true)
         {
             OnWaveStarted?.Invoke(_currentWaveIndex);
@@ -71,6 +74,8 @@ public class WaveManager : MonoBehaviour
 
     private void HandleMusicForWaveStart()
     {
+        SFXManager.Instance.PlaySFX(SFXType.WaveSound);
+        
         if (_currentWaveIndex % _bossWaveInterval == 0)
         {
             _bossWave = true;
@@ -84,6 +89,7 @@ public class WaveManager : MonoBehaviour
     {
         if (_bossWave)
         {
+            SFXManager.Instance.PlaySFX(SFXType.BossFinished);
             BackgroundAudio.Instance.StopBossMusic();
             BackgroundAudio.Instance.PlayAmbienceMusic();
             BackgroundAudio.Instance.PlayRegularMusic();

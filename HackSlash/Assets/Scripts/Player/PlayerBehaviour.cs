@@ -1,5 +1,6 @@
 using Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Player
 {
@@ -8,6 +9,12 @@ namespace Player
     public class PlayerBehaviour : MonoBehaviour, ICharacter
     {
         private PlayerAttack _playerAttack;
+
+        [Header("UI Buttons")] [SerializeField]
+        private Button _leftButton;
+
+        [SerializeField] private Button _rightButton;
+        [SerializeField] private Button _jumpButton;
 
         [Header("Ground variables!")] [SerializeField]
         private LayerMask _groundLayer;
@@ -27,6 +34,11 @@ namespace Player
         private Collider2D _myCollider;
         private bool _facingRight;
         private bool _wasGrounded = true;
+        private float _currentMagnitude;
+        private float _previousMagnitude;
+        private bool _isLeftPressed;
+        private bool _isRightPressed;
+        private bool _isJumpPressed;
 
 
         private void Start()
@@ -41,7 +53,7 @@ namespace Player
         private void Update()
         {
             HandleMoveSound();
-            
+
             if (PauseControl.IsPaused) // If game is paused, stop all handling.
                 return;
 
@@ -55,6 +67,7 @@ namespace Player
             HandleJumping();
             HandleFlipping();
         }
+
 
         private void FixedUpdate()
         {
@@ -75,8 +88,22 @@ namespace Player
                 return;
             }
 
-            HorizontalInput = Input.GetAxisRaw("Horizontal");
+            HorizontalInput = 0f;
+
+            if (_isLeftPressed)
+            {
+                HorizontalInput = -1f;
+            }
+            else if (_isRightPressed)
+            {
+                HorizontalInput = 1f;
+            }
+            else
+            {
+                HorizontalInput = Input.GetAxisRaw("Horizontal");
+            }
         }
+
 
         private void HandleMovement()
         {
@@ -84,8 +111,6 @@ namespace Player
             _rigidbody.velocity = moveDir;
         }
 
-        private float _currentMagnitude;
-        private float _previousMagnitude;
 
         private void HandleMoveSound()
         {
@@ -113,13 +138,15 @@ namespace Player
 
         private void HandleJumping()
         {
-            if (!Input.GetButtonDown("Jump") || !IsGrounded() || _playerAttack._isAttacking)
-                return;
+            if ((Input.GetKeyDown(KeyCode.W) || _isJumpPressed) && IsGrounded() && !_playerAttack._isAttacking)
+            {
+                SFXManager.Instance.PlaySFX(SFXType.PlayerJump);
+                Jump();
+                EventManager.InvokeOnJumpActions(); // Additional effects (animations)
+            }
 
-            ////////////////////
-            SFXManager.Instance.PlaySFX(SFXType.PlayerJump);
-            Jump();
-            EventManager.InvokeOnJumpActions(); // Additional effects (animations)
+            // Reset jump flag
+            _isJumpPressed = false;
         }
 
         private void Jump()
@@ -185,6 +212,34 @@ namespace Player
         public Collider2D GetCollider()
         {
             return _myCollider;
+        }
+        
+        
+        public void OnLeftButtonPressed()
+        {
+            _isLeftPressed = true;
+            _isRightPressed = false;
+        }
+
+        public void OnRightButtonPressed()
+        {
+            _isRightPressed = true;
+            _isLeftPressed = false;
+        }
+
+        public void OnJumpButtonPressed()
+        {
+            _isJumpPressed = true;
+        }
+
+        public void OnLeftButtonReleased()
+        {
+            _isLeftPressed = false;
+        }
+
+        public void OnRightButtonReleased()
+        {
+            _isRightPressed = false;
         }
     }
 }

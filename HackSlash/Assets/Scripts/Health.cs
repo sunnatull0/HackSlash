@@ -4,13 +4,15 @@ using UnityEngine;
 [RequireComponent(typeof(Death))]
 public class Health : MonoBehaviour
 {
+    [SerializeField] private SFXType HitSoundType;
+
     public float _startHealth = 3f;
     [HideInInspector] public float Healthh;
 
 
     private EnemyHealthBar _enemyHealthBar;
     private Death _death;
-    
+
     private void Start()
     {
         _enemyHealthBar = GetComponent<EnemyHealthBar>();
@@ -23,11 +25,10 @@ public class Health : MonoBehaviour
     {
         Healthh -= damage;
         CheckHealth();
+        SFXManager.Instance.PlaySFX(HitSoundType);
 
         if (transform.CompareTag("Player")) // Update, if it is a Player.
         {
-            SFXManager.Instance.PlaySFX(SFXType.PlayerHurt);
-            
             HealthUI.Instance.UpdateHealthUI(Healthh);
 
             // CameraShake.

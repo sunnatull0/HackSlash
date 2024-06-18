@@ -784,6 +784,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -904136405871704060, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5992999002125567958}
+    - targetCorrespondingSourceObject: {fileID: -904136405871704060, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1919511038938472646}
     - targetCorrespondingSourceObject: {fileID: 353083937052331587, guid: b83a970adb85e6946a80190ce69111f6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1993262456981445533}
@@ -1040,6 +1043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef9e7e567cb1314eb83cc60007b1d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitSoundType: 12
   _startHealth: 1
   Healthh: 0
 --- !u!114 &3525284620381228394
@@ -1054,6 +1058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a0b9aff406f214494cd8343d31da66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 11
 --- !u!114 &1262304805645117809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,3 +1086,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 1323973610788161107}
   _healthBar: {fileID: 7137362818482738300}
+--- !u!114 &1919511038938472646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419849762969627918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4339ae87308e1c749a85309c49dfeaed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 13
+  _minInterval: 3
+  _maxInterval: 6

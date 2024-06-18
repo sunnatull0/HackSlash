@@ -13,7 +13,6 @@ namespace Player
         private const string RunParameter = "isRunning";
         private const string JumpParameter = "isJumping";
         private const string AttackParameter = "isAttacking";
-        private const string JumpAttackParameter = "isJumpAttacking";
         private const string BeingPushedParameter = "beingPushed";
 
         private bool _wasRunning;
@@ -31,7 +30,6 @@ namespace Player
         private void Start()
         {
             EventManager.OnAttack += PlayAttackingAnimation;
-            EventManager.OnJumpAttack += PlayJumpAttackingAnimation;
             EventManager.OnJump += PlayJumpingAnimation;
             EventManager.OnLand += OnLandActions;
             EventManager.OnAttackFinish += ResetAttackAnimation;
@@ -40,7 +38,6 @@ namespace Player
         private void OnDisable()
         {
             EventManager.OnAttack -= PlayAttackingAnimation;
-            EventManager.OnJumpAttack -= PlayJumpAttackingAnimation;
             EventManager.OnJump -= PlayJumpingAnimation;
             EventManager.OnLand -= OnLandActions;
             EventManager.OnAttackFinish -= ResetAttackAnimation;
@@ -56,7 +53,6 @@ namespace Player
         private void OnLandActions()
         {
             ResetJumpAnimation();
-            ResetJumpAttackingAnimation();
         }
 
         
@@ -75,12 +71,6 @@ namespace Player
         private void PlayJumpingAnimation()
         {
             _animator.SetBool(JumpParameter, true);
-        }
-
-        private void PlayJumpAttackingAnimation()
-        {
-            ResetJumpAnimation();
-            _animator.SetBool(JumpAttackParameter, true);
         }
 
         private void PlayAttackingAnimation()
@@ -103,11 +93,6 @@ namespace Player
         private void ResetJumpAnimation()
         {
             _animator.SetBool(JumpParameter, false);
-        }
-    
-        private void ResetJumpAttackingAnimation()
-        {
-            _animator.SetBool(JumpAttackParameter, false);
         }
     
         private void ResetAttackAnimation()

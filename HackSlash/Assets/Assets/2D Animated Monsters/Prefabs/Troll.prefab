@@ -2444,6 +2444,7 @@ GameObject:
   - component: {fileID: 247757115449302375}
   - component: {fileID: 5346288367275117616}
   - component: {fileID: -4848996863526481418}
+  - component: {fileID: 7578196014332139459}
   m_Layer: 14
   m_Name: Troll
   m_TagString: Enemy
@@ -2612,6 +2613,9 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 192
+  _spawnSound: 36
+  _intervalBetweenSimpleAttacks: 1.5
+  _jumpAttackSound: 33
 --- !u!114 &1830377283700405457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2631,9 +2635,10 @@ MonoBehaviour:
   _attackRadius: 10.92
   _delayBeforeAttack: 0.5
   Draw: 0
+  _attackSoundType: 35
   JumpAttackStarted: 0
   isWaiting: 0
-  _jumpAttackDelay: 4
+  _jumpAttackDelay: 10
   _waitingAfterJumpAttack: 2
 --- !u!114 &8767827324383395404
 MonoBehaviour:
@@ -2659,6 +2664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef9e7e567cb1314eb83cc60007b1d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitSoundType: 31
   _startHealth: 2
   Healthh: 0
 --- !u!114 &247757115449302375
@@ -2673,6 +2679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a0b9aff406f214494cd8343d31da66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 29
 --- !u!114 &5346288367275117616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2700,6 +2707,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 2068928966646414767}
   _healthBar: {fileID: 2039002724976626688}
+--- !u!114 &7578196014332139459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6832991302718863136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4339ae87308e1c749a85309c49dfeaed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 38
+  _minInterval: 3
+  _maxInterval: 5
 --- !u!1 &6852257928293004259
 GameObject:
   m_ObjectHideFlags: 0

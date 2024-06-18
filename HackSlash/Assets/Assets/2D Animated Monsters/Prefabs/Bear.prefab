@@ -1548,6 +1548,7 @@ GameObject:
   - component: {fileID: 2847172772051293855}
   - component: {fileID: 2950161794453135953}
   - component: {fileID: 6712752782657926307}
+  - component: {fileID: 705129650453259426}
   m_Layer: 12
   m_Name: Bear
   m_TagString: Enemy
@@ -1729,6 +1730,7 @@ MonoBehaviour:
   _attackRadius: 7.29
   _delayBeforeAttack: 0.65
   Draw: 1
+  _attackSoundType: 16
 --- !u!114 &4187634016556072196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1748,7 +1750,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4884124145918657938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d5d4a4d9b9b82488065addcf875657, type: 3}
   m_Name: 
@@ -1770,6 +1772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef9e7e567cb1314eb83cc60007b1d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitSoundType: 15
   _startHealth: 5
   Healthh: 0
 --- !u!114 &2847172772051293855
@@ -1784,6 +1787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a0b9aff406f214494cd8343d31da66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 14
 --- !u!114 &2950161794453135953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1811,6 +1815,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 0}
   _healthBar: {fileID: 468041969594329942}
+--- !u!114 &705129650453259426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4884124145918657938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4339ae87308e1c749a85309c49dfeaed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 17
+  _minInterval: 3
+  _maxInterval: 6
 --- !u!1 &4931260695096819411
 GameObject:
   m_ObjectHideFlags: 0
