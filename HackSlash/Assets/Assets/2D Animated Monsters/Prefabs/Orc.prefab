@@ -3112,7 +3112,7 @@ MonoBehaviour:
   _damage: 1
   _attackPoint: {fileID: 5785654188127610174}
   _attackRadius: 7.91
-  _delayBeforeAttack: 0.6
+  _delayBeforeAttack: 0.8
   Draw: 0
   _attackSoundType: 24
   _pushForce: 200

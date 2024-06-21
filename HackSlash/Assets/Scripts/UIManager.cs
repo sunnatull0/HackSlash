@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [Header("UI gameobjects")] 
     [SerializeField] private GameObject _mainPanel, _settingsPanel, _aboutPanel;
     [SerializeField] private GameObject _gameHUDPanel, _gameOverPanel, _pausePanel, _adPanel, _waveUIPanel;
+    [SerializeField] private GameObject _demoPanel;
 
     [Header("Gameobjects")] [SerializeField]
     private GameObject _player;
@@ -40,7 +41,7 @@ public class UIManager : MonoBehaviour
         SetActive(_waves, false);
 
         // Canvases.
-        SetActive(_inGameCanvas, false);
+        SetActive(_inGameCanvas, true);
         SetActive(_menuCanvas, true);
         
         // UIs.
@@ -52,6 +53,7 @@ public class UIManager : MonoBehaviour
         SetActive(_pausePanel, false);
         SetActive(_adPanel, false);
         SetActive(_waveUIPanel, true);
+        SetActive(_demoPanel, false);
     }
 
     public void OnPlayButtonClicked()
@@ -81,7 +83,6 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
-        VolumeControl.Instance.SaveVolumeSettings();
         PauseControl.UnPause();
         SceneManager.LoadScene(0);
     }
