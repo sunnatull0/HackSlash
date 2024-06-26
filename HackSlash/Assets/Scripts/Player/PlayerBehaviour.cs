@@ -1,6 +1,5 @@
 using Interfaces;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Player
 {
@@ -10,32 +9,25 @@ namespace Player
     {
         private PlayerAttack _playerAttack;
 
-        [Header("UI Buttons")] [SerializeField]
-        private Button _leftButton;
-
-        [SerializeField] private Button _rightButton;
-        [SerializeField] private Button _jumpButton;
-
-        [Header("Ground variables!")] [SerializeField]
-        private LayerMask _groundLayer;
-
+        [Header("Ground variables!")] 
+        [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private Transform _groundPoint;
         [SerializeField] private float _groundCheckRadius = 1f;
 
-        [Header("Player characteristics!")] [SerializeField]
-        private float _movementSpeed = 1f;
-
+        [Header("Player characteristics!")] 
+        [SerializeField] private float _movementSpeed = 1f;
         [SerializeField] private float _jumpForce = 1f;
-
         [HideInInspector] public float HorizontalInput;
         [HideInInspector] public bool BeingPushed;
+        
         private Rigidbody2D _rigidbody;
         private Transform _transform;
         private Collider2D _myCollider;
-        private bool _facingRight;
-        private bool _wasGrounded = true;
+        
         private float _currentMagnitude;
         private float _previousMagnitude;
+        private bool _facingRight;
+        private bool _wasGrounded = true;
         private bool _isLeftPressed;
         private bool _isRightPressed;
         private bool _isJumpPressed;
@@ -215,6 +207,7 @@ namespace Player
         }
         
         
+        // Mobile touch input.
         public void OnLeftButtonPressed()
         {
             _isLeftPressed = true;

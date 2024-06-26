@@ -16,7 +16,7 @@ namespace UI
 
         private void OnDisable()
         {
-            Destroy(_canvas);
+            //Destroy(_canvas);
         }
         
         public void UpdateHealthBar()

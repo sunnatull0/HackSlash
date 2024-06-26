@@ -127,7 +127,7 @@ namespace Audio
                 sfxSource.volume = sfxVolume;
             }
         
-            hudControl.value = PlayerPrefs.GetFloat(_hudValueString);
+            hudControl.value = PlayerPrefs.GetFloat(_hudValueString, 0.25f);
             backgroundMusicSlider.value = backgroundVolume;
             sfxSlider.value = sfxVolume;
         }

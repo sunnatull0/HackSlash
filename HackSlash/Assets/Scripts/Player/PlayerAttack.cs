@@ -9,6 +9,8 @@ namespace Player
 
         [SerializeField] private Transform _attackPoint;
         [SerializeField] private LayerMask _enemyLayer;
+        
+        [HideInInspector] public bool _isAttacking;
         [SerializeField] private float _damage;
         [SerializeField] private float _attackDelay = 1f;
         [SerializeField] private float _attackRadius = 0.5f;
@@ -17,7 +19,6 @@ namespace Player
         private float _nextAttackTime;
         private bool _wasAttacking;
         private bool _isAttackButtonPressed;
-        [HideInInspector] public bool _isAttacking;
 
 
         private void Start()

@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Collider2D))]
@@ -61,10 +60,7 @@ public class Death : MonoBehaviour
         _rb.drag = 3f;
         foreach (var script in _scripts)
         {
-            // if (script != this)
-            // {
             script.enabled = false;
-            // }
         }
     }
 

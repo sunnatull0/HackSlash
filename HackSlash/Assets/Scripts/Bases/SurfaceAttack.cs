@@ -80,7 +80,6 @@ public class SurfaceAttack : MonoBehaviour
 
     public virtual void FinishAttack() // Used in AnimationEvents.
     {
-        Debug.Log("Attack Finished!");
         AttackStarted = false;
     }
 

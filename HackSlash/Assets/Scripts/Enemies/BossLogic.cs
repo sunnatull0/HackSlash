@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Enemies
 {
@@ -8,6 +10,7 @@ namespace Enemies
 
         [SerializeField] private EnemySpawnInfo _enemySpawnInfo;
         [SerializeField] private float _spawnDelay;
+        [SerializeField] private UnityEvent _onDeath;
 
         private void Start()
         {
@@ -29,6 +32,11 @@ namespace Enemies
                 yield return new WaitForSeconds(_spawnDelay);
                 SpawnEnemy();
             }
+        }
+
+        private void OnDisable()
+        {
+            _onDeath?.Invoke();
         }
     }
 }
