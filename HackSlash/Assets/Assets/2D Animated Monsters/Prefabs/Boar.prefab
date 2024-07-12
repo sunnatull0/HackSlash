@@ -1925,6 +1925,10 @@ MonoBehaviour:
   _detectDistance: 15
   DefaultSpeed: 0
   PlayerDetected: 0
+  _bodySprite: {fileID: 1655577520839013757}
+  _regularColor: {r: 1, g: 1, b: 1, a: 1}
+  _angryColor: {r: 1, g: 0.6367924, b: 0.6774102, a: 1}
+  _colorChangeDuration: 0.5
 --- !u!114 &1150597811228721396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1939,8 +1943,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 1
   _attackSpeedMultiplier: 2
-  _delayBeforeAttack: 0.5
-  _delayAfterAttack: 0.5
+  _delayBeforeAttack: 1
+  _delayAfterAttack: 1
 --- !u!114 &3322390323308827399
 MonoBehaviour:
   m_ObjectHideFlags: 0

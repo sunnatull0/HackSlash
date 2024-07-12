@@ -30,6 +30,7 @@ namespace Enemies.Boar
 
 
             _boarBehaviour.StopEnemy();
+            StartCoroutine(_boarBehaviour.ChangeSpriteColor(_boarBehaviour._regularColor, _boarBehaviour._angryColor, _boarBehaviour._colorChangeDuration));
             StartCoroutine(StartAttackingAfterDelay());
             AttackStarted = true;
         }
@@ -53,12 +54,13 @@ namespace Enemies.Boar
         public void StopAttack() // Used in AnimationEvent.
         {
             IsAttacking = false;
-
             StartCoroutine(ResetAttackAfterDelay()); // ResetAttack.
         }
 
         private IEnumerator ResetAttackAfterDelay()
         {
+            StartCoroutine(_boarBehaviour.ChangeSpriteColor(_boarBehaviour._angryColor, _boarBehaviour._regularColor,
+                _boarBehaviour._colorChangeDuration));
             yield return new WaitForSeconds(_delayAfterAttack);
 
             // Resetting.

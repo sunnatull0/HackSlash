@@ -1,3 +1,4 @@
+using Enemies.Troll;
 using UI;
 using UnityEngine;
 
@@ -13,8 +14,10 @@ public class Health : MonoBehaviour
     private EnemyHealthBar _enemyHealthBar;
     private Death _death;
 
+    private TrollAttack _trollAttack;
     private void Start()
     {
+        _trollAttack = GetComponent<TrollAttack>();
         _enemyHealthBar = GetComponent<EnemyHealthBar>();
         _death = GetComponent<Death>();
         Healthh = _startHealth;
@@ -23,6 +26,13 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (_trollAttack != null && !_trollAttack.isWaiting)
+        {
+            damage = 0f;
+            Debug.Log("HurtNot");
+            HitSoundType = SFXType.TrollHurtNot; // Play another sound, if Troll is not weak.
+        }
+        
         Healthh -= damage;
         CheckHealth();
         SFXManager.Instance.PlaySFX(HitSoundType);
@@ -30,6 +40,8 @@ public class Health : MonoBehaviour
         if (transform.CompareTag("Player")) // Update, if it is a Player.
         {
             HealthUI.Instance.UpdateHealthUI(Healthh);
+            Handheld.Vibrate();
+            Debug.Log("Vibrated!");
 
             // CameraShake.
             var cameraShakeIntensity = 10f;

@@ -1742,7 +1742,7 @@ MonoBehaviour:
   _enemySpawnInfo:
     PositionType: 0
     EnemyPrefab: {fileID: 7481580078974812205, guid: 521de22e52eb7e948bb33b0291164b88, type: 3}
-    Count: 50
+    Count: 10
   _spawnDelay: 5
   _onDeath:
     m_PersistentCalls:

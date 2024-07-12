@@ -1335,7 +1335,7 @@ Transform:
   m_GameObject: {fileID: 3459067074221244758}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.67, y: 4.16, z: 0}
+  m_LocalPosition: {x: -2.5910523, y: 4.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2645,14 +2645,14 @@ MonoBehaviour:
   PlayerDetected: 0
   _damage: 1
   _attackPoint: {fileID: 2255081377174037445}
-  _attackRadius: 10.92
+  _attackRadius: 16
   _delayBeforeAttack: 0.5
   Draw: 0
   _attackSoundType: 35
   JumpAttackStarted: 0
   isWaiting: 0
   _jumpAttackDelay: 10
-  _waitingAfterJumpAttack: 2
+  _waitingAfterJumpAttack: 3
 --- !u!114 &8767827324383395404
 MonoBehaviour:
   m_ObjectHideFlags: 0

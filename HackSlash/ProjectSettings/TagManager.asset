@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Border
   - Enemy
+  - LeftButton
+  - RightButton
+  - JumpButton
   layers:
   - Default
   - TransparentFX

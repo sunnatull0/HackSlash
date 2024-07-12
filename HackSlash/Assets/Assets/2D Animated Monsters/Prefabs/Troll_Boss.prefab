@@ -130,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 529435413429320229}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.42, y: 4.74, z: 0}
+  m_LocalPosition: {x: -2.5, y: 4.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1830,14 +1830,14 @@ MonoBehaviour:
   PlayerDetected: 0
   _damage: 1
   _attackPoint: {fileID: 8014841693677706022}
-  _attackRadius: 13.6
+  _attackRadius: 16
   _delayBeforeAttack: 0.5
-  Draw: 0
+  Draw: 1
   _attackSoundType: 34
   JumpAttackStarted: 0
   isWaiting: 0
   _jumpAttackDelay: 10
-  _waitingAfterJumpAttack: 2
+  _waitingAfterJumpAttack: 3
 --- !u!114 &8622095311455359846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1857,7 +1857,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3589623625668872217}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d5d4a4d9b9b82488065addcf875657, type: 3}
   m_Name: 
@@ -1865,7 +1865,7 @@ MonoBehaviour:
   _enemySpawnInfo:
     PositionType: 1
     EnemyPrefab: {fileID: 7192056143704295429, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
-    Count: 50
+    Count: 10
   _spawnDelay: 5
   _onDeath:
     m_PersistentCalls:

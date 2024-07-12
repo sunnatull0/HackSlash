@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 
@@ -72,6 +74,22 @@ namespace Enemies.Boar
             ChangeSpeed(0f);
         }
 
+        [SerializeField] public SpriteRenderer _bodySprite;
+        [SerializeField] public Color _regularColor, _angryColor;
+        [SerializeField] public float _colorChangeDuration;
+        public IEnumerator ChangeSpriteColor(Color startColor, Color endColor, float duration)
+        {
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.unscaledDeltaTime;
+                _bodySprite.color = Color.Lerp(startColor, endColor, elapsedTime / duration);
+                yield return null;
+            }
+
+            _bodySprite.color = endColor;
+        }
         
     }
 }

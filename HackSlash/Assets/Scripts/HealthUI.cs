@@ -23,11 +23,13 @@ public class HealthUI : MonoBehaviour
     }
 
 
+    [SerializeField] private ParticleSystem _healthEffect;
     public void UpdateHealthUI(float currentHealth)
     {
         for (int i = 0; i < _healthUIs.Count; i++) // Change the color depending on currentHealth.
         {
             _healthUIs[i].sprite = i < currentHealth ? _activeHeartUI : _lostHeartUI;
+            _healthEffect.Play();
         }
     }
 }
