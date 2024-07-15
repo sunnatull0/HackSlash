@@ -40,8 +40,7 @@ public class Health : MonoBehaviour
         if (transform.CompareTag("Player")) // Update, if it is a Player.
         {
             HealthUI.Instance.UpdateHealthUI(Healthh);
-            Handheld.Vibrate();
-            Debug.Log("Vibrated!");
+            Vibration.VibrateMedium();
 
             // CameraShake.
             var cameraShakeIntensity = 10f;

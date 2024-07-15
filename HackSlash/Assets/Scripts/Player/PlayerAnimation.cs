@@ -35,7 +35,7 @@ namespace Player
             EventManager.OnAttackFinish += ResetAttackAnimation;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             EventManager.OnAttack -= PlayAttackingAnimation;
             EventManager.OnJump -= PlayJumpingAnimation;
