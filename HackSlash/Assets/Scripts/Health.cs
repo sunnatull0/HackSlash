@@ -29,7 +29,6 @@ public class Health : MonoBehaviour
         if (_trollAttack != null && !_trollAttack.isWaiting)
         {
             damage = 0f;
-            Debug.Log("HurtNot");
             HitSoundType = SFXType.TrollHurtNot; // Play another sound, if Troll is not weak.
         }
         
