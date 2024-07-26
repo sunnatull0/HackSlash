@@ -3108,6 +3108,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 192
+  _upValue: 50
 --- !u!114 &9178845828668177169
 MonoBehaviour:
   m_ObjectHideFlags: 0

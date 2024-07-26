@@ -13,13 +13,21 @@ namespace Enemies.Orc
         [SerializeField] private float _groundCheckRadius;
         [SerializeField] private LayerMask _groundLayer;
 
+        [SerializeField] private float _upValue;
         // OVERRIDES.
         protected override void Start()
         {
             _orcAttack = GetComponent<OrcAttack>();
             SFXManager.Instance.PlaySFX(SFXType.OrcSpawn);
 
+            MoveUp(_upValue);
             base.Start();
+        }
+
+        private void MoveUp(float yAxis)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y + yAxis);
+            Debug.Log("Changed!");
         }
 
         protected override void MoveTowardsPlayer()

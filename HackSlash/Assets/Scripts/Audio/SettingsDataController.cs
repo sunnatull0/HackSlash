@@ -9,6 +9,7 @@ namespace Audio
         [SerializeField] private Slider backgroundMusicSlider;
         [SerializeField] private Slider sfxSlider;
         [SerializeField] private Slider hudControl;
+        [SerializeField] private Toggle _vibrationToggle;
 
         [SerializeField]
         private List<AudioSource> backgroundMusicSources; // List to hold multiple background music audio sources
@@ -21,6 +22,7 @@ namespace Audio
         private readonly string _backgroundVolumeString = "BackgroundVolume";
         private readonly string _sfxVolumeString = "sfxVolume";
         private readonly string _hudValueString = "hudValue";
+        private readonly string _vibrationString = "vibration";
 
         private void Awake()
         {
@@ -105,12 +107,15 @@ namespace Audio
             {
                 PlayerPrefs.SetFloat(_sfxVolumeString, sfxSources[0].volume);
             }
-        
+
             // HUD controller.
             PlayerPrefs.SetFloat(_hudValueString, hudControl.value);
-        
+            Debug.Log(VibrationSettings.IsOn);
+            PlayerPrefs.SetInt(_vibrationString, VibrationSettings.IsOn ? 1 : 0);
+
             PlayerPrefs.Save();
         }
+
 
         private void LoadSettings()
         {
@@ -126,10 +131,14 @@ namespace Audio
             {
                 sfxSource.volume = sfxVolume;
             }
-        
+
             hudControl.value = PlayerPrefs.GetFloat(_hudValueString, 0.25f);
             backgroundMusicSlider.value = backgroundVolume;
             sfxSlider.value = sfxVolume;
+
+            var vibrationValue = PlayerPrefs.GetInt(_vibrationString, 1) == 1;
+            VibrationSettings.IsOn = _vibrationToggle.isOn;
+            _vibrationToggle.isOn = vibrationValue;
         }
 
         private void OnDestroy()
