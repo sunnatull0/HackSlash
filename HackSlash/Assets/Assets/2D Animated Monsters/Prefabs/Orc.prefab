@@ -3108,7 +3108,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 192
-  _upValue: 50
+  _upValue: 0
 --- !u!114 &9178845828668177169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3127,6 +3127,7 @@ MonoBehaviour:
   _attackPoint: {fileID: 5785654188127610174}
   _attackRadius: 7.91
   _delayBeforeAttack: 0.8
+  _damageInterval: 1
   Draw: 0
   _attackSoundType: 24
   _pushForce: 200

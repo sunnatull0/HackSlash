@@ -110,7 +110,6 @@ namespace Audio
 
             // HUD controller.
             PlayerPrefs.SetFloat(_hudValueString, hudControl.value);
-            Debug.Log(VibrationSettings.IsOn);
             PlayerPrefs.SetInt(_vibrationString, VibrationSettings.IsOn ? 1 : 0);
 
             PlayerPrefs.Save();

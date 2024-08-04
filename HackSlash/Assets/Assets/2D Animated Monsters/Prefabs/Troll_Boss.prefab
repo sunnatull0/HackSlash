@@ -1832,6 +1832,7 @@ MonoBehaviour:
   _attackPoint: {fileID: 8014841693677706022}
   _attackRadius: 16
   _delayBeforeAttack: 0.5
+  _damageInterval: 1
   Draw: 1
   _attackSoundType: 34
   JumpAttackStarted: 0
@@ -1857,7 +1858,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3589623625668872217}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d5d4a4d9b9b82488065addcf875657, type: 3}
   m_Name: 

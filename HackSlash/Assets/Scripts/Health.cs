@@ -26,6 +26,11 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (Healthh <= 0f)
+        {
+            return;
+        }
+        
         if (_trollAttack != null && !_trollAttack.isWaiting)
         {
             damage = 0f;

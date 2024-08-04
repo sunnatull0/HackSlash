@@ -10,6 +10,7 @@ public class SurfaceAttack : MonoBehaviour
     [SerializeField] private Transform _attackPoint;
     [SerializeField] private float _attackRadius = 2f;
     [SerializeField] private float _delayBeforeAttack = 0.5f;
+    [SerializeField] private float _damageInterval = 1.0f; // Interval in seconds between each damage tick
     [SerializeField] private bool Draw;
 
     private LayerMask _playerLayer;
@@ -17,6 +18,8 @@ public class SurfaceAttack : MonoBehaviour
 
     protected bool playerhit;
     private Death _death;
+
+    private Coroutine _damageCoroutine;
 
     protected virtual void Start()
     {
@@ -40,10 +43,8 @@ public class SurfaceAttack : MonoBehaviour
     public void StartAttackSystem()
     {
         AttackStarted = true;
-
         StartCoroutine(IEStartAttack());
     }
-
 
     private IEnumerator IEStartAttack()
     {
@@ -88,13 +89,37 @@ public class SurfaceAttack : MonoBehaviour
         DamageManager.Damage(targetHealth, _damage);
     }
 
+    private IEnumerator DamageOverTime(Health playerHealth)
+    {
+        while (true)
+        {
+            Damage(playerHealth);
+            yield return new WaitForSeconds(_damageInterval);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer(PlayerLayerName))
-            return;
+        if (other.gameObject.layer == LayerMask.NameToLayer(PlayerLayerName))
+        {
+            var playerHealth = other.transform.GetComponent<Health>();
+            if (_damageCoroutine == null)
+            {
+                _damageCoroutine = StartCoroutine(DamageOverTime(playerHealth));
+            }
+        }
+    }
 
-        var playerHealth = other.transform.GetComponent<Health>();
-        DamageManager.Damage(playerHealth, _damage);
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer(PlayerLayerName))
+        {
+            if (_damageCoroutine != null)
+            {
+                StopCoroutine(_damageCoroutine);
+                _damageCoroutine = null;
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()
