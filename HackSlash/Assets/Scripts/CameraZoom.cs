@@ -1,5 +1,6 @@
 using System.Collections;
 using Cinemachine;
+using Player;
 using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
@@ -12,12 +13,22 @@ public class CameraZoom : MonoBehaviour
     private void Start()
     {
         Death.OnPlayerDeath += ZoomIn;
+        PlayerReviver.OnPlayerRevive += ZoomOut;
+        PlayerReviver.OnPlayerRevive += (() =>
+        {
+            _camera.Follow = GameObject.FindGameObjectWithTag("Player").transform;
+        });
         _camera.m_Lens.OrthographicSize = _zoomInSize;
     }
 
     private void OnDisable()
     {
         Death.OnPlayerDeath -= ZoomIn;
+        PlayerReviver.OnPlayerRevive -= ZoomOut;
+        PlayerReviver.OnPlayerRevive -= (() =>
+        {
+            _camera.Follow = GameObject.FindGameObjectWithTag("Player").transform;
+        });
     }
 
     private void ZoomIn()

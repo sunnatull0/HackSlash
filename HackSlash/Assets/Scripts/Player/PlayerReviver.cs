@@ -6,7 +6,7 @@ namespace Player
     public class PlayerReviver : MonoBehaviour
     {
         [SerializeField] private GameObject _playerPrefab;
-        public event Action OnPlayerRevive;
+        public static event Action OnPlayerRevive;
         [SerializeField] private bool _go;
 
         private void Start()

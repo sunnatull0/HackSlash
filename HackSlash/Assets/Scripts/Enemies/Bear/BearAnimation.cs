@@ -8,7 +8,6 @@ namespace Enemies.Bear
 
         private BearAttack _bearAttack;
 
-
         protected override void Start()
         {
             base.Start();
@@ -21,6 +20,5 @@ namespace Enemies.Bear
             HandleRunAnimation(_bearAttack.AttackStarted);
             HandleAttackAnimation(_bearAttack.AttackStarted);
         }
-        
     }
 }

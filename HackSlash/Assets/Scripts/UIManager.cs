@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
+using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+
+    public static UIManager Instance;
+    
     [Header("Canvases")] [SerializeField] private GameObject _menuCanvas;
     [SerializeField] private GameObject _inGameCanvas;
 
@@ -20,18 +25,35 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private float _gameOverPanelActivateTime = 1.5f;
 
+    public Slider ControllerSlider;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {
         Init();
 
         Death.OnPlayerDeath += ActivateGameOverPanel;
+        PlayerReviver.OnPlayerRevive += () =>
+        {
+            _gameOverPanel.SetActive(false);
+        };
     }
     
 
     private void OnDisable()
     {
         Death.OnPlayerDeath -= ActivateGameOverPanel;
+        PlayerReviver.OnPlayerRevive -= () =>
+        {
+            _gameOverPanel.SetActive(false);
+        };
     }
 
     private void Init()
@@ -72,11 +94,13 @@ public class UIManager : MonoBehaviour
     public void OnPauseButtonClicked()
     {
         PauseControl.Pause();
+        PlayerHUD.Instance.DisableHUD();
     }
 
     public void OnResumeButtonClicked()
     {
         PauseControl.UnPause();
+        PlayerHUD.Instance.EnableHUD();
     }
 
     private void SetActive(GameObject obj, bool value) => obj.SetActive(value);

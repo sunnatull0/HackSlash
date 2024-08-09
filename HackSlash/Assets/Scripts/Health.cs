@@ -21,6 +21,10 @@ public class Health : MonoBehaviour
         _enemyHealthBar = GetComponent<EnemyHealthBar>();
         _death = GetComponent<Death>();
         Healthh = _startHealth;
+        if (transform.CompareTag("Player")) // Update, if it is a Player.
+        {
+            HealthUI.Instance.UpdateHealthUI(Healthh);
+        }
     }
 
 

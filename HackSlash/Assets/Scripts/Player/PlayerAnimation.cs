@@ -6,7 +6,6 @@ namespace Player
     [RequireComponent(typeof(PlayerBehaviour))]
     public class PlayerAnimation : MonoBehaviour
     {
-    
         private PlayerBehaviour _playerBehaviour;
         private Rigidbody2D _rb;
         private Animator _animator;

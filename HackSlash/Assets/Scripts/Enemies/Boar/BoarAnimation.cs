@@ -7,7 +7,8 @@ namespace Enemies.Boar
     {
         
         private BoarAttack _boarAttack;
-        
+        [SerializeField] private Animator _hitAnimator;
+        [SerializeField] private GameObject _hitEffect;
         
         protected override void Start()
         {
@@ -21,5 +22,12 @@ namespace Enemies.Boar
             HandleRunAnimation(_boarAttack.IsAttacking);
             HandleAttackAnimation(_boarAttack.IsAttacking);
         }
+
+        public void PlayHitEffectAnimation(Vector2 pos)
+        {
+            _hitEffect.transform.position = pos;
+            _hitAnimator.SetTrigger("Hit");
+        }
+        
     }
 }

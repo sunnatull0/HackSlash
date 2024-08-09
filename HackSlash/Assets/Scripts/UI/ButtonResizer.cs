@@ -6,10 +6,11 @@ public class ButtonResizer : MonoBehaviour
     [SerializeField] private RectTransform buttonRect;
     [SerializeField] private Vector2 minSize;
     [SerializeField] private Vector2 maxSize;
-    [SerializeField] private Slider hudPositionSlider;
-
+    private Slider hudPositionSlider;
+    
     private void Start()
     {
+        hudPositionSlider = UIManager.Instance.ControllerSlider;
         hudPositionSlider.onValueChanged.AddListener(UpdateButtonSize);
         UpdateButtonSize(hudPositionSlider.value); // Initialize button size
     }

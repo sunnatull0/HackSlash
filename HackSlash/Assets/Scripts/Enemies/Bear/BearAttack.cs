@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Enemies.Bear
@@ -8,7 +7,6 @@ namespace Enemies.Bear
     {
 
         private BearBehaviour _bearBehaviour;
-
 
         protected override void Start()
         {

@@ -66,11 +66,18 @@ namespace Enemies.Boar
             _boarBehaviour.ChangeSpeed(_boarBehaviour.DefaultSpeed);
         }
 
+        [SerializeField] private BoarAnimation _boarAnimation;
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer(PlayerLayerName))
             {
                 var playerHealth = other.transform.GetComponent<Health>();
+                if (other.contacts.Length > 0)
+                {
+                    Vector2 hitPosition = other.contacts[0].point;
+                    _boarAnimation.PlayHitEffectAnimation(hitPosition);
+                }
+                
                 if (_damageCoroutine == null)
                 {
                     _damageCoroutine = StartCoroutine(DamageOverTime(playerHealth));
