@@ -8,7 +8,6 @@ namespace Enemies.Troll
         private TrollAttack _trollAttack;
         private readonly int JumpingParam = Animator.StringToHash("isJumping");
 
-
         protected override void Start()
         {
             _trollAttack = GetComponent<TrollAttack>();

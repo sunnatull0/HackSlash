@@ -22744,7 +22744,7 @@ MonoBehaviour:
   _waves:
   - EnemyInfos:
     - PositionType: 1
-      EnemyPrefab: {fileID: 7481580078974812205, guid: 521de22e52eb7e948bb33b0291164b88, type: 3}
+      EnemyPrefab: {fileID: 3589623625668872217, guid: 1c2a317bde0d6c346aa6c51d16a6d308, type: 3}
       Count: 1
   - EnemyInfos:
     - PositionType: 1

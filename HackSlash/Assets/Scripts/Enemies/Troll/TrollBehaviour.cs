@@ -106,6 +106,7 @@ namespace Enemies.Troll
             _wasGrounded = IsGrounded();
         }
 
+        [SerializeField] private Animator _stampAnimator;
         private void OnLand()
         {
             var playerBehaviour = _playerTransform.GetComponent<PlayerBehaviour>();
@@ -122,6 +123,7 @@ namespace Enemies.Troll
             var cameraShakeIntensity = 30f;
             var time = 0.2f;
             CameraShake.Instance.Shake(cameraShakeIntensity, time);
+            _stampAnimator.SetTrigger("Stamp");
         }
 
         [SerializeField] private SFXType _jumpAttackSound;
