@@ -1588,7 +1588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitSoundType: 3
-  _startHealth: 3
+  _startHealth: 10
   Healthh: 0
 --- !u!114 &3508559165366088153
 MonoBehaviour:
