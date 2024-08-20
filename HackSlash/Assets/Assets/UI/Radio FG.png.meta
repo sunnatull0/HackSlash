@@ -176,7 +176,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Radio FG_0: -7381436175457737647
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
