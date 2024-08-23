@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemies;
+using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,18 +26,45 @@ public class WaveManager : MonoBehaviour
     private int _totalWaveCount;
     private int _currentWaveIndex;
     private bool _bossWave;
+    private bool _isWaveSpawning = false; // Flag to prevent multiple coroutines
 
     private void Start()
     {
         _totalWaveCount = _waves.Count;
         _currentWaveIndex = 1;
         StartCoroutine(SpawnWaves());
+        PlayerReviver.OnPlayerRevive += OnPlayerRevive;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerReviver.OnPlayerRevive -= OnPlayerRevive;
+    }
+
+    private void OnPlayerRevive()
+    {
+        // Destroy all enemies
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+
+        // Move to the next wave, skipping the time delay
+        if (!_isWaveSpawning)
+        {
+            _currentWaveIndex++;
+            StopCoroutine(SpawnWaves()); // Stop the current wave coroutine (if running)
+            StartCoroutine(SpawnWaves()); // Start the next wave
+        }
     }
 
     private IEnumerator SpawnWaves()
     {
+        _isWaveSpawning = true;
+
         yield return new WaitForSeconds(_firstWaveTimer);
-        
+
         while (true)
         {
             OnWaveStarted?.Invoke(_currentWaveIndex);
@@ -57,6 +85,8 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(_timeBetweenWaves);
             _currentWaveIndex++;
         }
+
+        _isWaveSpawning = false;
     }
 
     private IEnumerator SpawnWave(Wave wave)

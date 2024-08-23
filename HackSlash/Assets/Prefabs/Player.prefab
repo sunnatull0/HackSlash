@@ -1437,7 +1437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &76462333821897326
 Transform:
   m_ObjectHideFlags: 0
@@ -1562,7 +1562,7 @@ MonoBehaviour:
   _damage: 1
   _attackDelay: 0.3
   _attackRadius: 5.3
-  DrawAttackRange: 1
+  DrawAttackRange: 0
 --- !u!114 &5816736310513775396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitSoundType: 3
-  _startHealth: 10
+  _startHealth: 3
   Healthh: 0
 --- !u!114 &3508559165366088153
 MonoBehaviour:

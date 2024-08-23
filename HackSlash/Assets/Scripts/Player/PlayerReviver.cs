@@ -11,6 +11,7 @@ namespace Player
 
         private void Start()
         {
+            Application.targetFrameRate = 60;
             OnPlayerRevive += SpawnPlayer;
         }
 
@@ -37,6 +38,11 @@ namespace Player
                 Revive();
                 _go = false;
             }
+        }
+
+        public void Do()
+        {
+            _go = true;
         }
     }
 }

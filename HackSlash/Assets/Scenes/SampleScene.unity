@@ -5121,7 +5121,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &427169391
 RectTransform:
@@ -6383,7 +6383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -29.400146, y: 31.300049}
+  m_AnchoredPosition: {x: -29.40039, y: 31.300049}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &485122149
@@ -10192,7 +10192,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -29.400146, y: 31.300049}
+  m_AnchoredPosition: {x: -29.40039, y: 31.300049}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &730332715
@@ -18064,7 +18064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1296511419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22760,28 +22760,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642755082}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6bf805c288c57f41abee3d84d0d90f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _waves:
   - EnemyInfos:
-    - PositionType: 1
-      EnemyPrefab: {fileID: 6832991302718863136, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
+    - PositionType: 0
+      EnemyPrefab: {fileID: 8419849762969627918, guid: 98bac6772246fb14d9e5d431f2caec74, type: 3}
       Count: 1
   - EnemyInfos:
-    - PositionType: 1
-      EnemyPrefab: {fileID: 7192056143704295429, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
-      Count: 1
-  - EnemyInfos:
-    - PositionType: 1
-      EnemyPrefab: {fileID: 7192056143704295429, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
-      Count: 1
-  - EnemyInfos:
-    - PositionType: 1
-      EnemyPrefab: {fileID: 6832991302718863136, guid: adc21455b62ea4446b207d8051b80ce1, type: 3}
-      Count: 1
+    - PositionType: 0
+      EnemyPrefab: {fileID: 8419849762969627918, guid: 98bac6772246fb14d9e5d431f2caec74, type: 3}
+      Count: 2
   _endlessWavesCount: 2
   _bossWaveInterval: 2
   _firstWaveTimer: 1
@@ -22809,7 +22801,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642755082}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6bf805c288c57f41abee3d84d0d90f1, type: 3}
   m_Name: 
@@ -23987,6 +23979,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1535337215}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlayButtonClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1125966476}
+        m_TargetAssemblyTypeName: Player.PlayerReviver, Assembly-CSharp
+        m_MethodName: Do
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
