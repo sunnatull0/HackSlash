@@ -72,7 +72,7 @@ public class WaveManager : MonoBehaviour
 
             if (_currentWaveIndex > _totalWaveCount)
             {
-                int randomIndex = Random.Range(_totalWaveCount - _endlessWavesCount, _totalWaveCount);
+                int randomIndex = Random.Range(_totalWaveCount - _endlessWavesCount, _totalWaveCount -1);
                 yield return SpawnWave(_waves[randomIndex]);
             }
             else

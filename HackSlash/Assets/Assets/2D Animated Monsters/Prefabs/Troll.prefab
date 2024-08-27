@@ -2750,7 +2750,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.2953589, y: 5.1234303}
+  m_Offset: {x: 0.7942059, y: 5.1234303}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2760,7 +2760,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8.31595, y: 9.565559}
+  m_Size: {x: 6.881767, y: 9.565559}
   m_EdgeRadius: 0
 --- !u!50 &-1519883886180717349
 Rigidbody2D:
@@ -2813,6 +2813,7 @@ MonoBehaviour:
   _spawnSound: 36
   _intervalBetweenSimpleAttacks: 1.5
   _stampAnimator: {fileID: 3922479883761088105}
+  _trollAnimation: {fileID: 8767827324383395404}
   _jumpAttackSound: 33
 --- !u!114 &1830377283700405457
 MonoBehaviour:
@@ -2851,6 +2852,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1811057a39484aa10eb2c4c4da591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: 8060617043611782413}
+  - {fileID: 1962945417015971782}
+  - {fileID: 268200515541484313}
+  - {fileID: 7996597680361063099}
+  - {fileID: 4466694155369491279}
+  - {fileID: 6066986238274334068}
+  - {fileID: 5394692520442127025}
+  - {fileID: 4304648549409912462}
+  - {fileID: 5926563799775013446}
+  - {fileID: 481168511577144576}
+  - {fileID: 3949374395608628301}
+  - {fileID: 3861814390063882069}
+  _changeToColor: {r: 0.1764706, g: 0.78431374, b: 1, a: 1}
+  _duration: 3
 --- !u!114 &4528527382226177817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3876,6 +3892,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2444954210516496451}
     m_Modifications:
+    - target: {fileID: -7203704404868067655, guid: 06ada8a4066146c468b8d21b5a792aac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5426627973668427157, guid: 06ada8a4066146c468b8d21b5a792aac, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Cinemachine;
 using Player;
@@ -5,30 +6,45 @@ using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
 {
+    public static CameraZoom Instance;
+    
     [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private float _zoomOutSize = 32f;
     [SerializeField] private float _zoomInSize = 29f;
     [SerializeField] private float _duration = 1f;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
     private void Start()
     {
         Death.OnPlayerDeath += ZoomIn;
         PlayerReviver.OnPlayerRevive += ZoomOut;
-        PlayerReviver.OnPlayerRevive += (() =>
-        {
-            _camera.Follow = GameObject.FindGameObjectWithTag("Player").transform;
-        });
+        // PlayerReviver.OnPlayerRevive += () =>
+        // {
+        //     _camera.Follow = GameObject.FindGameObjectWithTag("Player").transform;
+        // };
         _camera.m_Lens.OrthographicSize = _zoomInSize;
+    }
+
+    public void SetPlayerCamera()
+    {
+        _camera.Follow = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void OnDisable()
     {
         Death.OnPlayerDeath -= ZoomIn;
         PlayerReviver.OnPlayerRevive -= ZoomOut;
-        PlayerReviver.OnPlayerRevive -= (() =>
-        {
-            _camera.Follow = GameObject.FindGameObjectWithTag("Player").transform;
-        });
+        // PlayerReviver.OnPlayerRevive -= (() =>
+        // {
+        //     _camera.Follow = GameObject.FindGameObjectWithTag("Player").transform;
+        // });
     }
 
     private void ZoomIn()

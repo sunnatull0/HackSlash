@@ -21,14 +21,16 @@ namespace Player
         }
 
 
-        private void Revive()
+        public void Revive()
         {
             OnPlayerRevive?.Invoke();
+            Debug.Log("REVIVED!");
         }
 
         private void SpawnPlayer()
         {
             Instantiate(_playerPrefab, Vector2.zero, _playerPrefab.transform.rotation);
+            CameraZoom.Instance.SetPlayerCamera();
         }
 
         private void Update()
@@ -38,11 +40,6 @@ namespace Player
                 Revive();
                 _go = false;
             }
-        }
-
-        public void Do()
-        {
-            _go = true;
         }
     }
 }

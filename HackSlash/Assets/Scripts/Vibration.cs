@@ -9,7 +9,6 @@ public static class Vibration
             return;
         
         HapticFeedback.MediumFeedback();
-        Debug.Log("Vibrated!");
     }
 
     public static void VibrateLight()
@@ -18,7 +17,6 @@ public static class Vibration
             return;
         
         HapticFeedback.LightFeedback();
-        Debug.Log("Vibrated");
     }
 
     public static void VibrateHeavy()

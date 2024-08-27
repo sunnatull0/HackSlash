@@ -107,6 +107,7 @@ namespace Enemies.Troll
         }
 
         [SerializeField] private Animator _stampAnimator;
+        [SerializeField] private TrollAnimation _trollAnimation;
         private void OnLand()
         {
             var playerBehaviour = _playerTransform.GetComponent<PlayerBehaviour>();
@@ -124,6 +125,8 @@ namespace Enemies.Troll
             var time = 0.2f;
             CameraShake.Instance.Shake(cameraShakeIntensity, time);
             _stampAnimator.SetTrigger("Stamp");
+            
+            _trollAnimation.ChangeColor();
         }
 
         [SerializeField] private SFXType _jumpAttackSound;

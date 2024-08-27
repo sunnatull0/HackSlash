@@ -16260,7 +16260,7 @@ MonoBehaviour:
   _mobileControls:
   - {fileID: 307905849}
   - {fileID: 730332713}
-  _checkPlatform: 0
+  _checkPlatform: 1
 --- !u!1 &1193326201
 GameObject:
   m_ObjectHideFlags: 0
@@ -22767,8 +22767,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waves:
   - EnemyInfos:
-    - PositionType: 0
-      EnemyPrefab: {fileID: 8419849762969627918, guid: 98bac6772246fb14d9e5d431f2caec74, type: 3}
+    - PositionType: 1
+      EnemyPrefab: {fileID: 7192056143704295429, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
       Count: 1
   - EnemyInfos:
     - PositionType: 0
@@ -22908,7 +22908,7 @@ MonoBehaviour:
       Count: 3
   - EnemyInfos:
     - PositionType: 0
-      EnemyPrefab: {fileID: 4884124145918657938, guid: fd6497ed1274a274683c5cf3ebfb069c, type: 3}
+      EnemyPrefab: {fileID: 7481580078974812205, guid: 521de22e52eb7e948bb33b0291164b88, type: 3}
       Count: 8
   - EnemyInfos:
     - PositionType: 1
@@ -23990,7 +23990,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1125966476}
         m_TargetAssemblyTypeName: Player.PlayerReviver, Assembly-CSharp
-        m_MethodName: Do
+        m_MethodName: Revive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

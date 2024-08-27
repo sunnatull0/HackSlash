@@ -41,7 +41,6 @@ namespace Enemies
         protected virtual void Start()
         {
             _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-            Debug.Log(_playerTransform);
             playerLayer = LayerMask.GetMask(PlayerName);
 
             myTransform = GetComponent<Transform>();

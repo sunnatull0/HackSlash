@@ -1856,7 +1856,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.4952035, y: 5.3941755}
+  m_Offset: {x: 0.8643534, y: 5.3941755}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1866,7 +1866,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8.286347, y: 10.019772}
+  m_Size: {x: 6.850764, y: 10.019772}
   m_EdgeRadius: 0
 --- !u!50 &-1947069788395128568
 Rigidbody2D:
@@ -1919,6 +1919,7 @@ MonoBehaviour:
   _spawnSound: 37
   _intervalBetweenSimpleAttacks: 1.5
   _stampAnimator: {fileID: 5280836505760635099}
+  _trollAnimation: {fileID: 8622095311455359846}
   _jumpAttackSound: 34
 --- !u!114 &3791668394611236852
 MonoBehaviour:
@@ -1939,7 +1940,7 @@ MonoBehaviour:
   _attackRadius: 23.5
   _delayBeforeAttack: 0.5
   _damageInterval: 1
-  Draw: 1
+  Draw: 0
   _attackSoundType: 34
   JumpAttackStarted: 0
   isWaiting: 0
@@ -1957,6 +1958,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1811057a39484aa10eb2c4c4da591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: 1997479218564989835}
+  - {fileID: 1942481113706800581}
+  - {fileID: 541174984980650354}
+  - {fileID: 3659295263121296735}
+  - {fileID: 9145065366366055627}
+  - {fileID: 9002915084854070073}
+  - {fileID: 1128544988221445838}
+  - {fileID: 6432269867052744527}
+  - {fileID: 133858227313321795}
+  - {fileID: 1019796806963230921}
+  - {fileID: 3786240609987415599}
+  - {fileID: 5201806110981713938}
+  _changeToColor: {r: 0.1764706, g: 0.78431374, b: 1, a: 1}
+  _duration: 3
 --- !u!114 &4417374871018572987
 MonoBehaviour:
   m_ObjectHideFlags: 0
