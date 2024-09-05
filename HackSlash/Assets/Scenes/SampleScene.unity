@@ -22768,12 +22768,12 @@ MonoBehaviour:
   _waves:
   - EnemyInfos:
     - PositionType: 1
-      EnemyPrefab: {fileID: 7192056143704295429, guid: 8b94e1e47f3db934d923db13b020633c, type: 3}
+      EnemyPrefab: {fileID: 4884124145918657938, guid: c26715204338b72488424273cc03bae6, type: 3}
       Count: 1
   - EnemyInfos:
-    - PositionType: 0
-      EnemyPrefab: {fileID: 8419849762969627918, guid: 98bac6772246fb14d9e5d431f2caec74, type: 3}
-      Count: 2
+    - PositionType: 1
+      EnemyPrefab: {fileID: 4884124145918657938, guid: 4d655833426909a40a1a8d946426f545, type: 3}
+      Count: 1
   _endlessWavesCount: 2
   _bossWaveInterval: 2
   _firstWaveTimer: 1

@@ -26,13 +26,13 @@ public class WaveManager : MonoBehaviour
     private int _totalWaveCount;
     private int _currentWaveIndex;
     private bool _bossWave;
-    private bool _isWaveSpawning = false; // Flag to prevent multiple coroutines
+    private Coroutine _waveCoroutine; // Reference to the current running coroutine
 
     private void Start()
     {
         _totalWaveCount = _waves.Count;
         _currentWaveIndex = 1;
-        StartCoroutine(SpawnWaves());
+        _waveCoroutine = StartCoroutine(SpawnWaves());
         PlayerReviver.OnPlayerRevive += OnPlayerRevive;
     }
 
@@ -50,19 +50,16 @@ public class WaveManager : MonoBehaviour
             Destroy(enemy);
         }
 
-        // Move to the next wave, skipping the time delay
-        if (!_isWaveSpawning)
+        // Restart the current wave
+        if (_waveCoroutine != null)
         {
-            _currentWaveIndex++;
-            StopCoroutine(SpawnWaves()); // Stop the current wave coroutine (if running)
-            StartCoroutine(SpawnWaves()); // Start the next wave
+            StopCoroutine(_waveCoroutine); // Stop the current wave coroutine
         }
+        _waveCoroutine = StartCoroutine(SpawnWaves()); // Restart the current wave
     }
 
     private IEnumerator SpawnWaves()
     {
-        _isWaveSpawning = true;
-
         yield return new WaitForSeconds(_firstWaveTimer);
 
         while (true)
@@ -72,7 +69,7 @@ public class WaveManager : MonoBehaviour
 
             if (_currentWaveIndex > _totalWaveCount)
             {
-                int randomIndex = Random.Range(_totalWaveCount - _endlessWavesCount, _totalWaveCount -1);
+                int randomIndex = Random.Range(_totalWaveCount - _endlessWavesCount, _totalWaveCount - 1);
                 yield return SpawnWave(_waves[randomIndex]);
             }
             else
@@ -83,10 +80,10 @@ public class WaveManager : MonoBehaviour
             HandleMusicForWaveEnd();
 
             yield return new WaitForSeconds(_timeBetweenWaves);
+
+            // Move to the next wave after completing the current one
             _currentWaveIndex++;
         }
-
-        _isWaveSpawning = false;
     }
 
     private IEnumerator SpawnWave(Wave wave)
@@ -99,13 +96,14 @@ public class WaveManager : MonoBehaviour
                 yield return new WaitForSeconds(_timeBetweenEnemies);
             }
         }
+
         yield return new WaitUntil(AllEnemiesDestroyed);
     }
 
     private void HandleMusicForWaveStart()
     {
         SFXManager.Instance.PlaySFX(SFXType.WaveSound);
-        
+
         if (_currentWaveIndex % _bossWaveInterval == 0)
         {
             _bossWave = true;
